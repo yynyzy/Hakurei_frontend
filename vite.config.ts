@@ -7,8 +7,16 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      '@': resolve(__dirname, './src'),
+      '@/pages': resolve(__dirname, './src/pages')
     },
     extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css']
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true
+      }
+    }
   }
 })

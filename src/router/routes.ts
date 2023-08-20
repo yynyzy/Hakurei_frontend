@@ -12,6 +12,10 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/css',
-    component: () => import('@/pages/cssView/BorderCss'),
+    component: () => import('@/pages/cssView'),
+    children: [{
+      path: 'borderCssAnimation',
+      component: () => import('@/pages/cssView/BorderCss'),
+    }],
   }
 ]

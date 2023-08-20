@@ -37,7 +37,7 @@ const onToPage: (val: Tab) => void = (val) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .header {
   display: flex;
   justify-content: space-between;
@@ -45,23 +45,23 @@ const onToPage: (val: Tab) => void = (val) => {
   height: 50px;
   background: rgb(201, 252, 192);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-}
 
-.title {
-  color: #f83cd2;
-  font-weight: bold;
-  font-size: 30px;
-}
+  .title {
+    color: #f83cd2;
+    font-weight: bold;
+    font-size: 30px;
+  }
 
-.tab-wrapper {
+  .tab-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   width: auto;
-}
 
-.tab {
-  margin-right: 10px;
-  background: #f00;
+  .tab {
+    margin-right: 10px;
+    background: #f00;
+  }
+}
 }
 </style>

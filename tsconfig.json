@@ -23,14 +23,18 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@/pages/*": [
+        "src/pages/*"
+      ],
     }
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "*.ts"
   ],
   "exclude": [
     "node_modules"

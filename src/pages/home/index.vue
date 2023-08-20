@@ -5,11 +5,11 @@ import Header from '@/components/Header.vue';
 <template>
   <div class="home">
     <Header />
-    <div class="title">YYN STUDY</div>
+    <div class="title">Home</div>
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .home {
   width: 100vw;
   height: 100vh;
