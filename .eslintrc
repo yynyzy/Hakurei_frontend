@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": ".*",
+        "args": "none"
+      }
+    ]
+  }
+}

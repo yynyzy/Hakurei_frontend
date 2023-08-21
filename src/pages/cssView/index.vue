@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type RouteMap = {
+type RouteMap =  {
   name: string,
   link: string,
 }
@@ -8,6 +8,10 @@ const routeMap: Array<RouteMap> = [
   {
     name: '使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
     link: '/css/borderCssAnimation',
+  },
+  {
+    name: 'vue3+canvas实现选票功能',
+    link: '/css/autoSeatSelection',
   }
 ]
 </script>
@@ -16,12 +20,14 @@ const routeMap: Array<RouteMap> = [
   <div class="wrapper">
     <div class="left">
       <div class="title">{{ title }}</div>
-      <router-link v-for="(route, index) in routeMap" :to="route.link" :key="index">
-        <text class="directory">
-          {{ index + 1 }}.
-        </text>
-        {{ route.name }}
-      </router-link>
+      <div v-for="(route, index) in routeMap" :key="index" class="router-link">
+        <router-link  :to="route.link" >
+          <text class="directory">
+            {{ index + 1 }}.
+          </text>
+          {{ route.name }}
+        </router-link>
+      </div>
     </div>
     <div class="router-view">
       <router-view></router-view>
@@ -50,6 +56,9 @@ const routeMap: Array<RouteMap> = [
     text-align: center;
     font-weight: bold;
     background: #fff;
+  }
+  .router-link {
+    margin-bottom: 10px;
   }
   .directory{
     color: #000;

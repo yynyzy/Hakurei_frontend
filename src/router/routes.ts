@@ -13,9 +13,15 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/css',
     component: () => import('@/pages/cssView'),
-    children: [{
+    children: [
+      {
       path: 'borderCssAnimation',
       component: () => import('@/pages/cssView/BorderCss'),
-    }],
+      },
+      {
+        path: 'autoSeatSelection',
+        component: () => import('@/pages/cssView/AutoSeatSelection'),
+      },
+  ],
   }
 ]
