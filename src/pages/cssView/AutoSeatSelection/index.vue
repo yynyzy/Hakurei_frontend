@@ -1,18 +1,4 @@
-
-<template>
-  <div class="wrapper">
-    <canvas
-      id="canvas"
-      class="box"
-      ref="canvasRef"
-      width="500"
-      height="300"
-    ></canvas>
-    <button @click="onSettle">结算</button>
-  </div>
-</template>
-
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue';
 const canvasRef = ref<HTMLCanvasElement | null>();
 
@@ -20,53 +6,117 @@ const rows: number = 6;
 const cols: number = 10;
 const seatSize: number = 40;
 const seatGap: number = 10;
+const defaultSeatStatus = new Array(rows).fill(null).map(() => new Array(cols).fill(false))
+const seatsStatus = ref(defaultSeatStatus.map((arr) => [...arr])); // 不能直接 ref 数组，否则会改变原数组，导致 onReset 失败
 
-const draw: () => void = ()=> {
-  const canvas = canvasRef.value!;
-  // const canvas: any = document.getElementById('canvas');
-  // console.log('canvas1', canvas1)
-  console.log('ctx1', canvas)
-  const ctx = canvas.getContext('2d');
-  ctx?.clearRect(0, 0, canvas.width || 0, canvas.height || 0)
+interface checkedStatusOptions {
+  row: number,
+  col: number,
+}
+const checkedStatus = ref<checkedStatusOptions[]>([]);
+const onSettle = () => {
+  checkedStatus.value = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      if (seatsStatus.value[row][col]) {
+        checkedStatus.value.push({
+          row: row + 1,
+          col: col + 1,
+        });
+      }
+    }
+  }
+};
+
+const onReset = () => {
+  console.log('ctx1', defaultSeatStatus);
+  seatsStatus.value = defaultSeatStatus;
+  checkedStatus.value = [];
+  draw();
+};
+
+const draw: () => void = () => {
+  const canvas = canvasRef.value;
+  const ctx = canvas!.getContext('2d');
+  ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       const x: number = col * (seatSize + seatGap);
       const y: number = row * (seatSize + seatGap);
-      ctx!.fillStyle = '#ccc';
-      ctx?.fillRect(x, y, seatSize, seatSize);
-  }
-  }
-}
-
-const onSettle = () => {
-  // console.log('event', event)
-  // const canvas = canvasRef.value;
-  // const rect = canvas?.getBoundingClientRect();
-  // const scaleX = canvas.width / rect.width;
-  // const scaleY = canvas.height / rect.height;
-
-  // const x = (event.clientX - rect.left) * scaleX;
-  // const y = (event.clientY - rect.right) * scaleX;
-
-  // const col = Math.floor(x / (seatGap + seatSize))
-  // const row = Math.floor(y / (seatGap + seatSize))
-
-}
-onMounted(
-  () => {
-    draw();
-  }
-)
-
-</script>
-<style lang="less" scoped>
-  .wrapper {
-    width: 100%;
-    height: 100%;
-    background: #ffc0cb;
-    .box {
-      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      ctx!.fillStyle = seatsStatus.value[row][col] ? '#f00' : '#ccc';
+      ctx!.fillRect(x, y, seatSize, seatSize);
     }
   }
+};
+
+const handleClick: (event: MouseEvent) => void = (event) => {
+  const canvas = canvasRef.value;
+  const rect = canvas!.getBoundingClientRect();
+  const scaleX = canvas!.width / rect.width;
+  const scaleY = canvas!.height / rect.height;
+
+  const x = (event.clientX - rect.left) * scaleX;
+  const y = (event.clientY - rect.top) * scaleY;
+
+  const col = Math.floor(x / (seatGap + seatSize));
+  const row = Math.floor(y / (seatGap + seatSize));
+
+  seatsStatus.value[row][col] = !seatsStatus.value[row][col];
+  draw();
+};
+
+onMounted(() => {
+  draw();
+});
+</script>
+
+<template>
+  <div class="wrapper">
+    <p>请选择你要购买的座位</p>
+      <div class="box">
+        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="300" />
+      </div>
+      <div class="button">
+        <button @click="onSettle">结算</button>
+       <button @click="onReset">重置</button>
+      </div>
+    <div class="show-wrapper">
+      <div v-for="(item, index) in checkedStatus" :key="index">
+        你已选择第{{ item.row }}排第{{ item.col }}列的座位
+      </div>
+    </div>
+  </div>
+</template>
+
+<style lang="less" scoped>
+.wrapper {
+  width: 100%;
+  height: 100%;
+  background: #536bf3;
+  display: flex;
+  flex-direction: column;
+  .box {
+    box-shadow: #9ef87126 0px 48px 100px 0px;
+  }
+  .show-wrapper {
+    width: 250px;
+    height: 200px;
+    border: 1px solid;
+    text-align: center;
+    overflow-y: scroll;
+    background: rgb(122, 210, 237);
+  }
+
+  .button {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
+
+  ::-webkit-scrollbar{
+    display:none
+}
+}
 </style>
