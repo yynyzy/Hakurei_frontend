@@ -12,6 +12,10 @@ const routeMap: Array<RouteMap> = [
   {
     name: 'vue3+canvas实现选票功能',
     link: '/css/autoSeatSelection',
+  },
+  {
+    name: 'css动画 文字扫描加载（文字描边、伪元素、动画）',
+    link: '/css/textScanningLoading',
   }
 ]
 </script>

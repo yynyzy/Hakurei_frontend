@@ -1,3 +1,21 @@
+<template>
+  <div class="wrapper">
+    <p>请选择你要购买的座位</p>
+      <div class="box">
+        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="300" />
+      </div>
+      <div class="button">
+        <button @click="onSettle">结算</button>
+       <button @click="onReset">重置</button>
+      </div>
+    <div class="show-wrapper">
+      <div v-for="(item, index) in checkedStatus" :key="index">
+        你已选择第{{ item.row }}排第{{ item.col }}列的座位
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 const canvasRef = ref<HTMLCanvasElement | null>();
@@ -71,29 +89,10 @@ onMounted(() => {
 });
 </script>
 
-<template>
-  <div class="wrapper">
-    <p>请选择你要购买的座位</p>
-      <div class="box">
-        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="300" />
-      </div>
-      <div class="button">
-        <button @click="onSettle">结算</button>
-       <button @click="onReset">重置</button>
-      </div>
-    <div class="show-wrapper">
-      <div v-for="(item, index) in checkedStatus" :key="index">
-        你已选择第{{ item.row }}排第{{ item.col }}列的座位
-      </div>
-    </div>
-  </div>
-</template>
-
 <style lang="less" scoped>
 .wrapper {
   width: 100%;
   height: 100%;
-  background: #536bf3;
   display: flex;
   flex-direction: column;
   .box {

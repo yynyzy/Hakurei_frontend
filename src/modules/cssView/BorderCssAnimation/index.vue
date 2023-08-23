@@ -49,15 +49,13 @@
   border: 8px solid #25252b;
 }
 
-@property --a
-{
+@property --a {
   syntax:'<angle>';
   inherits: false;
   initial-value: 0deg;
 }
 
-@keyframes animate
-{
+@keyframes animate{
   0%
   {
     --a: 0deg;

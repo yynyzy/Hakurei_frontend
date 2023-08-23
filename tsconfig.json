@@ -24,8 +24,11 @@
       "@/*": [
         "src/*"
       ],
-      "@/pages/*": [
+      "pages/*": [
         "src/pages/*"
+      ],
+      "modules/*": [
+        "src/modules/*"
       ],
     }
   },
