@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 .wrapper {
   box-sizing: border-box;
   display: flex;
@@ -17,7 +17,6 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: #25252b;
 }
 
 .box {

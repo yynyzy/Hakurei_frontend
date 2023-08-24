@@ -40,6 +40,7 @@ const routeMap: Array<RouteMap> = [
 </template>
 
 <style lang="less" scoped>
+@import 'common/css/common.css';
 .wrapper {
   box-sizing: border-box;
   display: flex;
@@ -72,6 +73,7 @@ const routeMap: Array<RouteMap> = [
 .router-view {
   height: 100%;
   width: 80%;
+  background: var(--css-bg-color);
 }
 
 </style>

@@ -6,6 +6,7 @@
 </template>
 
 <style scoped>
+/* @import 'common/css//common.css'; */
 * {
   margin: 0;
   padding: 0;

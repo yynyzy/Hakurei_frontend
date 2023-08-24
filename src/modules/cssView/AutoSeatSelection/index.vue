@@ -2,7 +2,7 @@
   <div class="wrapper">
     <p>请选择你要购买的座位</p>
       <div class="box">
-        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="300" />
+        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="500" />
       </div>
       <div class="button">
         <button @click="onSettle">结算</button>
@@ -20,7 +20,7 @@
 import { ref, onMounted } from 'vue';
 const canvasRef = ref<HTMLCanvasElement | null>();
 
-const rows: number = 6;
+const rows: number = 10;
 const cols: number = 10;
 const seatSize: number = 40;
 const seatGap: number = 10;
@@ -97,6 +97,7 @@ onMounted(() => {
   flex-direction: column;
   .box {
     box-shadow: #9ef87126 0px 48px 100px 0px;
+    background: rgba(255, 255, 255, 0.3);
   }
   .show-wrapper {
     width: 250px;

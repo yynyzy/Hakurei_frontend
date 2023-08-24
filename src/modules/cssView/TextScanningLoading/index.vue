@@ -22,6 +22,8 @@ h2 {
   font-size: 10vw;
   color: #252839;
   -webkit-text-stroke: .3vw#383d52;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(3px);
 }
 
 h2::before {

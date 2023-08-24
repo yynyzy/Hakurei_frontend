@@ -9,7 +9,8 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './src'),
       'pages': resolve(__dirname, './src/pages'),
-      'modules': resolve(__dirname, './src/modules')
+      'modules': resolve(__dirname, './src/modules'),
+      'common': resolve(__dirname, './src/common')
     },
     extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css']
   },
