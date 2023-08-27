@@ -21,11 +21,15 @@ interface Tab {
 }
 const tabMap: Array<Tab> = [
   {
-    name: 'CSS 特效页面',
+    name: '自定义组件',
+    route: 'component',
+  },
+  {
+    name: 'CSS 特效',
     route: 'css',
   },
   {
-    name: 'JS 页面',
+    name: 'JS 妙用',
     route: 'js',
   },
 ];

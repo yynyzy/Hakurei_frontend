@@ -31,7 +31,7 @@ defineProps({
     padding: 0.25em 0.5em;
     border: 0.1em solid #0000ff;
     border-radius: 1em;
-    transition: 2s;
+    transition: 3s;
 
     &:before, &:after {
       content: '';
@@ -43,7 +43,7 @@ defineProps({
       border: none;
       border-radius: 40%;
       background-color: #0000ff40;
-      transition: 4s;
+      transition: 3s;
   }
   &:before {
     left: -80%;

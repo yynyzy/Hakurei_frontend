@@ -12,19 +12,29 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/css',
-    component: () => import('modules/cssView'),
+    component: () => import('modules/css'),
     children: [
       {
         path: 'borderCssAnimation',
-        component: () => import('modules/cssView/BorderCssAnimation'),
+        component: () => import('modules/css/BorderCssAnimation'),
       },
       {
         path: 'autoSeatSelection',
-        component: () => import('modules/cssView/AutoSeatSelection'),
+        component: () => import('modules/css/AutoSeatSelection'),
       },
       {
         path: 'textScanningLoading',
-        component: () => import('modules/cssView/TextScanningLoading'),
+        component: () => import('modules/css/TextScanningLoading'),
+      },
+    ],
+  },
+  {
+    path: '/component',
+    component: () => import('modules/component'),
+    children: [
+      {
+        path: 'waterFallComponent',
+        component: () => import('modules/component/WaterFallComponent'),
       },
     ],
   }
