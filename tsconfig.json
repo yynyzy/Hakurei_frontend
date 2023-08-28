@@ -24,16 +24,28 @@
       "@/*": [
         "src/*"
       ],
-      "pages/*": [
+      "@@/pages/*": [
         "src/pages/*"
       ],
-      "modules/*": [
+      "@@/modules/*": [
         "src/modules/*"
       ],
-      "common/*": [
-        "src/common/*"
+      "@@/plugins/*": [
+        "src/plugins/*"
       ],
-    }
+      "@@/directives/*": [
+        "src/directives/*"
+      ],
+      "@@/utils/*": [
+        "src/utils/*"
+      ],
+      "@@/common/*": [
+        "src/common/*"
+      ]
+    },
+    "types": [
+      "unplugin-vue-define-options"
+    ]
   },
   "include": [
     "src/**/*.ts",

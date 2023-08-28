@@ -32,7 +32,7 @@ const routeMap: Array<RouteMap> = [
 </template>
 
 <style lang="less" scoped>
-@import 'common/css/common.css';
+@import '@@/common/css/common.css';
 .wrapper {
   box-sizing: border-box;
   display: flex;

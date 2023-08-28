@@ -2,7 +2,11 @@
   <div class="waterfall-wrapper" v-loading="state.loading">
     <div class="container" ref="containerRef">
       <div class="list">
-          <div class="item" v-for="(item, index) in state.imageList" :key="index" style="{width: `${state.imageWidth}px`,
+          <div class="item" 
+              v-for="(item, index) in state.imageList" 
+              :key="index" 
+              style="{
+                width: `${state.imageWidth}px`,
                     transform: `translate3d(${imagePos[index].x}px, ${imagePos[index].y}px, 0)`
       }">
             <slot name="item" :item="item"></slot>

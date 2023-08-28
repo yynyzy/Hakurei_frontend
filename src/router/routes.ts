@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import Home from 'pages/home';
+import Home from '@@/pages/home';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -12,29 +12,29 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/css',
-    component: () => import('modules/css'),
+    component: () => import('@@/modules/css'),
     children: [
       {
         path: 'borderCssAnimation',
-        component: () => import('modules/css/BorderCssAnimation'),
+        component: () => import('@@/modules/css/BorderCssAnimation'),
       },
       {
         path: 'autoSeatSelection',
-        component: () => import('modules/css/AutoSeatSelection'),
+        component: () => import('@@/modules/css/AutoSeatSelection'),
       },
       {
         path: 'textScanningLoading',
-        component: () => import('modules/css/TextScanningLoading'),
+        component: () => import('@@/modules/css/TextScanningLoading'),
       },
     ],
   },
   {
     path: '/component',
-    component: () => import('modules/component'),
+    component: () => import('@@/modules/component'),
     children: [
       {
         path: 'waterFallComponent',
-        component: () => import('modules/component/WaterFallComponent'),
+        component: () => import('@@/modules/component/WaterFallComponent'),
       },
     ],
   }
