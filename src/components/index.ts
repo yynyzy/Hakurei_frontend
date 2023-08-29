@@ -1,8 +1,5 @@
 // import Vue from '@/main';
-// import { createApp } from 'vue'
 import Header from './Header/index.vue';
-
-// console.log('vm', Vue)
 
 // Vue.component('Header', Header);
 
@@ -18,5 +15,4 @@ const ComponentPlugin = {
   }
 };
 
-// createApp({}).use(ComponentPlugin);
 export default ComponentPlugin;

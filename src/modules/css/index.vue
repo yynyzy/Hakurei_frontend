@@ -72,7 +72,7 @@ const routeMap: Array<RouteMap> = [
 
 .router-view {
   height: 100%;
-  width: 80%;
+  flex: 1;
   background: var(--css-bg-color);
 }
 

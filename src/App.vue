@@ -2,11 +2,12 @@
 </script>
 
 <template>
-  <router-view />
+  <div class="app">
+    <router-view />
+  </div>
 </template>
 
 <style scoped>
-/* @import 'common/css//common.css'; */
 * {
   margin: 0;
   padding: 0;

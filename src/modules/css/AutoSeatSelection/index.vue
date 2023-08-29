@@ -47,7 +47,6 @@ const onSettle = () => {
 };
 
 const onReset = () => {
-  console.log('ctx1', defaultSeatStatus);
   seatsStatus.value = defaultSeatStatus;
   checkedStatus.value = [];
   draw();

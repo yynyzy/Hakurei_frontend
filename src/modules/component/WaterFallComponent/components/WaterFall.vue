@@ -1,14 +1,16 @@
 <template>
-  <div class="waterfall-wrapper" v-loading="state.loading">
-    <div class="container" ref="containerRef">
+  <div class="waterfall-container" v-loading="state.loading">
+    <div class="content" ref="contentRef">
       <div class="list">
-          <div class="item" 
-              v-for="(item, index) in state.imageList" 
-              :key="index" 
-              style="{
-                width: `${state.imageWidth}px`,
-                    transform: `translate3d(${imagePos[index].x}px, ${imagePos[index].y}px, 0)`
-      }">
+          <div
+            class="item"
+            v-for="(item, index) in state.imageList"
+            :key="index"
+            :style="{
+              width: `${state.imageWidth}px`,
+              transform: `translate3d(${imagePos[index].x}px, ${imagePos[index].y}px, 0)`
+            }"
+          >
             <slot name="item" :item="item"></slot>
           </div>
       </div>
@@ -17,8 +19,9 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, computed, onMounted} from 'vue';
-import { WaterFallProps, ImageItem} from '../WaterFallComponent/type';
+import _ from 'lodash';
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue';
+import { WaterFallProps, ImageItem} from '../type';
 
 const props = defineProps<WaterFallProps> ();
 defineSlots<{
@@ -31,8 +34,8 @@ const state = reactive({
   page: 1,
   imageWidth: 0,
   imageList: [] as ImageItem[],
-})
-const containerRef = ref<HTMLDivElement>(); // 组件 ref
+});
+const contentRef = ref<HTMLDivElement>(); // 组件 ref
 const columnHeight = ref<number[]>([]); // 瀑布流高度数组
 const imagePos = ref<{x: number, y: number}[]>([]);
 
@@ -51,9 +54,10 @@ const min = computed(() => {
     minIndex,
     minHeight,
   }
-})
+});
 
-const getImageList = async (page: number, pageSize: number) => {
+// 请求图片
+const getImageList = async (page: number, pageSize: number, isFirst: Boolean) => {
   if(state.isFinish) return;
   state.loading = true;
   const list = await props.request(page, pageSize);
@@ -62,11 +66,12 @@ const getImageList = async (page: number, pageSize: number) => {
     state.isFinish = true;
     return;
   }
-  computedImagePos(list, true);
+  computedImagePos(list, isFirst);
   state.imageList =[...state.imageList, ...list];
   state.loading = false;
-}
+};
 
+// 计算每张图片的位置
 const computedImagePos = (list: ImageItem[], isFirst: Boolean) =>{
   list.forEach((item, idx) => {
     const imageHeight = Math.floor((item.height * state.imageWidth) / item.width);
@@ -88,35 +93,54 @@ const computedImagePos = (list: ImageItem[], isFirst: Boolean) =>{
 };
 
 const init = () => {
-  if(containerRef.value) {
+  if(contentRef.value) {
     // 根据 container 宽度计算瀑布流每个图片的宽度
-    state.imageWidth = (containerRef.value.clientWidth - (props.column -1) * props.gap)/ props.column;
-    getImageList(state.page, props.pageSize);
+    state.imageWidth = (contentRef.value.clientWidth - (props.column -1) * props.gap)/ props.column;
+    getImageList(state.page, props.pageSize, true);
+    contentRef.value.addEventListener('scroll', handleScroll);
   }
-}
+};
 
 onMounted(() => {
   init();
+;});
+
+// 卸载监听器
+onUnmounted(()=> {
+  contentRef.value && contentRef.value.removeEventListener('scroll', handleScroll)
 })
+
+const handleScroll = _.throttle(() => {
+  const { scrollTop, clientHeight, scrollHeight } = contentRef.value!;
+  const bottom = scrollHeight - clientHeight - scrollTop;
+  if (bottom <=100) {
+    // 触底
+    console.log('handleScroll')
+    getImageList(state.page, props.pageSize, false);
+  }
+}, 1000);
 </script>
 <style lang="less" scoped>
-.waterfall-wrapper {
+.waterfall-container {
   width: 100%;
   height: 100%;
-  .container {
+  .content {
     width: 100%;
-   height: 100%;
-   overflow-y: scroll;
+    height: 100%;
+    border: 1px solid rgb(204, 249, 149);
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
     .list {
-    width: 100%;
-    position: relative;
-    background-color: red;
-    .item {
       width: 100%;
-      position: absolute;
-      background: green;
+      position: relative;
+      .item {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
-  }
   }
 }
 </style>

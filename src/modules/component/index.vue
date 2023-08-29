@@ -45,7 +45,7 @@ const routeMap: Array<RouteMap> = [
 .left {
   box-sizing: border-box;
   height: 100%;
-  width: 20%;
+  width: 15%;
   background: rgb(231, 252, 201);
   border: 1px solid;
   .title {
@@ -64,7 +64,7 @@ const routeMap: Array<RouteMap> = [
 
 .router-view {
   height: 100%;
-  width: 80%;
+  flex: 1;
   background: var(--css-bg-color);
 }
 

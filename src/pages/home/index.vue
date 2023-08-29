@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts">
-// import Header from '../../components/Header';
 import WaveButton from './components/WaveButton.vue'
 import { useRouter } from 'vue-router';
 
