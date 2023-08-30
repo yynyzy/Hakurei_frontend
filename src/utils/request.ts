@@ -1,12 +1,17 @@
-import axios from "axios";
+import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig }from "axios";
 import { isObject } from "./lang";
 // import qs from 'qs';
-// import Vue from '@/main';
 // import message from 'ant-design-vue/es/message';
-import VueAxios from '@@/plugins/VueAxios';
 
-const BASE_URL = "https://localhost"
-const baseConfig = {
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $axios: AxiosInstance;
+    $http: AxiosInstance;
+  }
+}
+
+const BASE_URL = "https://localhost"; // 默认 url
+const baseConfig: AxiosRequestConfig = {
   baseURL: setBaseUrl(),
   timeout: 20000,
   withCredentials: true,
@@ -20,6 +25,18 @@ function setBaseUrl() {
 // 此处可根据 环境 配置不同 baseUrl
   return BASE_URL;
 }
+const formatRequestConfig = (config: InternalAxiosRequestConfig) => {
+  // if (config.ignoreTrimWhitespace) {
+  //   config.data = trimWhitespace(config.data);
+  //   config.params = trimWhitespace(config.params);
+  // }
+  return config;
+};
+
+const formatResponseData = (response: AxiosResponse) => {
+  // 响应拦截器
+  return response.data;
+};
 
 const trimWhitespace = (data: any) => {
   if (!data || !isObject(data)) { return data; }
@@ -32,18 +49,7 @@ const trimWhitespace = (data: any) => {
   return JSON.parse(text);
 };
 
-const formatRequestConfig = (config: any) => {
-  // 请求非 business API，不需要携带 cookie
-  if (!config.ignoreTrimWhitespace) {
-    config.data = trimWhitespace(config.data);
-    config.params = trimWhitespace(config.params);
-  }
-  return config;
-};
-
-
 const err = ({ response }: { response: any}) => {
-
   if (!response) {
     // message.error('networkError');
   } else {
@@ -63,28 +69,31 @@ const err = ({ response }: { response: any}) => {
   }
   return Promise.reject(response);
 };
-
-const formatResponseData = (response: any) => {
-  return response.data;
-};
-
-// 创建 axios 实例
+// 创建携带 baseUrl 的 axios 实例
 const service = axios.create(baseConfig);
 service.interceptors.request.use(formatRequestConfig, err);
 service.interceptors.response.use(formatResponseData, err);
 
-const baseService = axios.create(baseConfig);
+// 创建一个初始 axios
+const baseService = axios.create({
+  baseURL: '',
+  timeout: 20000,
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+  },
+  // paramsSerializer: (params: any) => qs.stringify(params, { arrayFormat: 'brackets', allowDots: true }),
+});
 baseService.interceptors.request.use(formatRequestConfig, err);
-baseService.interceptors.response.use(formatResponseData);
+baseService.interceptors.response.use(formatResponseData, err);
 
 const installer = {
   install(vm: any) {
-    vm.use(VueAxios, { service, baseService });
+    vm.config.globalProperties.$http = baseService;
+    vm.config.globalProperties.$axios = service;
   },
 };
 
 export {
   installer as VueAxios,
   service as axios,
-  baseService,
 };

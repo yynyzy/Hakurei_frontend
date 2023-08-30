@@ -1,7 +1,7 @@
 export interface WaterFallProps {
   gap: number,
   column: number,
-  pageSize: number
+  pageSize: number,
   request: (page: number, pageSize: number) => Promise<ImageItem[]>
 }
 

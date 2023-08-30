@@ -12,22 +12,19 @@
 
 <script setup lang='ts'>
 import WaterFall from './components/WaterFall.vue';
+import { getCurrentInstance, ComponentInternalInstance } from 'vue';
 import { ImageItem } from './type';
 
-const requestData = (page: number, pageSize:number): Promise<ImageItem[]> => {
-  return new Promise<ImageItem[]>((resolve) => {
-    fetch(`https://blogback.fasyncsy.com.cn/vilipix/ranking?pageSize=${pageSize}&page=${page}`).then(async (res) => {
-      const result = await res.json();
-      const imageList: ImageItem[] = result.data.rows.map((i: any) => ({
-        id: i.picture_id,
-        url: i.original_url,
-        height: i.height,
-        width: i.width,
-      }));
-      console.log('img', imageList)
-      resolve(imageList)
-    })
-  })
+const { proxy } = getCurrentInstance() as ComponentInternalInstance;
+const requestData = async (page: number, pageSize:number): Promise<ImageItem[]> => {
+  const res = await proxy?.$http.get(`https://blogback.fasyncsy.com.cn/vilipix/ranking?pageSize=${pageSize}&page=${page}`);
+  const imageList: ImageItem[] = res.data.rows.map((i: any) => ({
+    id: i.picture_id,
+    url: i.original_url,
+    height: i.height,
+    width: i.width,
+  }));
+  return imageList;
 };
 
 </script>

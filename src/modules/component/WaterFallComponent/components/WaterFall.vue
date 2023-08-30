@@ -127,8 +127,8 @@ const handleScroll = _.throttle(() => {
   .content {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(204, 249, 149);
-    background-color: white;
+    border: 1px solid #ccf995;
+    background-color: #ffffff;
     overflow-x: hidden;
     overflow-y: scroll;
     .list {
