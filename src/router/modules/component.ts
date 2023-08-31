@@ -2,11 +2,11 @@
 export default [
   {
     path: '/component',
-    component: () => import('@@/modules/component'),
+    component: () => import('@@/views/component'),
     children: [
       {
         path: 'waterFallComponent',
-        component: () => import('@@/modules/component/WaterFallComponent'),
+        component: () => import('@@/views/component/WaterFallComponent'),
       },
     ],
   }

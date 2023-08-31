@@ -2,19 +2,19 @@
 export default [
   {
     path: '/css',
-    component: () => import('@@/modules/css'),
+    component: () => import('@@/views/css'),
     children: [
       {
         path: 'borderCssAnimation',
-        component: () => import('@@/modules/css/BorderCssAnimation'),
+        component: () => import('@@/views/css/BorderCssAnimation'),
       },
       {
         path: 'autoSeatSelection',
-        component: () => import('@@/modules/css/AutoSeatSelection'),
+        component: () => import('@@/views/css/AutoSeatSelection'),
       },
       {
         path: 'textScanningLoading',
-        component: () => import('@@/modules/css/TextScanningLoading'),
+        component: () => import('@@/views/css/TextScanningLoading'),
       },
     ],
   },

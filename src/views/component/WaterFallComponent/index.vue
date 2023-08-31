@@ -18,7 +18,7 @@ import { ImageItem } from './type';
 const { proxy } = getCurrentInstance() as ComponentInternalInstance;
 const requestData = async (page: number, pageSize:number): Promise<ImageItem[]> => {
   const res = await proxy?.$http.get(`https://blogback.fasyncsy.com.cn/vilipix/ranking?pageSize=${pageSize}&page=${page}`);
-  const imageList: ImageItem[] = res.data.rows.map((i: any) => ({
+  const imageList: ImageItem[] = res?.data.rows.map((i: any) => ({
     id: i.picture_id,
     url: i.original_url,
     height: i.height,

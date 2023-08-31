@@ -5,13 +5,17 @@
           <wave-button  v-for="(tab, index) in tabMap" :key="index" @click="onToPage(tab)" :text="tab.name"/>
       </template>
     </Header>
-    <div class="title">Home</div>
+    <div class="title">Home
+      <button @click="onClick">test</button>
+
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import WaveButton from './components/WaveButton.vue'
 import { useRouter } from 'vue-router';
+import { showMessageModel } from '@@/functional';
 
 
 interface Tab {
@@ -32,11 +36,15 @@ const tabMap: Array<Tab> = [
     route: 'js',
   },
 ];
-
 const router = useRouter();
 const onToPage: (val: Tab) => void = (val) => {
   router.push(val.route);
 };
+const onClick = () => {
+  showMessageModel({header: 'biaoti', content: 'neirong'}, () => {
+    console.log('关闭')
+  })
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,5 +1,5 @@
+import { App } from 'vue';
 import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig }from "axios";
-import { isObject } from "./lang";
 // import qs from 'qs';
 // import message from 'ant-design-vue/es/message';
 
@@ -26,27 +26,12 @@ function setBaseUrl() {
   return BASE_URL;
 }
 const formatRequestConfig = (config: InternalAxiosRequestConfig) => {
-  // if (config.ignoreTrimWhitespace) {
-  //   config.data = trimWhitespace(config.data);
-  //   config.params = trimWhitespace(config.params);
-  // }
   return config;
 };
 
 const formatResponseData = (response: AxiosResponse) => {
   // 响应拦截器
   return response.data;
-};
-
-const trimWhitespace = (data: any) => {
-  if (!data || !isObject(data)) { return data; }
-  const text = JSON.stringify(data, (key, value) => {
-    if (typeof (value) === 'string') {
-      return value.trim();
-    }
-    return value;
-  });
-  return JSON.parse(text);
 };
 
 const err = ({ response }: { response: any}) => {
@@ -87,7 +72,7 @@ baseService.interceptors.request.use(formatRequestConfig, err);
 baseService.interceptors.response.use(formatResponseData, err);
 
 const installer = {
-  install(vm: any) {
+  install(vm: App) {
     vm.config.globalProperties.$http = baseService;
     vm.config.globalProperties.$axios = service;
   },

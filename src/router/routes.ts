@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
-import CSSRouter from './modules/css'
-import componentRouter from './modules/component'
+import CSSRouter from './modules/css';
+import componentRouter from './modules/component';
 import Home from '@@/pages/home';
 
 export const routes: RouteRecordRaw[] = [
