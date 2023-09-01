@@ -27,8 +27,8 @@
       "@@/pages/*": [
         "src/pages/*"
       ],
-      "@@/modules/*": [
-        "src/modules/*"
+      "@@/views/*": [
+        "src/views/*"
       ],
       "@@/plugins/*": [
         "src/plugins/*"
@@ -39,9 +39,12 @@
       "@@/utils/*": [
         "src/utils/*"
       ],
-      "@@/common/*": [
-        "src/common/*"
-      ]
+      "@@/styles/*": [
+        "src/styles/*"
+      ],
+      "@@/functional/*": [
+        "src/functional/*"
+      ],
     },
     "types": [
       "unplugin-vue-define-options"

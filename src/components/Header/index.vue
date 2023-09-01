@@ -1,15 +1,37 @@
 <script setup lang="ts">
-defineOptions({
-    name: 'Header',
-  });
+import WaveButton from './waveButton.vue'
 const title: string = 'YYN STUDY';
+import { useRouter } from 'vue-router';
+
+interface Tab {
+  name: string,
+  route: string,
+}
+const tabMap: Array<Tab> = [
+  {
+    name: '自定义组件',
+    route: 'component',
+  },
+  {
+    name: 'CSS 特效',
+    route: 'css',
+  },
+  {
+    name: 'JS 妙用',
+    route: 'js',
+  },
+];
+const router = useRouter();
+const onToPage: (val: Tab) => void = (val) => {
+  router.push(val.route);
+};
 </script>
 
 <template>
   <div class="header">
     <div class="title">{{ title }}</div>
     <div class="tab-wrapper">
-      <slot name="button"></slot>
+      <wave-button  v-for="(tab, index) in tabMap" :key="index" @click="onToPage(tab)" :text="tab.name"/>
     </div>
   </div>
 </template>

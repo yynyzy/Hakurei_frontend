@@ -40,7 +40,7 @@ const routeMap: Array<RouteMap> = [
 </template>
 
 <style lang="less" scoped>
-@import '@@/common/css/common.css';
+@import '@@/styles/common.css';
 .wrapper {
   box-sizing: border-box;
   display: flex;
@@ -56,6 +56,7 @@ const routeMap: Array<RouteMap> = [
   width: 20%;
   background: rgb(231, 252, 201);
   border: 1px solid;
+  font-size: 18px;
   .title {
     font-size: 40px;
     text-align: center;

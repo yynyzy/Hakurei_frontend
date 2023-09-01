@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <h2>Loading...</h2>
+    <h2 v-drag>Loading...</h2>
   </div>
 </template>
 
@@ -8,16 +8,17 @@
 </script>
 <style lang="less" scoped>
 .wrapper {
-  margin: 0;
-  padding: 0;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+  background-color: red;
 }
 
 h2 {
+  display: inline-block;
   position: relative;
   font-size: 10vw;
   color: #252839;

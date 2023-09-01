@@ -1,4 +1,4 @@
-// env.d.ts
+
 /// <reference types="vite/client" />
 
 // 声明 module，防止使用引入的第三方库报 warning

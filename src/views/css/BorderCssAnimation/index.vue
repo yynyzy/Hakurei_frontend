@@ -4,13 +4,14 @@
 
 <template>
   <div class="wrapper">
-    <div class="box">
+    <div v-drag class="box">
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 .wrapper {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;

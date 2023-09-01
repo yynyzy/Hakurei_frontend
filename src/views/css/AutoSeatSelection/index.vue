@@ -1,14 +1,13 @@
 <template>
   <div class="wrapper">
-    <p>请选择你要购买的座位</p>
-      <div class="box">
-        <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="500" />
-      </div>
+    <div v-drag class="box">
+      <canvas id="canvas" @click="handleClick" ref="canvasRef" width="500" height="500" />
+    </div>
+    <div class="show-wrapper">
       <div class="button">
         <button @click="onSettle">结算</button>
-       <button @click="onReset">重置</button>
+        <button @click="onReset">重置</button>
       </div>
-    <div class="show-wrapper">
       <div v-for="(item, index) in checkedStatus" :key="index">
         你已选择第{{ item.row }}排第{{ item.col }}列的座位
       </div>
@@ -90,15 +89,20 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .wrapper {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
+  // align-items: center;
   .box {
+    position: absolute;
     box-shadow: #9ef87126 0px 48px 100px 0px;
     background: rgba(255, 255, 255, 0.3);
   }
   .show-wrapper {
+    position: absolute;
+    bottom: 0;
     width: 250px;
     height: 200px;
     border: 1px solid;
@@ -108,10 +112,12 @@ onMounted(() => {
   }
 
   .button {
-    margin: 20px 0;
+    position: absolute;
+    bottom: 0;
+    // margin: 20px 0;
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 250px;
   }
 
   ::-webkit-scrollbar{
