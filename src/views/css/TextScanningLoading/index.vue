@@ -14,7 +14,6 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  background-color: red;
 }
 
 h2 {

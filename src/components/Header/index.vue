@@ -10,15 +10,15 @@ interface Tab {
 const tabMap: Array<Tab> = [
   {
     name: '自定义组件',
-    route: 'component',
+    route: '/component',
   },
   {
     name: 'CSS 特效',
-    route: 'css',
+    route: '/css',
   },
   {
     name: 'JS 妙用',
-    route: 'js',
+    route: '/js',
   },
 ];
 const router = useRouter();
