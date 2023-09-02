@@ -39,12 +39,9 @@
       "@@/utils/*": [
         "src/utils/*"
       ],
-      "@@/styles/*": [
-        "src/styles/*"
-      ],
       "@@/functional/*": [
         "src/functional/*"
-      ],
+      ]
     },
     "types": [
       "unplugin-vue-define-options"

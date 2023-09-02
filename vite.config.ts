@@ -15,15 +15,15 @@ export default defineConfig({
       '@@/plugins': resolve(__dirname, './src/plugins'),
       '@@/directives': resolve(__dirname, './src/directives'),
       '@@/utils': resolve(__dirname, './src/utils'),
-      '@@/functional': resolve(__dirname, './src/functional'),
-      '@@/styles': resolve(__dirname, './src/styles')
+      '@@/functional': resolve(__dirname, './src/functional')
     },
     extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css', '.tsx']
   },
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true
+        javascriptEnabled: true,
+        additionalData: '@import "./src/assets/style/global.less";',
       }
     },
   }
