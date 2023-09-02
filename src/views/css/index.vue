@@ -16,6 +16,10 @@ const routeMap: Array<RouteMap> = [
   {
     name: 'css动画 文字扫描加载（文字描边、伪元素、动画）',
     link: '/css/textScanningLoading',
+  },
+  {
+    name: '立体翻页书',
+    link: '/css/Book3D',
   }
 ]
 </script>
@@ -52,6 +56,7 @@ const routeMap: Array<RouteMap> = [
   height: 100vh;
   width: 100%;
   .container {
+    overflow: hidden;
     height: 100%;
     width: 100%;
     flex: 1;
@@ -82,7 +87,6 @@ const routeMap: Array<RouteMap> = [
     .router-view {
       height: 100%;
       flex: 1;
-      background: @bg-color;
     }
   }
 }

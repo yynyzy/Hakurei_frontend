@@ -11,6 +11,7 @@
 
 <style lang="less" scoped>
 .wrapper {
+  background: @bg-color;
   position: relative;
   box-sizing: border-box;
   display: flex;

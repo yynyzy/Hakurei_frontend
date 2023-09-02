@@ -16,6 +16,10 @@ export default [
         path: 'textScanningLoading',
         component: () => import('@@/views/css/TextScanningLoading'),
       },
+      {
+        path: 'book3D',
+        component: () => import('@@/views/css/Book3D'),
+      },
     ],
   },
 ]
