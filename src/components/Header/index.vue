@@ -28,12 +28,12 @@ const onToPage: (val: Tab) => void = (val) => {
 </script>
 
 <template>
-  <div class="header">
+  <header class="header">
     <div class="title">{{ title }}</div>
     <div class="tab-wrapper">
       <wave-button  v-for="(tab, index) in tabMap" :key="index" @click="onToPage(tab)" :text="tab.name"/>
     </div>
-  </div>
+  </header>
 </template>
 
 <style lang="less" scoped>

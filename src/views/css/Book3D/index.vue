@@ -25,7 +25,7 @@
   width: 100%;
   height: 100%;
   perspective: 1200px;
-  background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+  background-image: @bg-color2;
 
   .book {
     position: relative;

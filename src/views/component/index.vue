@@ -80,7 +80,7 @@ const routeMap: Array<RouteMap> = [
     .router-view {
       height: 100%;
       flex: 1;
-      background: @bg-color;
+      background: @bg-color1;
     }
   }
 }

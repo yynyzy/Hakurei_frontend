@@ -3,7 +3,10 @@ type RouteMap =  {
   name: string,
   link: string,
 }
-const title: string = '目录';
+const introduce: {tipOne: string, tipTwo: string} = {
+  tipOne: 'Hi,',
+  tipTwo: 'CSS effect page',
+};
 const routeMap: Array<RouteMap> = [
   {
     name: '使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
@@ -28,7 +31,7 @@ const routeMap: Array<RouteMap> = [
   <div class="wrapper">
     <Header/>
     <div class="container">
-      <div class="left">
+      <!-- <div class="left">
       <div class="title">{{ title }}</div>
       <div v-for="(route, index) in routeMap" :key="index" class="router-link">
         <router-link  :to="route.link" >
@@ -38,8 +41,13 @@ const routeMap: Array<RouteMap> = [
           {{ route.name }}
         </router-link>
       </div>
-    </div>
+    </div> -->
     <div class="router-view">
+      <sidebar
+        class="sidebar"
+        :introduce="introduce"
+        :menus="routeMap"
+      />
       <router-view></router-view>
     </div>
     </div>
@@ -85,8 +93,15 @@ const routeMap: Array<RouteMap> = [
     }
 
     .router-view {
+      position: relative;
       height: 100%;
       flex: 1;
+
+      .sidebar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
     }
   }
 }

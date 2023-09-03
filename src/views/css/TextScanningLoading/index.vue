@@ -14,7 +14,7 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  background: @bg-color;
+  background: @bg-color1;
 }
 
 h2 {
