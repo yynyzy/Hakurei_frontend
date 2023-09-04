@@ -3,24 +3,11 @@
 </script>
 
 <template>
-  <div class="wrapper">
-    <div v-drag class="box">
+    <div class="box">
     </div>
-  </div>
 </template>
 
 <style lang="less" scoped>
-.wrapper {
-  background: @bg-color1;
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
 .box {
   position: relative;
   width: 400px;

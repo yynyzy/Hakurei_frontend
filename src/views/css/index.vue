@@ -1,61 +1,64 @@
 <script setup lang="ts">
-type RouteMap =  {
+import { ref } from 'vue';
+import components from './componentController';
+
+interface Menus {
   name: string,
-  link: string,
+  data: any,
 }
+
+const currentCompIndex = ref(0);
 const introduce: {tipOne: string, tipTwo: string} = {
-  tipOne: 'Hi,',
+  tipOne: 'Hi, this is a',
   tipTwo: 'CSS effect page',
 };
-const routeMap: Array<RouteMap> = [
+const menus: Array<Menus> = [
   {
     name: '使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
-    link: '/css/borderCssAnimation',
+    data: '',
   },
   {
     name: 'vue3+canvas实现选票功能',
-    link: '/css/autoSeatSelection',
+    data: '',
   },
   {
     name: 'css动画 文字扫描加载（文字描边、伪元素、动画）',
-    link: '/css/textScanningLoading',
+    data: '',
   },
   {
     name: '立体翻页书',
-    link: '/css/Book3D',
+    data: '',
   }
 ]
+
+const onClickMenu = (val: any) => {
+  if (currentCompIndex.value !== val) {
+    currentCompIndex.value = val;
+  }
+}
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="page">
     <Header/>
     <div class="container">
-      <!-- <div class="left">
-      <div class="title">{{ title }}</div>
-      <div v-for="(route, index) in routeMap" :key="index" class="router-link">
-        <router-link  :to="route.link" >
-          <text class="directory">
-            {{ index + 1 }}.
-          </text>
-          {{ route.name }}
-        </router-link>
-      </div>
-    </div> -->
-    <div class="router-view">
       <sidebar
         class="sidebar"
         :introduce="introduce"
-        :menus="routeMap"
+        :menus="menus"
+        @getMenuIndex="onClickMenu"
       />
-      <router-view></router-view>
-    </div>
+        <component
+        v-drag
+        :key="currentCompIndex"
+        :is="components[currentCompIndex]"
+        />
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
-.wrapper {
+.page {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -64,44 +67,21 @@ const routeMap: Array<RouteMap> = [
   height: 100vh;
   width: 100%;
   .container {
-    overflow: hidden;
+    position: relative;
     height: 100%;
     width: 100%;
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    .left {
-      box-sizing: border-box;
-      height: 100%;
-      width: 20%;
-      background: rgb(231, 252, 201);
-      border: 1px solid;
-      font-size: 18px;
-      .title {
-        font-size: 40px;
-        text-align: center;
-        font-weight: bold;
-        background: #fff;
-      }
-      .router-link {
-        margin-bottom: 10px;
-      }
-      .directory{
-        color: #000;
-      }
-    }
+    background: @bg-color2;
+    perspective: 1200px;
+    overflow: hidden;
 
-    .router-view {
-      position: relative;
-      height: 100%;
-      flex: 1;
-
-      .sidebar {
+    .sidebar {
         position: absolute;
         top: 10px;
         left: 10px;
-      }
     }
   }
 }

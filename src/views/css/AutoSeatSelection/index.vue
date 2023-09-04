@@ -91,10 +91,11 @@ onMounted(() => {
 .wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 900px;
   display: flex;
-  // flex-direction: column;
-  // align-items: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   .box {
     position: absolute;
     box-shadow: #9ef87126 0px 48px 100px 0px;
@@ -108,7 +109,6 @@ onMounted(() => {
     border: 1px solid;
     text-align: center;
     overflow-y: scroll;
-    background: rgb(122, 210, 237);
   }
 
   .button {

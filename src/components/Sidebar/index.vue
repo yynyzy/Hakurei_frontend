@@ -10,9 +10,9 @@
         v-for="(item, idx) in menus"
         :class="[clickIndex === idx ? 'active': '']"
         :key="idx"
-        @click="changeComponent(item.link, idx)"
+        @click="onClickMenu(idx)"
       >
-        <i class="fa-solid fa-home"/>
+        <i class="far fa-hand-point-right" />
         <span :style="{'animation-delay': (idx * 0.1) + 0.5 + 's' }">{{ item.name }}</span>
       </li>
     </ul>
@@ -21,7 +21,6 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 
 interface Props {
   menus: menuType[],
@@ -33,17 +32,17 @@ interface menuType {
   link: string,
 }
 
-const router = useRouter();
+defineProps<Props>();
+const emits = defineEmits<{
+  getMenuIndex: [index: number],
+}>();
 const clickIndex = ref(0);
 
-const onToPage: (val: Tab) => void = (val) => {
-  router.push(val.route);
-};
-const changeComponent = (componentRoute, index) => {
+const onClickMenu = (index: number) => {
   clickIndex.value = index;
-  router.push(componentRoute);
+  emits('getMenuIndex', index);
 }
-defineProps<Props>();
+
 </script>
 
 <style lang="less" scoped>
@@ -141,9 +140,9 @@ defineProps<Props>();
 
         i {
           background: none;
+          color: #e6ebf0;
           -webkit-background-clip: unset;
           -webkit-text-fill-color: unset;
-          color: #e6ebf0;
         }
       }
     }

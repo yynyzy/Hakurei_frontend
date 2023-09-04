@@ -1,5 +1,4 @@
 <template>
-  <div class="wrapper">
       <div v-drag class="book">
         <div class="di end"></div>
         <div class="d page6 right"></div>
@@ -10,23 +9,11 @@
         <div class="d page1 left"></div>
         <div class="d first"></div>
       </div>
-  </div>
 </template>
 
 <script setup lang='ts'>
 </script>
 <style lang="less" scoped>
-.wrapper {
-  position: relative;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  perspective: 1200px;
-  background-image: @bg-color2;
-
   .book {
     position: relative;
     transform-style: preserve-3d;
@@ -109,5 +96,4 @@
   .book:hover .end {
     transform: rotateY(-20deg) scale(1.1);
   }
-}
 </style>

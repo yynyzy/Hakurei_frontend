@@ -1,22 +1,10 @@
 <template>
-  <div class="wrapper">
-    <h2 v-drag>Loading...</h2>
-  </div>
+    <h2>Loading...</h2>
 </template>
 
 <script setup lang='ts'>
 </script>
 <style lang="less" scoped>
-.wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background: @bg-color1;
-}
-
 h2 {
   display: inline-block;
   position: relative;
