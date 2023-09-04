@@ -1,32 +1,3 @@
-// import type { Directive } from "vue";
-
-// const drag: Directive = {
-//   beforeMount (el) {
-//     let disX = 0;
-//     let disY = 0;
-//     let canMove = false;
-
-//     el.addEventListener('mousedown', (e) => {
-//       canMove = true;
-//       disX = e.clientX - el.offsetLeft; // 获取当前鼠标在客户端的水平坐标减去当前元素相对于父节点的偏移0像素值
-//       disY = e.clientY - el.offsetTop;
-//     });
-//     document.addEventListener('mousemove', (e) => {
-//       if (canMove) {
-//         el.style.left = e.clientX - disX + 'px';
-//         el.style.top = e.clientY - disY + 'px';
-//       }
-//     });
-//     document.addEventListener('mouseup', () => {
-//       canMove = false;
-//       document.onmousemove = null;
-//       document.onmouseup = null;
-//     });
-//   },
-// }
-
-// export default drag;
-
 import type { Directive } from "vue";
 interface ElType extends HTMLElement {
     parentNode: any;

@@ -16,7 +16,6 @@ defineProps({
 </script>
 <style lang="less" scoped>
 .button {
-  //  height: 100%;
     margin-right: 10px;
     min-width: 5em;
     text-align: center;

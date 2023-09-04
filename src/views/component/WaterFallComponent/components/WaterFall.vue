@@ -115,7 +115,6 @@ const handleScroll = _.throttle(() => {
   const bottom = scrollHeight - clientHeight - scrollTop;
   if (bottom <=100) {
     // 触底
-    console.log('handleScroll')
     getImageList(state.page, props.pageSize, false);
   }
 }, 1000);

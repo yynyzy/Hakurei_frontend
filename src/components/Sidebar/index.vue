@@ -40,7 +40,6 @@ const onToPage: (val: Tab) => void = (val) => {
   router.push(val.route);
 };
 const changeComponent = (componentRoute, index) => {
-  console.log('index', index);
   clickIndex.value = index;
   router.push(componentRoute);
 }
@@ -71,27 +70,6 @@ defineProps<Props>();
     .list span {
       animation: fadeIn .4s ease-out forwards;
     }
-
-    // .list li:nth-child(1) span {
-    //   animation-delay: .5s;
-    // }
-
-    // .list li:nth-child(2) span {
-    //   animation-delay: .6s;
-    // }
-
-    // .list li:nth-child(3) span {
-    //   animation-delay: .7s;
-    // }
-
-    // .list li:nth-child(4) span {
-    //   animation-delay: .8s;
-    // }
-
-    // .list li:nth-child(5) span {
-    //   animation-delay: .9s;
-    // }
-
   }
 
   .brand {
