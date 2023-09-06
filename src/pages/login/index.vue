@@ -14,13 +14,13 @@
           <h2>Login Form</h2>
           <form>
             <div class="input-box">
-              <input type="text" placeholder="Username"/>
+              <input v-model="form.username" type="text" placeholder="Username"/>
             </div>
             <div class="input-box">
-              <input type="password" placeholder="Password"/>
+              <input v-model="form.password" type="password" placeholder="Password"/>
             </div>
             <div class="input-box">
-              <input type="submit" value="login"/>
+              <button class="btn" @click="onLogin">login</button>
             </div>
             <p class="sign">Don't have a account ? <a href="#">Sign up</a></p>
           </form>
@@ -31,7 +31,19 @@
 </template>
 
 <script setup lang='ts'>
-// import { ref, reactive,toRefs,onBeforeMount,onMounted} from 'vue'
+import { ref } from 'vue';
+import { LoginRequest} from "../types/User";
+import { User } from '../engine'
+
+const form = ref<LoginRequest>({
+  username: '',
+  password: '',
+})
+const onLogin = async () => {
+ const res = await User.login(form.value);
+ console.log('login', res);
+};
+
 </script>
 <style lang="less" scoped>
 .wrapper {
@@ -130,15 +142,23 @@
           &::placeholder {
             color: #fff;
           }
+        }
 
-          &[type="submit"] {
-            background: #fff;
-            color: #666;
-            min-width: 100px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            font-weight: 600;
-          }
+        .btn {
+          background: #fff;
+          color: #666;
+          min-width: 100px;
+          cursor: pointer;
+          margin-bottom: 20px;
+          font-weight: 600;
+          padding: 10px 20px;
+          border-radius: 10px;
+          font-size: 16px;
+          letter-spacing: 1px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-right: 1px solid rgba(255, 255, 255, 0.2);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
       }
 
