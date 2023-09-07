@@ -6,16 +6,17 @@ import Home from '@@/pages/home';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/login',
-    component: Login
+    path: '/home',
+    meta: { isAuth: true },
+    component: Home,
   },
   {
     path:'/',
     redirect:"/home"
   },
   {
-    path: '/home',
-    component: Home,
+    path: '/login',
+    component: Login
   },
   ...CSSRouter,
   ...componentsRouter,

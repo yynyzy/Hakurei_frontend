@@ -7,4 +7,13 @@ const router = createRouter({
   routes,
 });
 
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((r) => r.meta?.isAuth)) {
+    next({ path: "login", query: { redirect: to.fullPath }});
+  } else {
+    next();
+  }
+})
+
 export default router;
