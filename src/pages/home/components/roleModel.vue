@@ -16,28 +16,28 @@ type RoleType = {
 }
 const roles: RoleType[] = [
   {
-    name: '小樱',
+    name: '博丽灵梦',
     img: ' ./images/home/role1.jpg',
   },
   {
-    name: '小樱',
-    img: ' ./images/home/role1.jpg',
+    name: '风见幽香',
+    img: ' ./images/home/role2.jpg',
   },
   {
-    name: '小樱',
-    img: ' ./images/home/role1.jpg',
+    name: '八云紫',
+    img: ' ./images/home/role3.jpg',
   },
   {
-    name: '小樱',
-    img: ' ./images/home/role1.jpg',
+    name: '蕾米莉亚·芙兰朵露',
+    img: ' ./images/home/role4.jpg',
   },
   {
-    name: '小樱',
-    img: ' ./images/home/role1.jpg',
+    name: '古明地恋',
+    img: ' ./images/home/role5.jpg',
   },
   {
-    name: '小樱',
-    img: ' ./images/home/role1.jpg',
+    name: '东风谷早苗',
+    img: ' ./images/home/role6.jpg',
   },
 ];
 
@@ -61,8 +61,8 @@ const roles: RoleType[] = [
     transition: all 0.5s;
 
     img {
-      width: 90%;
-      height: 100%;
+      width: 100%;
+      height: 90%;
       object-fit: cover;
     }
 
@@ -71,7 +71,7 @@ const roles: RoleType[] = [
       justify-content: center;
       align-items: center;
       text-align: center;
-      height: 15%;
+      height: 10%;
       font-size: 20px;
       font-weight: 900;
     }
