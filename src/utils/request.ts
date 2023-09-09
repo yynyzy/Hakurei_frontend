@@ -3,6 +3,16 @@ import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxios
 // import qs from 'qs';
 // import message from 'ant-design-vue/es/message';
 
+declare module "axios" {
+  interface AxiosResponse<T = any> {
+    code: number;
+    message: string;
+    data: T;
+    // 这里追加你的参数
+  }
+  export function create(config?: AxiosRequestConfig): AxiosInstance;
+}
+
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $axios: AxiosInstance;
@@ -10,7 +20,7 @@ declare module '@vue/runtime-core' {
   }
 }
 
-const BASE_URL = "https://localhost"; // 默认 url
+const BASE_URL = "http://localhost:9902"; // 默认 url
 const baseConfig: AxiosRequestConfig = {
   baseURL: setBaseUrl(),
   timeout: 20000,

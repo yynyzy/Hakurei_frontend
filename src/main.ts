@@ -6,6 +6,7 @@ import {
   ComponentPlugin,
   DirectivePlugin,
   VueAxios,
+  createPinia,
 } from './FrontendCore'
 
 const app = createApp(App);
@@ -14,6 +15,7 @@ app.
   use(ComponentPlugin).
   use(DirectivePlugin).
   use(VueAxios).
+  use(createPinia()).
   mount('#app');
 
 export default app;

@@ -32,19 +32,34 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { LoginRequest} from "../types/User";
-import { User } from '../engine'
+import { useRoute, useRouter } from 'vue-router';
+import { tokenStore } from "@/stores";
+import { LoginRequest } from "../types/User";
+import { User } from '../engine';
 
+const router = useRouter();
+const route = useRoute();
+const store = tokenStore();
 const form = ref<LoginRequest>({
   username: '',
   password: '',
 })
 const onLogin = async () => {
- const res = await User.login(form.value);
- console.log('login', res);
+  try {
+    const res = await User.login(form.value);
+    if (res.code === 200) {
+      store.setAccessToken(res.data);
+      router.push((route.query.redirect as string) || "/");
+    } else {
+      console.log("登陆失败")
+    }
+  } catch (error) {
+    console.log("登陆失败")
+    throw error;
+  }
 };
-
 </script>
+
 <style lang="less" scoped>
 .wrapper {
   display: flex;
@@ -131,7 +146,7 @@ const onLogin = async () => {
           padding: 10px 20px;
           background: rgba(255, 255, 255, 0.2);
           border-radius: 10px;
-          color: #fff;
+          color: #000000;
           font-size: 16px;
           letter-spacing: 1px;
           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);

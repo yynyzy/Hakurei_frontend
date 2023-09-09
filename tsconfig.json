@@ -41,6 +41,9 @@
       ],
       "@@/functional/*": [
         "src/functional/*"
+      ],
+      "@@/stores/*": [
+        "src/stores/*"
       ]
     }
   },
