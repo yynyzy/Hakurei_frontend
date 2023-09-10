@@ -20,6 +20,7 @@ import roleModal from './components/roleModel.vue'
   .header {
     position: absolute;
     top: 0;
+    z-index: 99;
   }
   .container {
     height: 100%;

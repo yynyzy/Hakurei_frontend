@@ -36,6 +36,6 @@ const drag: Directive = {
               document.onmouseup = null;
             };
         };
-    }
+  }
 };
 export default drag;
