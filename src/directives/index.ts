@@ -1,10 +1,11 @@
 import { App, Directive } from 'vue';
 import drag from './Drag';
-// import Loading from './Loading';
+import loading from './Loading';
 
 
 const directives: {[key: string]: Directive } = {
   drag,
+  loading,
 }
 
 const DirectivePlugin = {

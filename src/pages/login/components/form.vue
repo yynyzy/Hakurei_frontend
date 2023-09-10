@@ -1,6 +1,7 @@
 <template>
     <div
       class="wrapper"
+      v-loading="loading"
       :class="{ popup: show, active: isLoginForm }"
     >
     <span class="close" @click="onCloseForm">
@@ -50,6 +51,7 @@ import { LoginRequest } from '../../types/User.ts';
 interface Props {
   modelValue: LoginRequest
   show: Boolean
+  loading: Boolean
 }
 interface Emits {
   login: void
