@@ -13,3 +13,19 @@
   z-index: 9999;
   transition: all .5s;
 }
+
+.loadImg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

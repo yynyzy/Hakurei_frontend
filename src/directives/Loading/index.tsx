@@ -1,11 +1,12 @@
 import { createApp, defineComponent, Directive } from "vue";
-import styles from './index.module.css'
+import styles from './index.module.css';
+import loadingUrl from "./loading.jpg";
 
 const Model = defineComponent({
   setup() {
     return () => (
       <div class= { styles.loadClass }>
-        123
+        <img class= { styles.loadImg } src={ loadingUrl } />
       </div>
     )
   }
@@ -20,7 +21,6 @@ const mountDom = (el: HTMLElement) => {
 }
 const loading: Directive = {
   beforeMount(el: HTMLElement, binding: any) {
-    console.log('el', el)
     const target = el;
     const flag = typeof binding.value == 'boolean' ? binding.value : binding.value.value
     if (target) {
