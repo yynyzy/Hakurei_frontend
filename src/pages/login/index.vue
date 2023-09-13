@@ -22,7 +22,7 @@ import { tokenStore } from "@/stores";
 import { User } from '../engine';
 
 const isLoading = ref(false);
-const isShowForm = ref(true);
+const isShowForm = ref(false);
 const router = useRouter();
 const route = useRoute();
 const store = tokenStore();
@@ -39,7 +39,7 @@ const onLogin = async() => {
     const res = await User.login(form.value);
     if (res.code === 200) {
       store.setAccessToken(res.data);
-      router.push((route.query.redirect as string) || "/");
+      router.push((route.query.redirect as string) || "/home");
     } else {
       console.log("登陆失败")
     }
@@ -64,7 +64,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  // background: url('../images/loginBg.gif') no-repeat;
   background: url('../images/loginBg.jpg') no-repeat;
   background-size: cover;
   background-position: centers;
