@@ -2,6 +2,7 @@
   <header>
     <div class="logo">YZYN</div>
     <div>
+      <a class="navigation rain" @click="onClickNavigationBar('rain')">Code Rain</a>
       <a class="navigation" href="#">Introduce</a>
       <input type="button" class="btn" @click="onClickLogin" value="Login"/>
     </div>
@@ -14,6 +15,7 @@ interface Props {
 }
 interface Emits {
   (event: 'update:modelValue', value: Boolean): void;
+  (event: 'onClickNavigation', value: string): void;
 }
 
 const props = defineProps<Props>();
@@ -22,7 +24,9 @@ const emits = defineEmits<Emits>();
 const onClickLogin = () => {
   emits('update:modelValue', !props.modelValue)
 };
-
+const onClickNavigationBar = (value: string) => {
+  emits('onClickNavigation', value);
+}
 </script>
 
 <style lang="less" scoped>

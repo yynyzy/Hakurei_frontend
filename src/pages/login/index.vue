@@ -1,6 +1,6 @@
 <template>
 <section>
-  <login-header v-model="isShowForm"/>
+  <login-header @onClickNavigation="onClickNavigation" v-model="isShowForm"/>
   <login-form
     v-model="form"
     :loading="isLoading"
@@ -9,6 +9,8 @@
     @login="onLogin"
     @sign="onSign"
   />
+
+  <code-rain v-if="isRainShow"/>
   </section>
 </template>
 
@@ -16,6 +18,7 @@
 import { ref } from 'vue';
 import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
+import codeRain from "./components/codeRain.vue";
 import { LoginRequest } from '../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore } from "@/stores";
@@ -55,7 +58,12 @@ const onSign = () => {
   console.log("sign")
 };
 
-
+const isRainShow = ref(false);
+const onClickNavigation = (value: string) => {
+  if (value ==='rain') {
+    isRainShow.value = !isRainShow.value;
+  }
+}
 </script>
 <style lang="less" scoped>
 section {
