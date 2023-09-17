@@ -12,6 +12,7 @@
 
   <code-rain v-if="isRainShow"/>
   </section>
+  <welcome-text />
 </template>
 
 <script setup lang='ts'>
@@ -19,6 +20,7 @@ import { ref } from 'vue';
 import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import codeRain from "./components/codeRain.vue";
+import welcomeText from "./components/welcomeText.vue";
 import { LoginRequest } from '../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore } from "@/stores";
@@ -35,7 +37,8 @@ const form = ref<LoginRequest>({
 });
 const onShow = () => {
   isShowForm.value = false;
-}
+};
+
 const onLogin = async() => {
   isLoading.value= true;
   try {
@@ -67,7 +70,7 @@ const onClickNavigation = (value: string) => {
 </script>
 <style lang="less" scoped>
 section {
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
