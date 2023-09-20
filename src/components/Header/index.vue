@@ -55,8 +55,8 @@ const onToPage: (val: Tab) => void = (val) => {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  height: 50px;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  padding: 10px 50px;
 
   .header-right {
     display: flex;
@@ -108,7 +108,6 @@ const onToPage: (val: Tab) => void = (val) => {
 
   .tab-wrapper {
     display: flex;
-    height: 100%;
     align-items: center;
     justify-content: center;
   }
