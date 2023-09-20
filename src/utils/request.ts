@@ -1,6 +1,5 @@
 import { App } from 'vue';
 import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig }from "axios";
-// import qs from 'qs';
 // import message from 'ant-design-vue/es/message';
 
 declare module "axios" {
@@ -20,7 +19,6 @@ declare module '@vue/runtime-core' {
   }
 }
 
-const BASE_URL = "http://localhost:9902"; // 默认 url
 const baseConfig: AxiosRequestConfig = {
   baseURL: setBaseUrl(),
   timeout: 20000,
@@ -33,7 +31,11 @@ const baseConfig: AxiosRequestConfig = {
 
 function setBaseUrl() {
 // 此处可根据 环境 配置不同 baseUrl
-  return BASE_URL;
+  const { MODE, VITE_APP_BASE_URL, VITE_APP_PORT }  = import.meta.env;
+  if (MODE === 'development') {
+    /** */
+  }
+  return `${VITE_APP_BASE_URL}:${VITE_APP_PORT}`;
 }
 const formatRequestConfig = (config: InternalAxiosRequestConfig) => {
   return config;
