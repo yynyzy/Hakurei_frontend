@@ -11,14 +11,15 @@ const len = welcomeText.length;
 const text = ref<string>('');
 let flag = 0;
 
+const line = '<span ref="lineRef" class="line" ></span>'
 const animationFunc = () => {
   if (flag < len) {
-    text.value = welcomeText.slice(0, flag++) + '<span class="line"></span>';
+    text.value = welcomeText.slice(0, flag++) + line;
     setTimeout(()=> {
       animationFunc();
     }, 100);
   } else {
-    text.value = welcomeText + '<span class="line"></span>';
+    text.value = welcomeText + line;
   }
 };
 
@@ -27,7 +28,7 @@ onMounted(() => {
 });
 
 </script>
-<style lang="less">
+<style lang="less" scoped>
 // vue 中 v-html 会认为是一个组件使用 scoped 导致 v-html 中的元素样式不生效
 .wrapper {
   width: 100%;
@@ -41,10 +42,10 @@ onMounted(() => {
     font-size: 36px;
     padding: 20px;
     color: #fff;
-    .line {
-      animation: blink .5s infinite step-end alternate;
-      border-right: 3px solid;
-  }
+
+    :deep(.line) {
+      animation: blink .5s infinite step-end alternate; border-right: 3px solid;
+    }
   }
 
 }
