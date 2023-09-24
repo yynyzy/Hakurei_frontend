@@ -39,6 +39,7 @@ const onClickNavigationBar = (value: string) => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 99;
 
     .logo {
       font-size: 2em;

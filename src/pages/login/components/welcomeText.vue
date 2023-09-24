@@ -6,7 +6,7 @@
 
 <script setup lang='ts'>
 import { ref, onMounted} from 'vue';
-const welcomeText = "welcome to my website, this is for my favorite 东方 Project";
+const welcomeText = "welcome to my website for 东方 Project";
 const len = welcomeText.length;
 const text = ref<string>('');
 let flag = 0;

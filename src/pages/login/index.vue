@@ -1,17 +1,10 @@
 <template>
-<section>
-  <login-header @onClickNavigation="onClickNavigation" v-model="isShowForm"/>
-  <login-form
-    v-model="form"
-    :loading="isLoading"
-    :show="isShowForm"
-    @show="onShow"
-    @login="onLogin"
-    @sign="onSign"
-  />
-
-  <code-rain v-if="isRainShow"/>
+  <section>
+    <login-header @onClickNavigation="onClickNavigation" v-model="isShowForm" />
+    <login-form v-model="form" :loading="isLoading" :show="isShowForm" @show="onShow" @login="onLogin" @sign="onSign" />
   </section>
+  <code-rain v-if="isRainShow" />
+  <Sakura />
   <welcome-text />
 </template>
 
@@ -19,6 +12,7 @@
 import { ref } from 'vue';
 import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
+import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
 import welcomeText from "./components/welcomeText.vue";
 import { LoginRequest } from '../types/User';
@@ -39,8 +33,8 @@ const onShow = () => {
   isShowForm.value = false;
 };
 
-const onLogin = async() => {
-  isLoading.value= true;
+const onLogin = async () => {
+  isLoading.value = true;
   try {
     const res = await User.login(form.value);
     if (res.code === 200) {
@@ -49,10 +43,10 @@ const onLogin = async() => {
     } else {
       console.log("登陆失败")
     }
-    isLoading.value= false;
+    isLoading.value = false;
   } catch (error) {
     console.log("登陆失败")
-    isLoading.value= false;
+    isLoading.value = false;
     throw error;
   }
 };
@@ -63,11 +57,13 @@ const onSign = () => {
 
 const isRainShow = ref(false);
 const onClickNavigation = (value: string) => {
-  if (value ==='rain') {
+  if (value === 'rain') {
     isRainShow.value = !isRainShow.value;
   }
-}
+};
+
 </script>
+
 <style lang="less" scoped>
 section {
   width: 100vw;

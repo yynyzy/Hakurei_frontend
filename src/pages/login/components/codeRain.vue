@@ -50,5 +50,12 @@ onBeforeUnmount(() => {
     rainStop();
 })
 </script>
-<style scoped>
+<style lang="less" scoped>
+#canvas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
 </style>
