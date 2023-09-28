@@ -9,21 +9,22 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
 import { LoginRequest } from '../types/User';
 import { useRoute, useRouter } from 'vue-router';
-import { tokenStore } from "@/stores";
+import { tokenStore, themeStore } from "@/stores";
 import { User } from '../engine';
 
 const isLoading = ref(false);
 const isShowForm = ref(false);
 const router = useRouter();
 const route = useRoute();
-const store = tokenStore();
+const tokenStore_ = tokenStore();
+
 const form = ref<LoginRequest>({
   username: '',
   password: '',
@@ -39,7 +40,7 @@ const onLogin = async () => {
   try {
     const res = await User.login(form.value);
     if (res.code === 200) {
-      store.setAccessToken(res.data);
+      tokenStore_.setAccessToken(res.data);
       router.push((route.query.redirect as string) || "/home");
     } else {
       console.log("登陆失败")
@@ -62,25 +63,22 @@ const onClickNavigation = (value: string) => {
   if (value === 'rain') {
     isRainShow.value = !isRainShow.value;
   }
-
-  if (value === 'theme') {
-    onThemeChange();
-  }
 };
 
-console.log(')', new URL('../assets/loginBg.jpg', import.meta.url));
+// 主题切换
+const ThemeBg = {
+  THEME_LIGHT: new URL('../images/loginBg2.jpg', import.meta.url).href,
+  THEME_DARK: new URL('../images/loginBg.jpg', import.meta.url).href,
+};
+const { themeType } = themeStore();
 
-// 背景切换
-const ThemeBg = [
-new URL('../images/loginBg.jpg', import.meta.url).href,
-new URL('../images/loginBg2.jpg', import.meta.url).href,
-];
-let Theme_Index = 0;
-const bgUrl = ref(ThemeBg[Theme_Index]);
-const onThemeChange = () => {
-  Theme_Index = Theme_Index < ThemeBg.length - 1 ? Theme_Index + 1 : 0;
-  bgUrl.value = ThemeBg[Theme_Index];
-}
+const bgUrl = computed(() => {
+  if(themeType.value === 'THEME_DARK') {
+    return ThemeBg.THEME_DARK;
+  };
+  return ThemeBg.THEME_LIGHT;
+});
+// 背景主题
 </script>
 
 <style lang="less" scoped>
