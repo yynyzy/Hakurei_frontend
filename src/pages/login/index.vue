@@ -1,11 +1,11 @@
 <template>
-  <section>
+  <section
+    :style="`background-image: url('${bgUrl}')`">
     <login-header @onClickNavigation="onClickNavigation" v-model="isShowForm" />
     <login-form v-model="form" :loading="isLoading" :show="isShowForm" @show="onShow" @login="onLogin" @sign="onSign" />
   </section>
   <code-rain v-if="isRainShow" />
   <Sakura />
-  <welcome-text />
 </template>
 
 <script setup lang='ts'>
@@ -14,7 +14,6 @@ import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
-import welcomeText from "./components/welcomeText.vue";
 import { LoginRequest } from '../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore } from "@/stores";
@@ -29,6 +28,8 @@ const form = ref<LoginRequest>({
   username: '',
   password: '',
 });
+
+// 登陆功能
 const onShow = () => {
   isShowForm.value = false;
 };
@@ -55,13 +56,31 @@ const onSign = () => {
   console.log("sign")
 };
 
+// header 控制
 const isRainShow = ref(false);
 const onClickNavigation = (value: string) => {
   if (value === 'rain') {
     isRainShow.value = !isRainShow.value;
   }
+
+  if (value === 'theme') {
+    onThemeChange();
+  }
 };
 
+console.log(')', new URL('../assets/loginBg.jpg', import.meta.url));
+
+// 背景切换
+const ThemeBg = [
+new URL('../images/loginBg.jpg', import.meta.url).href,
+new URL('../images/loginBg2.jpg', import.meta.url).href,
+];
+let Theme_Index = 0;
+const bgUrl = ref(ThemeBg[Theme_Index]);
+const onThemeChange = () => {
+  Theme_Index = Theme_Index < ThemeBg.length - 1 ? Theme_Index + 1 : 0;
+  bgUrl.value = ThemeBg[Theme_Index];
+}
 </script>
 
 <style lang="less" scoped>
@@ -71,8 +90,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('../images/loginBg.jpg') no-repeat;
   background-size: cover;
   background-position: centers;
+  transition: background-image 1s;
 }
 </style>

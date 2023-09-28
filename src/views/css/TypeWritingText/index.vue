@@ -35,8 +35,6 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 5%;
 
   .text {
     font-size: 36px;

@@ -3,6 +3,7 @@ import ParticleClock from './ParticleClock/index.vue';
 import BorderCssAnimation from './BorderCssAnimation/index.vue';
 import AutoSeatSelection from './AutoSeatSelection/index.vue';
 import TextScanningLoading from './TextScanningLoading/index.vue';
+import TypeWritingText from './TypeWritingText/index.vue';
 import Book3D from './Book3D/index.vue';
 
 type ComponentsType = {
@@ -34,6 +35,11 @@ const components: ComponentsType[] = [
   {
     component: BorderCssAnimation,
     name: '使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
+    meta: {},
+  },
+  {
+    component: TypeWritingText,
+    name: '文字逐渐打印',
     meta: {},
   },
 ]

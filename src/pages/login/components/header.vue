@@ -2,6 +2,7 @@
   <header>
     <div class="logo">YZYN</div>
     <div>
+      <a class="navigation rain" @click="onClickNavigationBar('theme')">Theme Change</a>
       <a class="navigation rain" @click="onClickNavigationBar('rain')">Code Rain</a>
       <a class="navigation" href="#">Introduce</a>
       <input type="button" class="btn" @click="onClickLogin" value="Login"/>
