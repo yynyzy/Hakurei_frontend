@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="logo">YZYN</div>
+    <theme-controller />
     <div>
-      <a class="navigation rain" @click="onClickNavigationBar('theme')">Theme Change</a>
-      <a class="navigation rain" @click="onClickNavigationBar('rain')">Code Rain</a>
+      <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a>
       <a class="navigation" href="#">Introduce</a>
       <input type="button" class="btn" @click="onClickLogin" value="Login"/>
     </div>
@@ -11,6 +11,9 @@
 </template>
 
 <script lang="ts" setup>
+import { themeStore } from "@/stores";
+const { theme } = themeStore();
+
 interface Props {
   modelValue: Boolean
 }
@@ -41,23 +44,23 @@ const onClickNavigationBar = (value: string) => {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
+    color: v-bind('theme.bgColor');
 
     .logo {
       font-size: 2em;
-      color: #fff;
       user-select: none;
     }
 
     .navigation {
       position: relative;
       font-size: 1.1em;
-      color: #fff;
+      color: v-bind('theme.fontColor');
       font-weight: 500;
       margin-right: 40px;
 
       &::after {
         content: "";
-        border: 1px solid #fff;
+        border: 1px solid v-bind('theme.borderColor');
         width: 100%;
         position: absolute;
         left: 0;
@@ -80,16 +83,16 @@ const onClickNavigationBar = (value: string) => {
       height: 50px;
       background: transparent;
       font-size: 1.1em;
-      color: #fff;
-      border: 2px solid #fff;
+      color: v-bind('theme.fontColor');
+      border: 2px solid v-bind('theme.borderColor');
       border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
       transition: .5s;
 
       &:hover {
-        background-color: #fff;
-        color: #000;
+        background-color: v-bind('theme.bgColor');
+        color: v-bind('theme.opposite_fontColor');
       }
     }
 

@@ -38,6 +38,7 @@ const onToPage: (val: Tab) => void = (val) => {
   <header class="header">
     <div class="header-right">
       <div class="title">{{ WebName }}</div>
+      <theme-controller />
       <nav class="navigation-bar">
           <ul>
             <li  v-for="(tab, index) in navigationBarMap" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}</li>
