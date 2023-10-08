@@ -29,7 +29,7 @@ interface Props {
 
 interface menuType {
   name: string,
-  data: string,
+  [key: string]: any,
 }
 
 defineProps<Props>();

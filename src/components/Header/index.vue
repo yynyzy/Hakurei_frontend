@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WaveButton from './waveButton.vue'
+import WaveButton from './components/waveButton.vue'
 import { useRouter } from 'vue-router';
 
 interface Tab {
@@ -42,7 +42,7 @@ const onToPage: (val: Tab) => void = (val) => {
   <header class="header">
     <div class="header-right">
       <div class="title">{{ WebName }}</div>
-      <theme-controller />
+      <y-theme-controller />
       <nav class="navigation-bar">
           <ul>
             <li  v-for="(tab, index) in routerMap" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}</li>

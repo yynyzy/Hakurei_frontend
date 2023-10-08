@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header class="header"/>
+    <y-header class="header"/>
     <div class="container">
       <div @click="getUserInfo">getUserInfo</div>
       <roleModal class="role-model"/>

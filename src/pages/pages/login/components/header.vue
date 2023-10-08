@@ -4,8 +4,9 @@
     <div class="login-btn-group">
       <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a>
       <a class="navigation" href="#">Introduce</a>
-      <theme-controller class="theme-btn"/>
+      <y-theme-controller class="theme-btn"/>
       <input type="button" class="login" @click="onClickLogin" value="Login"/>
+      <y-avatar />
     </div>
   </header>
 </template>

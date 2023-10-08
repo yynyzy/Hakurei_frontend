@@ -17,8 +17,8 @@ const onClickMenu = (val: any) => {
 
 <template>
   <section class="page">
-    <Header/>
-      <sidebar
+    <y-header/>
+      <y-sidebar
         class="sidebar"
         :introduce="introduce"
         :menus="components"
