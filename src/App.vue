@@ -5,7 +5,7 @@
     <router-view />
 </template>
 
-<style scoped>
+<style lang="less" scoped>
 * {
   margin: 0;
   padding: 0;

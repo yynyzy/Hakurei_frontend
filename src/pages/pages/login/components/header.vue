@@ -1,11 +1,11 @@
 <template>
   <header>
     <div class="logo">YZYN</div>
-    <theme-controller />
-    <div>
+    <div class="login-btn-group">
       <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a>
       <a class="navigation" href="#">Introduce</a>
-      <input type="button" class="btn" @click="onClickLogin" value="Login"/>
+      <theme-controller class="theme-btn"/>
+      <input type="button" class="login" @click="onClickLogin" value="Login"/>
     </div>
   </header>
 </template>
@@ -50,13 +50,18 @@ const onClickNavigationBar = (value: string) => {
       font-size: 2em;
       user-select: none;
     }
+    .login-btn-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     .navigation {
       position: relative;
       font-size: 1.1em;
       color: v-bind('theme.fontColor');
       font-weight: 500;
-      margin-right: 40px;
+      margin: 0 20px;
 
       &::after {
         content: "";
@@ -78,9 +83,10 @@ const onClickNavigationBar = (value: string) => {
 
     }
 
-    .btn {
+    .login {
       width: 130px;
       height: 50px;
+      margin-left: 20px;
       background: transparent;
       font-size: 1.1em;
       color: v-bind('theme.fontColor');

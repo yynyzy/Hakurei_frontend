@@ -3,7 +3,6 @@
     <Header class="header"/>
     <div class="container">
       <div @click="getUserInfo">getUserInfo</div>
-      <!-- <router-view/> -->
       <roleModal class="role-model"/>
     </div>
   </div>

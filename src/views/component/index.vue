@@ -2,28 +2,26 @@
 import { ref } from 'vue';
 import components from './componentController';
 
-interface Menus {
+interface menuType {
   name: string,
   data: any,
-}
-
+};
 const currentCompIndex = ref(0);
 const introduce: {tipOne: string, tipTwo: string} = {
   tipOne: 'Hi, this is a',
   tipTwo: 'Custom Components page',
 };
-const menus: Array<Menus> = [
+const menus: Array<menuType> = [
   {
     name: '瀑布流组件',
     data: '',
   },
-]
-
+];
 const onClickMenu = (val: any) => {
   if (currentCompIndex.value !== val) {
     currentCompIndex.value = val;
   }
-}
+};
 </script>
 
 <template>
@@ -68,7 +66,7 @@ const onClickMenu = (val: any) => {
 
     .sidebar {
         position: absolute;
-        top: 10px;
+        top: 80px;
         left: 10px;
     }
   }

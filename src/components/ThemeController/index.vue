@@ -7,12 +7,18 @@
     <i v-if="themeType" class="far fa-sun" />
     <i v-else class="far fa-moon" />
   </div>
+  <div :class="['setting', { settingDark: !themeType }]">
+    <i class="fas fa-cog" @click="goTheme"/>
+  </div>
   </div>
 </template>
 
 <script setup lang='ts'>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { themeStore } from "@/stores";
+
+const router = useRouter();
 const { setLightTheme, setDarkTheme} = themeStore();
 
 // true 为白天模式， false 为夜晚模式
@@ -26,7 +32,11 @@ const onClickIcon = () => {
     setLightTheme();
   };
   themeType.value = !themeType.value;
-}
+};
+
+const goTheme = () => {
+  router.push('/theme');
+};
 </script>
 <style lang="less" scoped>
 .wrapper {
@@ -62,7 +72,34 @@ const onClickIcon = () => {
 
   .dark {
     left: 50px;
-    background-color: #323232;
+    background: #323232;
+  }
+  .setting {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    animation: hideAndShow 5s;
+  }
+
+  .settingDark {
+    left: 0;
+  }
+
+  @keyframes hideAndShow {
+    0% {
+    opacity: 1;
+  }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
  }
 </style>

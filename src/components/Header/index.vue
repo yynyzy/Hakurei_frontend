@@ -7,13 +7,11 @@ interface Tab {
   route: string,
 }
 const WebName: string = 'YzYn';
-const functionMap: Array<Tab> = [
+const routerMap: Array<Tab> = [
   {
-    name: 'blog',
-    route: '/blog',
+    name: '首页',
+    route: '/home',
   },
-];
-const navigationBarMap: Array<Tab> = [
   {
     name: '自定义组件',
     route: '/component',
@@ -25,6 +23,12 @@ const navigationBarMap: Array<Tab> = [
   {
     name: 'JS 妙用',
     route: '/js',
+  },
+];
+const functionMap: Array<Tab> = [
+  {
+    name: 'blog',
+    route: '/blog',
   },
 ];
 
@@ -41,7 +45,7 @@ const onToPage: (val: Tab) => void = (val) => {
       <theme-controller />
       <nav class="navigation-bar">
           <ul>
-            <li  v-for="(tab, index) in navigationBarMap" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}</li>
+            <li  v-for="(tab, index) in routerMap" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}</li>
           </ul>
       </nav>
     </div>
@@ -65,7 +69,6 @@ const onToPage: (val: Tab) => void = (val) => {
   height: 60px;
   padding: 10px 20px;
   z-index: 9999;
-  // background-color: aquamarine;
 
   .header-right {
     display: flex;
@@ -75,7 +78,7 @@ const onToPage: (val: Tab) => void = (val) => {
       color: #f83cd2;
       font-weight: bold;
       font-size: 30px;
-      margin-right: 20px;
+      margin-right: 10px;
     }
     .navigation-bar {
     height: 100%;

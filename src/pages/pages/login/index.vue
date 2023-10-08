@@ -16,7 +16,7 @@ import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
 import { LoginRequest } from '../../types/User';
 import { useRoute, useRouter } from 'vue-router';
-import { tokenStore, themeStore } from "@/stores";
+import { tokenStore, themeStore } from "@@/stores";
 import { User } from '../../engine';
 
 const isLoading = ref(false);
@@ -67,8 +67,8 @@ const onClickNavigation = (value: string) => {
 
 // 主题切换
 const ThemeBg = {
-  THEME_LIGHT: new URL('../images/loginBg2.jpg', import.meta.url).href,
-  THEME_DARK: new URL('../images/loginBg.jpg', import.meta.url).href,
+  THEME_LIGHT: new URL('../../images/loginBg2.jpg', import.meta.url).href,
+  THEME_DARK: new URL('../../images/loginBg.jpg', import.meta.url).href,
 };
 const { themeType } = themeStore();
 
@@ -84,7 +84,7 @@ const bgUrl = computed(() => {
 <style lang="less" scoped>
 section {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
