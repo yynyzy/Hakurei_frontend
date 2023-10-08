@@ -2,6 +2,7 @@
   <div class="home">
     <Header class="header"/>
     <div class="container">
+      <div @click="getUserInfo">getUserInfo</div>
       <!-- <router-view/> -->
       <roleModal class="role-model"/>
     </div>
@@ -9,7 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import roleModal from './components/roleModel.vue'
+import { tokenStore } from "@@/stores";
+import roleModal from './components/roleModel.vue';
+import { User } from '../../engine';
+const store = tokenStore();
+
+const getUserInfo = async () => {
+  const res = await User.getUserInfo({
+    token: store.ACCESS_TOKEN.token
+  });
+}
 </script>
 
 <style lang="less" scoped>
@@ -33,7 +43,6 @@ import roleModal from './components/roleModel.vue'
     .role-model {
         z-index:1;
         margin: 100px auto;
-        // background-color: red;
     }
   }
 }

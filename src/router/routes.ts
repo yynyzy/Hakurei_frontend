@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
 import CSSRouter from './modules/css';
 import componentsRouter from './modules/component';
-import Login from '@@/pages/login';
-import Home from '@@/pages/home';
+import Login from '@@/pages/pages/login';
+import Home from '@@/pages/pages/home';
 
 export const routes: RouteRecordRaw[] = [
   {

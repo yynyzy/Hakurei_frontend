@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import { themeStore } from "@/stores";
+import { themeStore } from "@@/stores";
 const { theme } = themeStore();
 
 interface Props {

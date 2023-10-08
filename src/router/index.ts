@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory,
  } from 'vue-router';
 import { routes } from './routes';
-import { tokenStore } from '@/stores';
+import { tokenStore } from '@@/stores';
 
 const router = createRouter({
   history: createWebHashHistory(),

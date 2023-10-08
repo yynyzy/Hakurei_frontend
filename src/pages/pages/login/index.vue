@@ -14,10 +14,10 @@ import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
-import { LoginRequest } from '../types/User';
+import { LoginRequest } from '../../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore, themeStore } from "@/stores";
-import { User } from '../engine';
+import { User } from '../../engine';
 
 const isLoading = ref(false);
 const isShowForm = ref(false);
@@ -93,3 +93,4 @@ section {
   transition: background-image 1s;
 }
 </style>
+../interface/User
