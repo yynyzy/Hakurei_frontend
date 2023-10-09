@@ -1,13 +1,15 @@
 import { App, Component } from 'vue';
-import ThemeController from './ThemeController/index.vue';
-import Header from './Header/index.vue';
-import Sidebar from './Sidebar/index.vue';
+import YThemeController from './YThemeController/index.vue';
+import YHeader from './YHeader/index.vue';
+import YSidebar from './YSidebar/index.vue';
+import YAvatar from './YAvatar/index.vue';
 
 // 注册全局组件
 const Components: [string, Component][] = [
-  ['ThemeController', ThemeController],
-  ['Header', Header],
-  ['Sidebar', Sidebar],
+  ['YThemeController', YThemeController],
+  ['YHeader', YHeader],
+  ['YSidebar', YSidebar],
+  ['YAvatar', YAvatar],
 ];
 
 const ComponentPlugin = {

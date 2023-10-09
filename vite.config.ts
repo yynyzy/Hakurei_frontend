@@ -3,10 +3,11 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { resolve } from 'path';
 
-
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [
+    vue(),
+    vueJsx(),
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
@@ -18,7 +19,7 @@ export default defineConfig({
       '@@/stores': resolve(__dirname, './src/stores'),
       '@@/functional': resolve(__dirname, './src/functional')
     },
-    extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css', '.tsx']
+    extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css', '.tsx', '.jsx']
   },
   css: {
     preprocessorOptions: {

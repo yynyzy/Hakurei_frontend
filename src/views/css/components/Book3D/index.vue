@@ -10,9 +10,6 @@
         <div class="d first"></div>
       </div>
 </template>
-
-<script setup lang='ts'>
-</script>
 <style lang="less" scoped>
   .book {
     position: relative;

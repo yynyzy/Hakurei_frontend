@@ -1,5 +1,5 @@
 import { Component } from 'vue';
-import WaterFallComponent from './WaterFallComponent/index.vue';
+import WaterFallComponent from './components/WaterFallComponent/index.vue';
 
 const components: Component[] = [
   WaterFallComponent,

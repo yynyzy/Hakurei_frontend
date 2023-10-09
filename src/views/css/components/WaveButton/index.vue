@@ -1,19 +1,8 @@
 <template>
   <div class="button">
-    {{ text }}
+    波浪按钮
   </div>
 </template>
-
-<script setup lang='ts'>
-
-defineProps({
-  text: {
-    type: String,
-    require: true,
-    default: ''
-  },
-})
-</script>
 <style lang="less" scoped>
 .button {
     margin-right: 10px;
@@ -30,6 +19,7 @@ defineProps({
     padding: 0.25em 0.5em;
     border: 0.1em solid #0000ff;
     border-radius: 1em;
+    transform: scale(5);
     transition: 3s;
 
     &:before, &:after {

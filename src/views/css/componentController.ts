@@ -1,10 +1,11 @@
 import type { Component } from 'vue';
-import ParticleClock from './ParticleClock/index.vue';
-import BorderCssAnimation from './BorderCssAnimation/index.vue';
-import AutoSeatSelection from './AutoSeatSelection/index.vue';
-import TextScanningLoading from './TextScanningLoading/index.vue';
-import TypeWritingText from './TypeWritingText/index.vue';
-import Book3D from './Book3D/index.vue';
+import ParticleClock from './components/ParticleClock/index.vue';
+import BorderCssAnimation from './components/BorderCssAnimation/index.vue';
+import AutoSeatSelection from './components/AutoSeatSelection/index.vue';
+import TextScanningLoading from './components/TextScanningLoading/index.vue';
+import TypeWritingText from './components/TypeWritingText/index.vue';
+import Book3D from './components/Book3D/index.vue';
+import WaveButton from './components/WaveButton/index.vue';
 
 type ComponentsType = {
   component: Component
@@ -40,6 +41,11 @@ const components: ComponentsType[] = [
   {
     component: TypeWritingText,
     name: '文字逐渐打印',
+    meta: {},
+  },
+  {
+    component: WaveButton,
+    name: '波浪按钮',
     meta: {},
   },
 ]
