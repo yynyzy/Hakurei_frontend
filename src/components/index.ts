@@ -4,19 +4,31 @@ import YHeader from './YHeader/index.vue';
 import YSidebar from './YSidebar/index.vue';
 import YAvatar from './YAvatar/index.vue';
 
-// 注册全局组件
-const Components: [string, Component][] = [
+import {
+  Menu
+} from 'ant-design-vue';
+
+// 注册自定义全局组件
+const CustomComponents: [string, Component][] = [
   ['YThemeController', YThemeController],
   ['YHeader', YHeader],
   ['YSidebar', YSidebar],
   ['YAvatar', YAvatar],
 ];
 
+// 注册 Antd 全局组件
+const AntdComponents: Component[] = [
+  Menu,
+];
+
 const ComponentPlugin = {
   install(vm: App) {
-  Components.forEach((c) => {
-    vm.component(c[0], c[1])
-  })
+    CustomComponents.forEach((component) => {
+      vm.component(component[0], component[1])
+    });
+    AntdComponents.forEach((component) => {
+      vm.component(component.name!, component)
+    })
   }
 };
 
