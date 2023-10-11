@@ -12,10 +12,8 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { themeStore } from "@/stores";
 
-const router = useRouter();
 const { setLightTheme, setDarkTheme} = themeStore();
 
 // true 为白天模式， false 为夜晚模式

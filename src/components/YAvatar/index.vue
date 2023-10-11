@@ -2,40 +2,42 @@
   <div class="information">
     <div class="img-box">
       <img src="@/assets/images/head.jpeg" alt="*" />
+    <div class="menu-white-square">
       <div class="menu">
-          <div class="menu-content">
-            <div class="nick-name">YZYYYN</div>
-            <div class="count-items">
-              <div class="count">
-                <span class="count-num">150</span>
-                <span class="count-text">文章</span>
-              </div>
-              <div class="count">
-                <span class="count-num">150</span>
-                <span class="count-text">文章</span>
-              </div>
-              <div class="count">
-                <span class="count-num">150</span>
-                <span class="count-text">文章</span>
-              </div>
+        <div class="menu-content">
+          <div class="nick-name">YZYYYN</div>
+          <div class="count-items">
+            <div class="count">
+              <span class="count-num">150</span>
+              <span class="count-text">文章</span>
             </div>
-
-            <a-menu
-              :selectable="canMenuSelect"
-              forceSubMenuRender="true"
-              style="text-align: left;color: #61666D; border: none;"
-              mode="vertical"
-              :items="menus"
-              @click="handleClick"
-            />
-
-            <div class="line"></div>
-            <div class="login-out">
-              <i class="fa fa-sign-out" />
-              <span class="text">退出登录</span>
+            <div class="count">
+              <span class="count-num">150</span>
+              <span class="count-text">文章</span>
+            </div>
+            <div class="count">
+              <span class="count-num">150</span>
+              <span class="count-text">文章</span>
             </div>
           </div>
+
+          <a-menu
+            :selectable="canMenuSelect"
+            forceSubMenuRender="true"
+            style="text-align: left;color: #61666D; border: none;"
+            mode="vertical"
+            :items="menus"
+            @click="handleClick"
+          />
+
+          <div class="line"></div>
+          <div class="login-out">
+            <i class="fa fa-sign-out" />
+            <span class="text">退出登录</span>
+          </div>
         </div>
+      </div>
+    </div>
 
     </div>
   </div>
@@ -109,7 +111,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   margin-top: 30px;
   width: 100px;
   height: 100px;
-  .menu {
+  .menu-white-square {
     opacity: 1;
   }
 }
@@ -122,16 +124,21 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   z-index: 1;
 }
 
+.menu-white-square {
+  box-sizing: border-box;
+  opacity: 0;
+  background-color: transparent;
+  padding-top: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .menu {
   box-shadow: 0 0 30px #0000001a;
   border-radius: 8px;
   background-color: #fff;
   border: 1px solid #E3E5E7;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0;
   transition: .3s;
   box-sizing: border-box;
   width: 300px;
