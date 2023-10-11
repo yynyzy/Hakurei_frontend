@@ -1,228 +1,222 @@
-<!-- <template>
-  <div class="header">
-    <li class="normal avatar-box">
-      <div class="img-box">
-        <img class="img" src="https://gitlab.maiscrm.com/uploads/-/system/user/avatar/2167/avatar.png?width=23" />
-      </div>
+<template>
+  <div class="information">
+    <div class="img-box">
+      <img src="@/assets/images/head.jpeg" alt="*" />
       <div class="menu">
-        <div class="big-avatar">
-          <img class="img" src="https://gitlab.maiscrm.com/uploads/-/system/user/avatar/2167/avatar.png?width=23" />
+          <div class="menu-content">
+            <div class="nick-name">YZYYYN</div>
+            <div class="count-items">
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
+            </div>
+
+            <a-menu
+              :selectable="canMenuSelect"
+              forceSubMenuRender="true"
+              style="text-align: left;color: #61666D; border: none;"
+              mode="vertical"
+              :items="menus"
+              @click="handleClick"
+            />
+
+            <div class="line"></div>
+            <div class="login-out">
+              <i class="fa fa-sign-out" />
+              <span class="text">退出登录</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </li>
+
+    </div>
   </div>
 </template>
 
+<script setup lang="ts">
+import { h } from 'vue';
+import type { MenuProps } from 'ant-design-vue';
+
+const canMenuSelect = false;
+const menus  = [
+  {
+    key: '1',
+    icon: h('i', { class: "fa fa-sign-out" }),
+    label: '个人中心',
+    title: '个人中心',
+  },
+  {
+    key: '2',
+    icon: h('i', { class: "fa fa-user" }),
+    label: '主题切换',
+    title: '主题切换',
+    children: [
+      {
+        key: '3',
+        label: '白天',
+        title: '白天',
+      },
+      {
+        key: '4',
+        label: '夜晚',
+        title: '夜晚',
+      },
+      {
+        key: '5',
+        label: '详情设置',
+        title: '详情设置',
+      },
+    ],
+  },
+];
+const handleClick: MenuProps['onClick'] = (menuInfo) => {
+  console.log('click ', menuInfo);
+};
+
+</script>
+
 <style lang="less" scoped>
-.header {
-  width: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 100px;
-  background-color: #000;
-}
-
-.normal {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.avatar-box {
-  background-color: aqua;
-  position: relative;
-  width: 50px;
+.information {
   height: 50px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.img-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 40px;
+  width: 40px;
+  position: relative;
+  border-radius: 50%;
+  border: 2px solid #fff;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: .4s;
+}
 
-  .img-box {
-    position: relative;
-    z-index: 2;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
+.img-box:hover {
+  margin-top: 30px;
+  width: 100px;
+  height: 100px;
+  .menu {
+    opacity: 1;
+  }
+}
 
-    .img {
-      display: block;
-      border-radius: 50%;
-      background-color: transparent;
-      width: 100%;
-      height: 100%;
-      border: 2px solid #fff;
-      border-radius: 50%;
-      position: absolute;
-      box-sizing: border-box;
-      object-fit: inherit;
-      transition: .6s;
-    }
+.img-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
 
-    &:hover {
-      .img {
-        opacity: 0;
+.menu {
+  box-shadow: 0 0 30px #0000001a;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #E3E5E7;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: .3s;
+  box-sizing: border-box;
+  width: 300px;
+  padding: 0 24px 18px;
+
+  .menu-content {
+    margin-top: 50px;
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+
+  .nick-name {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fb7299;
+  }
+
+  .count-items {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 0 20px;
+    color: #000;
+    .count {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: color .2s;
+      .count-num {
+        font-size: 18px;
+        font-weight: 500;
       }
-      ~.menu {
-        animation: fadeIn .6s both;
-        margin-top: 40px;
-        .big-avatar {
-          width: 100px;
-          height: 100px;
-          animation: scaleIn .6s both;
+
+      .count-text {
+        color: #9499A0;
+        font-weight: 400;
+        font-size: 12px;
+        transition: color .2s;
+      }
+
+      &:hover {
+        .count-num, .count-text {
+          color: #00AEEC;
         }
       }
     }
   }
 
-  .menu {
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-left: -20px;
-    box-shadow: 0 0 30px #0000001a;
-    border-radius: 8px;
-    background-color: #fff;
-    border: 1px solid #E3E5E7;
-    opacity: 0;
-    transition: .3s;
+  .line {
+    margin: 10px 0;
+    width: 100%;
+    height: 1px;
+    background: #E3E5E7;
+  }
+
+  .login-out {
+    font-weight: 500;
     display: flex;
-    justify-content: center;
-    padding: 0 24px 18px;
-    width: 300px;
-    min-height: 350px;
-    animation: fadeOut .6s both;
-    .big-avatar {
-      margin-top: -62px;
-      transform-origin: 100% 0%;
-      animation: scaleOut .6s both;
-      .img {
-        transition: all 0.6s ease;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-      }
+    align-items: center;
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #61666D;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color .3s;
+    .text {
+      margin-left: 10px;
+    }
+    &:hover {
+      background-color: #E3E5E7;
     }
   }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes scaleIn {
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  @keyframes scaleOut {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    100% {
-      transform: scale(0);
-      opacity: 0;
-    }
   }
 }
-</style> -->
 
+:deep(.ant-menu-item) {
+    padding-inline: 14px;
+}
 
+:deep(.ant-menu-submenu-title) {
+    padding-inline: 14px;
+}
 
-<template>
-    <div class="li">
-      <li class="information">
-        <div class="img-box">
-          <img src="https://gitlab.maiscrm.com/uploads/-/system/user/avatar/2167/avatar.png?width=23" alt="*" />
-          <div class="menu"></div>
-        </div>
-      </li>
-    </div>
-  </template>
-
-  <style lang="less" scoped>
-  .information {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    position: relative;
-  }
-
-  .img-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 40px;
-    width: 40px;
-    position: relative;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    cursor: pointer;
-    transition: .4s;
-    background: green;
-  }
-
-  .img-box:hover {
-    margin-top: 50%;
-    width: 100px;
-    height: 100px;
-
-    .menu {
-      opacity: 1;
-      width: 300px;
-      height: 350px;
-    }
-  }
-
-  .img-box img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    position: relative;
-    z-index: 1;
-  }
-
-  .menu {
-    box-shadow: 0 0 30px #0000001a;
-    border-radius: 8px;
-    background-color: #fff;
-    border: 1px solid #E3E5E7;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    opacity: 0;
-    transition: .3s;
-  }
-  </style>
+</style>

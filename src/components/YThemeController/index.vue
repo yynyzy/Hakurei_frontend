@@ -7,9 +7,6 @@
     <i v-if="themeType" class="far fa-sun" />
     <i v-else class="far fa-moon" />
   </div>
-  <div :class="['setting', { settingDark: !themeType }]">
-    <i class="fas fa-cog" @click="goTheme"/>
-  </div>
   </div>
 </template>
 
@@ -34,9 +31,6 @@ const onClickIcon = () => {
   themeType.value = !themeType.value;
 };
 
-const goTheme = () => {
-  router.push('/theme');
-};
 </script>
 <style lang="less" scoped>
 .wrapper {
@@ -73,33 +67,6 @@ const goTheme = () => {
   .dark {
     left: 50px;
     background: #323232;
-  }
-  .setting {
-    position: absolute;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    animation: hideAndShow 5s;
-  }
-
-  .settingDark {
-    left: 0;
-  }
-
-  @keyframes hideAndShow {
-    0% {
-    opacity: 1;
-  }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
   }
  }
 </style>

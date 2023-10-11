@@ -14,7 +14,7 @@ import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
-import { LoginRequest } from '../../types/User';
+import { LoginRequest } from '../../interface/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore, themeStore } from "@@/stores";
 import { User } from '../../engine';
@@ -67,8 +67,8 @@ const onClickNavigation = (value: string) => {
 
 // 主题切换
 const ThemeBg = {
-  THEME_LIGHT: new URL('../../images/loginBg2.jpg', import.meta.url).href,
-  THEME_DARK: new URL('../../images/loginBg.jpg', import.meta.url).href,
+  THEME_LIGHT: new URL('../../images/login/loginBg2.jpg', import.meta.url).href,
+  THEME_DARK: new URL('../../images/login/loginBg.jpg', import.meta.url).href,
 };
 const { themeType } = themeStore();
 

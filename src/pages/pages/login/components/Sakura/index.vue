@@ -18,7 +18,7 @@ onMounted(() => {
   const SAKURA_Array: Sakura[] = [];
   // 加载图片
   const SakuraImg = new Image();
-  SakuraImg.src = './images/login/sakura.png';
+  SakuraImg.src =  new URL('../../../../images/login/sakura.png', import.meta.url).href;
 
   const render = () => {
     // 清除矩形内的内容

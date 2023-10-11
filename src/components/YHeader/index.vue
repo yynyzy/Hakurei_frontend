@@ -1,5 +1,6 @@
 <template>
-  <header class="header">
+  <div class="header-wrapper">
+    <header class="header">
     <div class="header-left">
       <div class="title">{{ WebName }}</div>
       <y-theme-controller />
@@ -29,7 +30,12 @@
         </ul>
       </nav>
     </div>
-  </header>
+    </header>
+    <div>
+      123
+    </div>
+  </div>
+
 </template>
 
 <script setup lang="ts">
@@ -94,10 +100,11 @@ const onToPage: (val: Tab) => void = (val) => {
   justify-content: space-between;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   height: 64px;
   padding: 10px 20px;
   z-index: 9999;
+  background-color: transparent;
+  // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 
   .header-left {
     display: flex;
