@@ -1,41 +1,39 @@
 <template>
   <div class="header-wrapper">
     <header class="header">
-    <div class="header-left">
-      <div class="title">{{ WebName }}</div>
-      <y-theme-controller />
-      <nav class="navigation-bar">
-        <ul>
-          <li v-for="(tab, index) in routerMapLeft" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <div class="header-right">
-      <nav class="navigation-bar">
-        <ul class="bar-wrapper">
-          <li class="li">
-            <y-avatar/>
-          </li>
-          <li class="li popover-wrap"
-            v-for="(tab, index) in routerMapRight"
-            :key="index"
-            @click="onToPage(tab)"
-          >
-            <a href="#" class="entry">
-              <i class="fa fa-book-open" />
-              <span >{{ tab.name }}</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
+      <div class="header-left">
+        <div class="title">{{ WebName }}</div>
+        <y-theme-controller />
+        <nav class="navigation-bar">
+          <ul>
+            <li v-for="(tab, index) in routerMapLeft" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-right">
+        <nav class="navigation-bar">
+          <ul class="bar-wrapper">
+            <li class="li">
+              <y-avatar/>
+            </li>
+            <li class="li popover-wrap"
+              v-for="(tab, index) in routerMapRight"
+              :key="index"
+              @click="onToPage(tab)"
+            >
+              <a href="#" class="entry">
+                <i class="fa fa-book-open" />
+                <span >{{ tab.name }}</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
-    <div>
-      123
-    </div>
-  </div>
 
+  </div>
+  <slot name="header-bg"></slot>
 </template>
 
 <script setup lang="ts">
@@ -91,6 +89,10 @@ const onToPage: (val: Tab) => void = (val) => {
 
 <style lang="less" scoped>
 
+.header-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+}
 .header {
   position: fixed;
   top: 0;

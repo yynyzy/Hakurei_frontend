@@ -24,27 +24,6 @@
       "@/*": [
         "src/*"
       ],
-      "@@/pages/*": [
-        "src/pages/*"
-      ],
-      "@@/views/*": [
-        "src/views/*"
-      ],
-      "@@/plugins/*": [
-        "src/plugins/*"
-      ],
-      "@@/directives/*": [
-        "src/directives/*"
-      ],
-      "@@/utils/*": [
-        "src/utils/*"
-      ],
-      "@@/functional/*": [
-        "src/functional/*"
-      ],
-      "@@/stores/*": [
-        "src/stores/*"
-      ]
     }
   },
   "include": [

@@ -16,7 +16,7 @@ import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
 import { LoginRequest } from '../../interface/User';
 import { useRoute, useRouter } from 'vue-router';
-import { tokenStore, themeStore } from "@@/stores";
+import { tokenStore, themeStore } from "@/stores";
 import { User } from '../../engine';
 
 const isLoading = ref(false);

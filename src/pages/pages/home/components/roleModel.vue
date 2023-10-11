@@ -15,27 +15,27 @@ type RoleType = {
 const roles: RoleType[] = [
   {
     name: '博丽灵梦',
-    img: new URL('@@/pages/images/home/role1.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role1.jpg', import.meta.url).href,
   },
   {
     name: '风见幽香',
-    img: new URL('@@/pages/images/home/role2.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role2.jpg', import.meta.url).href,
   },
   {
     name: '八云紫',
-    img: new URL('@@/pages/images/home/role3.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role3.jpg', import.meta.url).href,
   },
   {
     name: '蕾米莉亚·芙兰朵露',
-    img: new URL('@@/pages/images/home/role4.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role4.jpg', import.meta.url).href,
   },
   {
     name: '古明地恋',
-    img: new URL('@@/pages/images/home/role5.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role5.jpg', import.meta.url).href,
   },
   {
     name: '东风谷早苗',
-    img: new URL('@@/pages/images/home/role6.jpg', import.meta.url).href,
+    img: new URL('@/pages/images/home/role6.jpg', import.meta.url).href,
   },
 ];
 

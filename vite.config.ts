@@ -11,13 +11,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@@/pages': resolve(__dirname, './src/pages'),
-      '@@/views': resolve(__dirname, './src/views'),
-      '@@/plugins': resolve(__dirname, './src/plugins'),
-      '@@/directives': resolve(__dirname, './src/directives'),
-      '@@/utils': resolve(__dirname, './src/utils'),
-      '@@/stores': resolve(__dirname, './src/stores'),
-      '@@/functional': resolve(__dirname, './src/functional')
     },
     extensions: ['.ts', '.mjs', '.vue', '.json', '.less', '.css', '.tsx', '.jsx']
   },

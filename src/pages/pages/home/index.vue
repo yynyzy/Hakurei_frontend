@@ -1,16 +1,21 @@
 <template>
   <div class="home">
-    <y-header class="header"/>
+    <y-header class="header">
+      <template #header-bg>
+        <autumnBg />
+      </template>
+    </y-header>
     <div class="container">
       <div @click="getUserInfo">getUserInfo</div>
-      <roleModal class="role-model"/>
+      <!-- <roleModal class="role-model"/> -->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { tokenStore } from "@@/stores";
+import { tokenStore } from "@/stores";
 import roleModal from './components/roleModel.vue';
+import autumnBg from './components/autumnBg.vue';
 import { User } from '../../engine';
 const store = tokenStore();
 

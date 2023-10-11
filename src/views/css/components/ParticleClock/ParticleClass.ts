@@ -1,4 +1,4 @@
-import { getRandom } from '@@/utils/index'
+import { getRandom } from '@/utils/index'
 
 export class Particle {
   private x: number;

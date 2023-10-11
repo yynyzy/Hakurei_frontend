@@ -2,7 +2,7 @@
   <div class="information">
     <div class="img-box">
       <img src="@/assets/images/head.jpeg" alt="*" />
-    <div class="menu-white-square">
+    <div class="menu-wrapper">
       <div class="menu">
         <div class="menu-content">
           <div class="nick-name">YZYYYN</div>
@@ -111,8 +111,12 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   margin-top: 30px;
   width: 100px;
   height: 100px;
-  .menu-white-square {
-    opacity: 1;
+  .menu-wrapper {
+    display: block;
+
+    .menu {
+      opacity: 1;
+    }
   }
 }
 
@@ -124,9 +128,9 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   z-index: 1;
 }
 
-.menu-white-square {
+.menu-wrapper {
   box-sizing: border-box;
-  opacity: 0;
+  display: none;
   background-color: transparent;
   padding-top: 20px;
   position: absolute;
@@ -135,6 +139,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   transform: translateX(-50%);
 }
 .menu {
+  opacity: 0;
   box-shadow: 0 0 30px #0000001a;
   border-radius: 8px;
   background-color: #fff;
