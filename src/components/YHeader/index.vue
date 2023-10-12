@@ -1,6 +1,6 @@
 <template>
-  <div class="header-wrapper">
-    <header class="header">
+  <header class="header-wrapper">
+    <div class="header-nav">
       <div class="header-left">
         <div class="title">{{ WebName }}</div>
         <y-theme-controller />
@@ -30,14 +30,14 @@
           </ul>
         </nav>
       </div>
-    </header>
-
-  </div>
-  <slot name="header-bg"></slot>
+    </div>
+    <autumnBg />
+  </header>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import autumnBg from './autumnBg.vue';
 
 interface Tab {
   name: string,
@@ -92,8 +92,9 @@ const onToPage: (val: Tab) => void = (val) => {
 .header-wrapper {
   width: 100%;
   box-sizing: border-box;
+  background-color: transparent;
 }
-.header {
+.header-nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -105,7 +106,7 @@ const onToPage: (val: Tab) => void = (val) => {
   height: 64px;
   padding: 10px 20px;
   z-index: 9999;
-  background-color: transparent;
+
   // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 
   .header-left {

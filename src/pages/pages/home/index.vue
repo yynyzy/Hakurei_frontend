@@ -1,28 +1,24 @@
 <template>
   <div class="home">
-    <y-header class="header">
-      <template #header-bg>
-        <autumnBg />
-      </template>
-    </y-header>
+    <y-header class="home-header" />
     <div class="container">
       <div @click="getUserInfo">getUserInfo</div>
-      <!-- <roleModal class="role-model"/> -->
+      <roleModal class="role-model"/>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { tokenStore } from "@/stores";
+// import { tokenStore } from "@/stores";
 import roleModal from './components/roleModel.vue';
-import autumnBg from './components/autumnBg.vue';
-import { User } from '../../engine';
-const store = tokenStore();
+
+// import { User } from '../../engine';
+// const store = tokenStore();
 
 const getUserInfo = async () => {
-  const res = await User.getUserInfo({
-    token: store.ACCESS_TOKEN.token
-  });
+  // const res = await User.getUserInfo({
+  //   token: store.ACCESS_TOKEN.token
+  // });
 }
 </script>
 
@@ -31,7 +27,7 @@ const getUserInfo = async () => {
   position: relative;
   width: 100vw;
   height: 100vh;
-  .header {
+  .home-header {
     position: absolute;
     top: 0;
     z-index: 99;
