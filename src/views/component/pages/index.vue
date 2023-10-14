@@ -25,7 +25,7 @@ const onClickMenu = (val: any) => {
 </script>
 
 <template>
-  <div class="page">
+  <section class="page">
     <y-header/>
     <div class="container">
       <y-sidebar
@@ -35,12 +35,13 @@ const onClickMenu = (val: any) => {
         @getMenuIndex="onClickMenu"
       />
         <component
-        v-drag
-        :key="currentCompIndex"
-        :is="components[currentCompIndex]"
+          v-drag
+          :key="currentCompIndex"
+          :is="components[currentCompIndex]"
         />
     </div>
-  </div>
+  </section>
+  <y-support/>
 </template>
 
 <style lang="less" scoped>

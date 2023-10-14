@@ -8,7 +8,6 @@
       </water-fall>
     </div>
   </div>
-  <y-support />
 </template>
 
 <script setup lang='ts'>

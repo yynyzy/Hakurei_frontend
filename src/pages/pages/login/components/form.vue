@@ -42,7 +42,7 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { LoginRequest } from '../../types/User.ts';
+import { LoginRequest } from '../../../types/User';
 
 interface Props {
   modelValue: LoginRequest
@@ -50,9 +50,9 @@ interface Props {
   loading: Boolean
 }
 interface Emits {
-  login: void
-  sign: void
-  show: Boolean
+  (event: 'login'): void;
+  (event: 'sign'): void;
+  (event: 'show', value: boolean): void;
 }
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
@@ -94,7 +94,7 @@ const onSign = () => {
   overflow: hidden;
   transform: scale(0);
   transition: transform .5s ease;
-  z-index: 2;
+  z-index: 999;
 
   &.popup {
     transform: scale(1);

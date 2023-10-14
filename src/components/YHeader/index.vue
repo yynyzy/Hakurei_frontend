@@ -104,7 +104,7 @@ const onToPage: (val: Tab) => void = (val) => {
   box-sizing: border-box;
   height: 64px;
   padding: 10px 20px;
-  z-index: 9999;
+  z-index: 99;
 
   // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 

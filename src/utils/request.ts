@@ -1,13 +1,12 @@
 import { App } from 'vue';
 import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig }from "axios";
-// import message from 'ant-design-vue/es/message';
+import { message } from 'ant-design-vue';
 
 declare module "axios" {
   interface AxiosResponse<T = any> {
     code: number;
     message: string;
     data: T;
-    // 这里追加你的参数
   }
   export function create(config?: AxiosRequestConfig): AxiosInstance;
 }
@@ -48,10 +47,13 @@ const formatResponseData = (response: AxiosResponse) => {
 
 const err = ({ response }: { response: any}) => {
   if (!response) {
-    // message.error('networkError');
+    message.error('networkError');
   } else {
     const { status } = response;
     switch (status) {
+      case 200:
+      console.log('正常请求');
+        break;
       case 429:
         break;
       case 403:
@@ -78,7 +80,6 @@ const baseService = axios.create({
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
   },
-  // paramsSerializer: (params: any) => qs.stringify(params, { arrayFormat: 'brackets', allowDots: true }),
 });
 baseService.interceptors.request.use(formatRequestConfig, err);
 baseService.interceptors.response.use(formatResponseData, err);

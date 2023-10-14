@@ -14,7 +14,7 @@ import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import codeRain from "./components/codeRain.vue";
-import { LoginRequest } from '../../interface/User';
+import { LoginRequest } from '../../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore, themeStore } from "@/stores";
 import { User } from '../../engine';
@@ -36,6 +36,7 @@ const onShow = () => {
 };
 
 const onLogin = async () => {
+  if(!form.value.username || !form.value.password) return;
   isLoading.value = true;
   try {
     const res = await User.login(form.value);
@@ -93,4 +94,3 @@ section {
   transition: background-image 1s;
 }
 </style>
-../interface/User
