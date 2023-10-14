@@ -3,6 +3,7 @@ import YThemeController from './YThemeController/index.vue';
 import YHeader from './YHeader/index.vue';
 import YSidebar from './YSidebar/index.vue';
 import YAvatar from './YAvatar/index.vue';
+import YSupport from './YSupport/index.vue';
 
 import {
   Menu
@@ -14,6 +15,7 @@ const CustomComponents: [string, Component][] = [
   ['YHeader', YHeader],
   ['YSidebar', YSidebar],
   ['YAvatar', YAvatar],
+  ['YSupport', YSupport],
 ];
 
 // 注册 Antd 全局组件

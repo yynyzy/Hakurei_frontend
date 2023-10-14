@@ -31,13 +31,12 @@
         </nav>
       </div>
     </div>
-    <autumnBg />
+    <slot name="header-bg"></slot>
   </header>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import autumnBg from './autumnBg.vue';
 
 interface Tab {
   name: string,

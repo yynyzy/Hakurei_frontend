@@ -10,6 +10,7 @@
       <roleModal class="role-model"/>
     </div>
   </div>
+  <y-support />
 </template>
 
 <script setup lang="ts">
