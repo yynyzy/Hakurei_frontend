@@ -1,170 +1,164 @@
 <template>
-  <nav class="wrapper">
-    <div ref="navRef" class="hb-nav">
-      <div ref="animateWrapperRef" class="animate-layer">
-        <header class="hb-title">{{ title }}</header>
-        <ul class="hb-options">
-          <li
-            class="hb-option"
-            v-for="(item, index) in options"
-            :key="index"
-            @click="onClickOption(item)"
-          >
+  <div class="wrapper">
+    <y-modal :visible="navStatus" @maskTap="onClickOff">
+      <div class="menu">
+        <div class="setting" v-for="(item, index) in menu" :key="index">
+          <a class="option" href="#">
             <component :is="item.icon" />
-            <span class="hb-option-name">{{  item.title }}</span>
-          </li>
-        </ul>
+            <h3 class="title">{{ item.title }}</h3>
+            <p class="description">{{ item.description }}</p>
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="hb-off" @click="onClickOff"></div>
-  </nav>
+    </y-modal>
+    <div v-if="!navStatus" class="menu-off" @click="onClickOff"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { VNode, h, ref } from 'vue';
-import { useRouter } from 'vue-router';
+const navStatus = ref<boolean>(false);
 
-type optionType = {
-  key: number | string
+interface menuOption {
+  icon: VNode
   title: string
-  icon?: VNode
-  func?: Function
-  meta?: any
+  description: string
 };
 
-let navStatus:boolean = false;
-const title: string = "通用";
-
-const navRef = ref<HTMLElement | null>(null);
-const animateWrapperRef = ref<HTMLElement | null>(null);
-
-const router = useRouter();
-const options: Array<optionType> = [
+const menu: Array<menuOption> = [
   {
-    key: 'weather',
     icon: h('i', { class: "fa fa-sign-out" }),
-    title: '天气',
+    title: 'testing',
+    description: 'for test function for test functionfor test functionfor test function for test functionfor test function',
   },
   {
-    key: 'theme',
     icon: h('i', { class: "fa fa-sign-out" }),
-    title: '主题',
-    func: () => router.push('/theme'),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
+  },
+  {
+    icon: h('i', { class: "fa fa-sign-out" }),
+    title: 'testing',
+    description: 'for test function',
   }
 ];
 
-const onClickOff = () => {
-  const nav = navRef.value!;
-  const animateEl = animateWrapperRef.value!;
-  if (navStatus) {
-    nav.style.display = "none";
-    animateEl.style.width = "0";
-  } else {
-    nav.style.display = "block";
-    animateEl.style.width = "20vw";
-  }
-  navStatus = !navStatus;
-};
-
-const onClickOption = (option: optionType) => {
-  console.log('onClickOption', option);
-  if(option.func) {
-    option.func();
-  }
+const onClickOff = (): void => {
+  navStatus.value = !navStatus.value;
 };
 
 </script>
 
 <style lang="less" scoped>
-nav {
-  display: block;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  z-index: 9999;
-}
-
-ul {
-  list-style: none;
-  display: block;
-}
-
 .wrapper {
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
-  background: #00000080;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+}
 
-  .hb-nav {
+.menu {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5em;
+  background: rgb(255 255 255/24%);
+  box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  box-sizing: border-box;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  .setting {
+    margin: 0.2em;
     box-sizing: border-box;
-    display: none;
-    height: 100%;
-    padding: 10px 20px;
+    width: 300px;
+    height: 300px;
 
-    .animate-layer {
-       width: 0;
-       transition: width .3s;
-      .hb-title {
-        margin-bottom: 10px;
+    .option {
+      color: #dbdbdb;
+      width: 100%;
+      height: 100%;
+      padding: 1.5em;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: 0.2s;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.5);
+        transform: scale(1.1);
+        box-shadow: 0 8px 32px 0 rgb(0 0 0 / 37%);
         color: #fff;
-        display: block;
-        font-size: 26px;
-        font-style: normal;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        border-bottom: 1PX solid #fff;
-
       }
 
-      .hb-options {
+      :deep(i) {
+        font-size: 5em;
+      }
 
+      .title {
+        color: #fff;
+        margin: 0.4em 0 0 0;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2em;
+        font-weight: 600;
+      }
 
-        .hb-option {
-          box-sizing: border-box;
-          width: 100%;
-          border-radius: 8px;
-          padding: 8px;
-          margin-block: 8px;
-          display: flex;
-          justify-content: left;
-          color: #fff;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color .3s;
-
-          &:hover {
-            background: #E3E5E7;
-            color: #000;
-          }
-
-          .hb-option-name {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-          }
-
-          i + .hb-option-name {
-            margin-left: 10px;
-          }
-        }
+      .description {
+        margin-top: 20px;
+        font-size: 1em;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
   }
 
-  .hb-off {
-    width: 10px;
-    height: 4em;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-100%, -50%);
-    background: #00000080;
-  }
 }
 
+.menu-off {
+  width: 10px;
+  height: 4em;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-100%, -50%);
+  background: #00000080;
+}
 </style>

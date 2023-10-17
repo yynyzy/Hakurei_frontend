@@ -19,7 +19,7 @@ const { setLightTheme, setDarkTheme} = themeStore();
 // true 为白天模式， false 为夜晚模式
 const themeType = ref<Boolean>(true);
 
-const onClickIcon = () => {
+const onClickIcon = (): void => {
   console.log('themeType.value', themeType.value);
   if(themeType.value) {
     setDarkTheme();

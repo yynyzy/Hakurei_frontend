@@ -31,7 +31,7 @@ interface checkedStatusOptions {
   col: number,
 }
 const checkedStatus = ref<checkedStatusOptions[]>([]);
-const onSettle = () => {
+const onSettle = (): void => {
   checkedStatus.value = [];
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -45,13 +45,13 @@ const onSettle = () => {
   }
 };
 
-const onReset = () => {
+const onReset = (): void => {
   seatsStatus.value = defaultSeatStatus;
   checkedStatus.value = [];
   draw();
 };
 
-const draw: () => void = () => {
+const draw = (): void => {
   const canvas = canvasRef.value;
   const ctx = canvas!.getContext('2d');
   ctx!.clearRect(0, 0, canvas!.width, canvas!.height);

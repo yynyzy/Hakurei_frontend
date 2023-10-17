@@ -92,7 +92,7 @@ const computedImagePos = (list: ImageItem[], isFirst: Boolean) =>{
   })
 };
 
-const init = () => {
+const init = (): void => {
   if(contentRef.value) {
     // 根据 container 宽度计算瀑布流每个图片的宽度
     state.imageWidth = (contentRef.value.clientWidth - (props.column -1) * props.gap)/ props.column;

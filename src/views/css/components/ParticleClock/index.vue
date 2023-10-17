@@ -29,7 +29,7 @@ onBeforeUnmount(() => {
   clear();
 });
 
-const draw = () => {
+const draw = (): void => {
   if(particles.length === 0 ) return;
   clear();
   update();
@@ -37,7 +37,7 @@ const draw = () => {
   requestAnimationFrame(draw);
 };
 
-const update = () => {
+const update = (): void => {
   const newText = getTimeString();
   if (newText === text) {
     return;
@@ -86,7 +86,7 @@ const getPoints = () => {
 const getTimeString = () => {
   return new Date().toTimeString().substring(0, 8);
 };
-const clear = () => {
+const clear = (): void => {
   ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
 };
 </script>

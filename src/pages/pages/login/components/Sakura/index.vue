@@ -20,7 +20,7 @@ onMounted(() => {
   const SakuraImg = new Image();
   SakuraImg.src =  new URL('../../../../images/login/sakura.png', import.meta.url).href;
 
-  const render = () => {
+  const render = (): void => {
     // 清除矩形内的内容
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     SAKURA_Array.forEach((s) => s.animate(mouseX));

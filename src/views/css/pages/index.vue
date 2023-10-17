@@ -29,8 +29,8 @@ const onClickMenu = (val: any) => {
         :key="currentCompIndex"
         :is="components[currentCompIndex].component"
       />
-  </section>
-  <y-support/>
+    </section>
+    <y-support/>
 </template>
 
 <style lang="less" scoped>

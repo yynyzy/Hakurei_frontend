@@ -12,7 +12,7 @@ const text = ref<string>('');
 let flag = 0;
 
 const line = '<span ref="lineRef" class="line" ></span>'
-const animationFunc = () => {
+const animationFunc = (): void => {
   if (flag < len) {
     text.value = welcomeText.slice(0, flag++) + line;
     setTimeout(()=> {

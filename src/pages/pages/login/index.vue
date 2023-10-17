@@ -31,11 +31,11 @@ const form = ref<LoginRequest>({
 });
 
 // 登陆功能
-const onShow = () => {
+const onShow = (): void => {
   isShowForm.value = false;
 };
 
-const onLogin = async () => {
+const onLogin = async (): Promise<void> => {
   if(!form.value.username || !form.value.password) return;
   isLoading.value = true;
   try {

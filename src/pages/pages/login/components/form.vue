@@ -57,25 +57,25 @@ interface Emits {
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
-const onCloseForm = () => {
+const onCloseForm = (): void => {
   emits('show', false)
 };
 const isLoginForm = ref(false);
-const onToSignForm = () => {
+const onToSignForm = (): void => {
   isLoginForm.value = true;
   props.modelValue.username = '';
   props.modelValue.password = '';
 };
-const onToLoginForm = () => {
+const onToLoginForm = (): void => {
   isLoginForm.value = false;
   props.modelValue.username = '';
   props.modelValue.password = '';
 };
-const onLogin = () => {
+const onLogin = (): void => {
   emits('login');
 }
 
-const onSign = () => {
+const onSign = (): void => {
   emits('sign');
 }
 </script>

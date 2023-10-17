@@ -35,12 +35,12 @@ const theme = shallowRef<THEME>(THEME_LIGHT);
 let themeType = ref('light');
 export const themeStore = () => {
 
-  const setDarkTheme = () => {
+  const setDarkTheme = (): void => {
     theme.value = THEME_DARK;
     themeType.value = 'THEME_DARK';
   };
 
-  const setLightTheme = () => {
+  const setLightTheme = (): void => {
     theme.value = THEME_LIGHT;
     themeType.value = 'THEME_LIGHT';
   };

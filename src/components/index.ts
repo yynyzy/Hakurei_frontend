@@ -4,6 +4,7 @@ import YHeader from './YHeader/index.vue';
 import YSidebar from './YSidebar/index.vue';
 import YAvatar from './YAvatar/index.vue';
 import YSupport from './YSupport/index.vue';
+import YModal from './YModal/index.vue';
 
 import {
   Menu
@@ -16,6 +17,7 @@ const CustomComponents: [string, Component][] = [
   ['YSidebar', YSidebar],
   ['YAvatar', YAvatar],
   ['YSupport', YSupport],
+  ['YModal', YModal],
 ];
 
 // 注册 Antd 全局组件

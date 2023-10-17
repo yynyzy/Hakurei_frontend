@@ -8,7 +8,7 @@ import { ref,  onMounted, onBeforeUnmount } from 'vue';
 const canvasRef = ref<HTMLCanvasElement | null>();
 let timer: ReturnType<typeof setInterval>;
 
-const rainStart = () => {
+const rainStart = (): void => {
     const canvas = canvasRef.value;
     const width = canvas!.width = window.innerWidth;
     const height = canvas!.height = window.innerHeight;
@@ -34,7 +34,7 @@ const rainStart = () => {
         rain();
     }, 30);
 };
-const rainStop = () => {
+const rainStop = (): void => {
     if (timer) {
         timer && clearInterval(timer);
     }

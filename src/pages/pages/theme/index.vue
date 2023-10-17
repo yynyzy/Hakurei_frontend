@@ -88,7 +88,7 @@
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
-const onBack = () => {
+const onBack = (): void => {
   const { back: lastRouter} = router.options.history.state;
   if (lastRouter) {
     router.go(-1);
