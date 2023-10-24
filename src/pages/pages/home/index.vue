@@ -1,20 +1,20 @@
 <template>
   <div class="home">
-    <y-header class="home-header" >
+    <custom-header class="home-header">
       <template #header-bg>
         <autumn-bg />
       </template>
-    </y-header>
+    </custom-header>
     <div class="container">
       <div @click="getUserInfo">getUserInfo</div>
       <roleModal class="role-model"/>
     </div>
   </div>
-  <y-support />
 </template>
 
 <script setup lang="ts">
 // import { tokenStore } from "@/stores";
+import customHeader from './components/customHeader.vue';
 import roleModal from './components/roleModel.vue';
 import autumnBg from './components/autumnBg.vue';
 

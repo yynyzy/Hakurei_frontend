@@ -38,7 +38,6 @@
         </div>
       </div>
     </div>
-
     </div>
   </div>
 </template>
@@ -60,23 +59,6 @@ const menus  = [
     icon: h('i', { class: "fa fa-user" }),
     label: '主题切换',
     title: '主题切换',
-    children: [
-      {
-        key: '3',
-        label: '白天',
-        title: '白天',
-      },
-      {
-        key: '4',
-        label: '夜晚',
-        title: '夜晚',
-      },
-      {
-        key: '5',
-        label: '详情设置',
-        title: '详情设置',
-      },
-    ],
   },
 ];
 const handleClick: MenuProps['onClick'] = (menuInfo) => {
@@ -91,6 +73,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   margin: 0;
   padding: 0;
   position: relative;
+  background-color: red;
 }
 
 .img-box {
@@ -107,7 +90,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   transition: .4s;
 }
 
-.img-box:hover {
+.information:hover .img-box {
   margin-top: 30px;
   width: 100px;
   height: 100px;

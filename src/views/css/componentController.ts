@@ -7,7 +7,7 @@ import TypeWritingText from './components/TypeWritingText/index.vue';
 import Book3D from './components/Book3D/index.vue';
 import WaveButton from './components/WaveButton/index.vue';
 
-type ComponentsType = {
+interface ComponentsType {
   component: Component
   name: string
   meta: any

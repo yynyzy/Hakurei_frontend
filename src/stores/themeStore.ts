@@ -4,13 +4,13 @@ import { shallowRef, ref } from "vue";
  * THEME_LIGHT: 白天模式
  * THEME_DARK： 夜晚模式
  */
-type THEME = {
-  fontColor: string,
-  borderColor: string,
-  bgColor: string,
-  opposite_borderColor: string,
-  opposite_fontColor: string,
-  opposite_bgColor: string,
+interface THEME {
+  fontColor: string
+  borderColor: string
+  bgColor: string
+  opposite_borderColor: string
+  opposite_fontColor: string
+  opposite_bgColor: string
 }
 
 const THEME_LIGHT = {
