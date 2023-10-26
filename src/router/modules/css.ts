@@ -2,7 +2,7 @@
 export default [
   {
     path: '/css',
-    component: () => import('@/views/css/pages/index.vue'),
+    component: () => import('@/views/pages/css/index.vue'),
     meta: { isAuth: true },
     children: [],
   },

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import components from '../componentController';
+import components from './componentController';
 
 interface menuType {
   name: string,

@@ -73,7 +73,6 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   margin: 0;
   padding: 0;
   position: relative;
-  background-color: red;
 }
 
 .img-box {

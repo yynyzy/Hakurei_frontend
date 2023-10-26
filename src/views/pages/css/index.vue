@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import components from '../componentController';
+import components from './componentController';
 
 const currentCompIndex = ref(0);
 const introduce: {tipOne: string, tipTwo: string} = {
