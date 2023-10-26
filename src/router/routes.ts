@@ -1,4 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
+import animationVideo from './modules/animationVideo';
 import CSSRouter from './modules/css';
 import componentsRouter from './modules/component';
 import Login from '@/views/pages/login/index.vue';
@@ -23,6 +24,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/theme',
     component: Theme,
   },
+  ...animationVideo,
   ...CSSRouter,
   ...componentsRouter,
 ]

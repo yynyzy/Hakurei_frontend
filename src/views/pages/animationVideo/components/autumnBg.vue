@@ -13,18 +13,18 @@ const bgRef = ref<HTMLElement | null>(null);
 const ImgRef = ref<HTMLElement[] | null>(null);
 let eyeTimer: NodeJS.Timeout | null = null;
 const GIRL_EYE: Array<string> = [
-  new URL('@/views/images/home/bilibili-autumn-open.png', import.meta.url).href,
-  new URL('@/views/images/home/bilibili-autumn-half.png', import.meta.url).href,
-  new URL('@/views/images/home/bilibili-autumn-close.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-open.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-half.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-close.png', import.meta.url).href,
 ];
 
 const bg = ref<Array<string>>([
-  new URL('@/views/images/home/bilibili-autumn-1.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-1.png', import.meta.url).href,
   GIRL_EYE[0],
-  new URL('@/views/images/home/bilibili-autumn-3.png', import.meta.url).href,
-  new URL('@/views/images/home/bilibili-autumn-4.png', import.meta.url).href,
-  new URL('@/views/images/home/bilibili-autumn-5.png', import.meta.url).href,
-  new URL('@/views/images/home/bilibili-autumn-6.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-3.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-4.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-5.png', import.meta.url).href,
+  new URL('@/views/images/animationVideo/bilibili-autumn-6.png', import.meta.url).href,
 ]);
 
 onMounted(() => {

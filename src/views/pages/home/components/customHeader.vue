@@ -3,7 +3,6 @@
     <div class="header-nav">
       <div class="header-left">
         <div class="title">{{ WebName }}</div>
-        <y-theme-controller />
         <nav class="navigation-bar">
           <ul>
             <li v-for="(tab, index) in routerMapLeft" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
@@ -52,6 +51,10 @@ const routerMapLeft: Array<Tab> = [
     route: '/home',
   },
   {
+    name: '动漫视频',
+    route: '/animationVideo',
+  },
+  {
     name: '自定义组件',
     route: '/component',
   },
@@ -85,6 +88,7 @@ const routerMapRight: Array<Tab> = [
 
 const router = useRouter();
 const onToPage: (val: Tab) => void = (val) => {
+  console.log('aaa')
   router.push(val.route);
 };
 </script>
@@ -108,8 +112,8 @@ const onToPage: (val: Tab) => void = (val) => {
   height: 64px;
   padding: 10px 20px;
   z-index: 99;
-
-  // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 
   .header-left {
     display: flex;
@@ -188,7 +192,7 @@ const onToPage: (val: Tab) => void = (val) => {
           text-align: center;
           font-size: 13px;
           box-sizing: border-box;
-          color: #fff;
+          color: #000000;
 
           .entry {
             display: flex;

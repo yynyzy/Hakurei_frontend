@@ -13,6 +13,11 @@ interface THEME {
   opposite_bgColor: string
 }
 
+enum THEME_TYPE {
+  'THEME_DARK',
+  'THEME_LIGHT',
+}
+
 const THEME_LIGHT = {
   fontColor: '#000',
   borderColor: '#000',
@@ -30,23 +35,24 @@ const THEME_DARK = {
   opposite_borderColor: '#000',
   opposite_bgColor: '#000',
 }
-const theme = shallowRef<THEME>(THEME_LIGHT);
 
-let themeType = ref('light');
+let theme: THEME = THEME_LIGHT;
+let themeType: THEME_TYPE = THEME_TYPE.THEME_LIGHT;
 export const themeStore = () => {
 
   const setDarkTheme = (): void => {
-    theme.value = THEME_DARK;
-    themeType.value = 'THEME_DARK';
+    theme = THEME_DARK;
+    themeType = THEME_TYPE.THEME_DARK;
   };
 
   const setLightTheme = (): void => {
-    theme.value = THEME_LIGHT;
-    themeType.value = 'THEME_LIGHT';
+    theme = THEME_LIGHT;
+    themeType = THEME_TYPE.THEME_LIGHT;
   };
 
   return {
     theme,
+    THEME_TYPE,
     themeType,
     setDarkTheme,
     setLightTheme,
