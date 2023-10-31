@@ -20,7 +20,6 @@
 
   const props = defineProps<Props>();
   const emits = defineEmits<Emits>();
-  console.log(props);
 
   const onContentTap = (e: Event): void => {
     e.stopPropagation();

@@ -25,7 +25,6 @@ const baseConfig: AxiosRequestConfig = {
   headers: {
     'X-Requested-With': 'XMLHttpRequest',
   },
-  // paramsSerializer: (params: any) => qs.stringify(params, { arrayFormat: 'brackets', allowDots: true }),
 };
 
 function setBaseUrl() {

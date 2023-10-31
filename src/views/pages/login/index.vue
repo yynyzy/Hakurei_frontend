@@ -71,13 +71,14 @@ const ThemeBg = {
   THEME_LIGHT: new URL('../../images/login/loginBg2.jpg', import.meta.url).href,
   THEME_DARK: new URL('../../images/login/loginBg.jpg', import.meta.url).href,
 };
-const { themeType } = themeStore();
+const { THEME_TYPES, themeType } = themeStore();
 
 const bgUrl = computed(() => {
-  if(themeType.value === 'THEME_DARK') {
-    return ThemeBg.THEME_DARK;
-  };
-  return ThemeBg.THEME_LIGHT;
+  return themeType.value === THEME_TYPES.THEME_LIGHT
+    ?
+    ThemeBg.THEME_LIGHT
+    :
+    ThemeBg.THEME_DARK;
 });
 // 背景主题
 </script>

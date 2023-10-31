@@ -6,7 +6,6 @@
       <a class="navigation" href="#">Introduce</a>
       <y-theme-controller class="theme-btn"/>
       <input type="button" class="login" @click="onClickLogin" value="Login"/>
-      <y-avatar />
     </div>
   </header>
 </template>

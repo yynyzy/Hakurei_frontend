@@ -1,6 +1,7 @@
 export interface LoginRequest{
   username: string
   password: string
+  phone?: string
 }
 
 export interface LoginResponse {

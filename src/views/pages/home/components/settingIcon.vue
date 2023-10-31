@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <li class="btn" @click="onClickOff">
-      <a href="#" class="btn-icon">
+      <a class="btn-icon">
         <transition mode="out-in">
           <i  v-if="!state" class="fa fa-angle-double-down" />
           <i  v-else class="fa fa-angle-double-up" />
@@ -13,9 +13,9 @@
         'list',
         { 'list-down': animationState === 1 },
         { 'list-up': animationState === 2 }
-      ]" @click="onClickTab">
+      ]">
         <li class="li" v-for="(item, index) in tabs" :key="index">
-          <a href="#" class="link">
+          <a class="link" @click="onClickSetting(item.type, index)">
             <component :is="item.icon"/>
           </a>
         </li>
@@ -26,34 +26,51 @@
 
 <script lang="ts" setup>
 import { ref, h, VNode } from 'vue';
+import { onChangeTheme } from '@/utils'
 interface Tab {
   icon: VNode
+  type: string
 }
 const animationState = ref<number>(0);
 const state = ref<boolean>(false);
 
-const tabs: Array<Tab> = [
+const tabs = ref<Tab[]>([
   {
-    icon: h('i', { class: "fa fa-sign-out" }),
+    icon: h('i', { class: "far fa-sun" }),
+    type: 'theme',
   },
   {
     icon: h('i', { class: "fa fa-sign-out" }),
+    type: 'themex',
   },
   {
     icon: h('i', { class: "fa fa-sign-out" }),
+    type: 'themex',
   },
   {
     icon: h('i', { class: "fa fa-sign-out" }),
+    type: 'themex',
   },
-];
+]);
 
 const onClickOff = (): void => {
   state.value = !state.value;
   animationState.value = state.value ? 1 : 2
 }
 
-const onClickTab = (): void => {
-  console.log('aaaa');
+const onClickSetting = (type: string, index: number): void => {
+  switch (type) {
+    case 'theme':
+    // onChangeTheme()
+      tabs.value[index].icon = onChangeTheme() === 'light'
+        ?
+        h('i', { class: "far fa-sun" })
+        :
+        h('i', { class: "far fa-moon" });
+      break;
+    default:
+      break;
+  }
 }
 
 </script>

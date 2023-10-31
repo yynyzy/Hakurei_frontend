@@ -14,13 +14,12 @@
 import { ref } from 'vue';
 import { themeStore } from "@/stores";
 
-const { setLightTheme, setDarkTheme} = themeStore();
+const { setLightTheme, setDarkTheme, THEME_TYPES, themeType: themeType_ } = themeStore();
 
 // true 为白天模式， false 为夜晚模式
-const themeType = ref<Boolean>(true);
+const themeType = ref<Boolean>(themeType_.value === THEME_TYPES.THEME_LIGHT);
 
 const onClickIcon = (): void => {
-  console.log('themeType.value', themeType.value);
   if(themeType.value) {
     setDarkTheme();
   } else {
@@ -40,7 +39,7 @@ const onClickIcon = (): void => {
   justify-content: center;
   position: relative;
   transition: all 0.2s ease;
-  background: #fdd6df;
+  background: #ddd;
 
   &Dark {
     background: #464646;
@@ -49,7 +48,7 @@ const onClickIcon = (): void => {
     position: absolute;
     width: 30px;
     height: 30px;
-    background: #ffc0cb;
+    background: #fff;
     border-radius: 15px;
     left: 0;
     display: flex;

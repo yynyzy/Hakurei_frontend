@@ -1,4 +1,5 @@
-import { shallowRef, ref } from "vue";
+import { ref } from "vue"
+
 /**
  * 主题色控制
  * THEME_LIGHT: 白天模式
@@ -13,9 +14,9 @@ interface THEME {
   opposite_bgColor: string
 }
 
-enum THEME_TYPE {
-  'THEME_DARK',
-  'THEME_LIGHT',
+enum THEME_TYPES {
+  'THEME_DARK' = 'dark', // 手动分配值为 'dark'
+  'THEME_LIGHT' = 'light'
 }
 
 const THEME_LIGHT = {
@@ -36,23 +37,24 @@ const THEME_DARK = {
   opposite_bgColor: '#000',
 }
 
-let theme: THEME = THEME_LIGHT;
-let themeType: THEME_TYPE = THEME_TYPE.THEME_LIGHT;
+let theme = ref<THEME>(THEME_LIGHT);
+let themeType = ref<THEME_TYPES>(THEME_TYPES.THEME_LIGHT);
+
 export const themeStore = () => {
 
   const setDarkTheme = (): void => {
-    theme = THEME_DARK;
-    themeType = THEME_TYPE.THEME_DARK;
+    theme.value = THEME_DARK;
+    themeType.value = THEME_TYPES.THEME_DARK;
   };
 
   const setLightTheme = (): void => {
-    theme = THEME_LIGHT;
-    themeType = THEME_TYPE.THEME_LIGHT;
+    theme.value = THEME_LIGHT;
+    themeType.value = THEME_TYPES.THEME_LIGHT;
   };
 
   return {
     theme,
-    THEME_TYPE,
+    THEME_TYPES,
     themeType,
     setDarkTheme,
     setLightTheme,

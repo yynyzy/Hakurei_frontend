@@ -88,7 +88,6 @@ const routerMapRight: Array<Tab> = [
 
 const router = useRouter();
 const onToPage: (val: Tab) => void = (val) => {
-  console.log('aaa')
   router.push(val.route);
 };
 </script>

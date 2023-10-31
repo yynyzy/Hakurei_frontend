@@ -28,6 +28,10 @@
           <label>Username</label>
         </div>
         <div class="input-box">
+          <input v-model="modelValue.phone" type="text" required />
+          <label>Phone</label>
+        </div>
+        <div class="input-box">
           <input v-model="modelValue.password" type="password" required />
           <label>Password</label>
         </div>
@@ -70,6 +74,7 @@ const onToLoginForm = (): void => {
   isLoginForm.value = false;
   props.modelValue.username = '';
   props.modelValue.password = '';
+  props.modelValue.phone = '';
 };
 const onLogin = (): void => {
   emits('login');
@@ -195,11 +200,12 @@ const onSign = (): void => {
   }
 
   .form-box.login {
-    transition: transform .2s ease;
+    transition: transform .8s ease;
     transform: translateX(0);
   }
 
   .form-box.register {
+    transition: transform .8s ease;
     position: absolute;
     transform: translateX(400px);
   }
@@ -207,11 +213,12 @@ const onSign = (): void => {
 
   &.active {
     .form-box.login {
-      transition: transform .2s ease;
+      transition: transform .8s ease;
       transform: translateX(-400px);
     }
 
     .form-box.register {
+            transition: transform .8s ease;
       position: absolute;
       transform: translateX(0);
     }
