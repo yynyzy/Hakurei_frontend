@@ -204,6 +204,14 @@ body {
     font-size: .28em;
     line-height: 1;
     -webkit-text-size-adjust: none;
+
+    -webkit-user-select: none;
+    /* 兼容IE 10+ 和 Edge */
+    -ms-user-select: none;
+    /*
+        ⏹禁止用户选中的标准语法
+    */
+    user-select: none;
 }
 
 hr {

@@ -8,7 +8,6 @@ import {
   VueAxios,
   createPinia,
 } from './FrontendCore'
-// import { message } from 'ant-design-vue'
 
 const app = createApp(App);
 

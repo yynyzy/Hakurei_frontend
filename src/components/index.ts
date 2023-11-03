@@ -8,7 +8,8 @@ import YModal from './YModal/index.vue';
 
 import {
   Input,
-  Menu
+  Menu,
+  Tag,
 } from 'ant-design-vue';
 
 // 注册自定义全局组件
@@ -25,6 +26,7 @@ const CustomComponents: [string, Component][] = [
 const AntdComponents: Component[] = [
   Menu,
   Input,
+  Tag,
 ];
 
 const ComponentPlugin = {
