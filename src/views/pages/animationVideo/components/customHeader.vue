@@ -5,7 +5,7 @@
         <div class="title">{{ WebName }}</div>
         <nav class="navigation-bar">
           <ul>
-            <li v-for="(tab, index) in routerMapLeft" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
+            <li v-for="(tab, index) in GlobalHeaderLeftRoute" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
             </li>
           </ul>
         </nav>
@@ -17,7 +17,7 @@
               <y-avatar/>
             </li>
             <li class="li popover-wrap"
-              v-for="(tab, index) in routerMapRight"
+              v-for="(tab, index) in GlobalHeaderRightRoute"
               :key="index"
               @click="onToPage(tab)"
             >
@@ -38,59 +38,18 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import SettingIcon from './settingIcon.vue'
+import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/asyncRoutes';
+import SettingIcon from '@/components/YHeader/settingIcon.vue'
+
+
+const WebName: string = 'YzYn';
+
+const router = useRouter();
 
 interface Tab {
   name: string,
   route: string,
 }
-const WebName: string = 'YzYn';
-const routerMapLeft: Array<Tab> = [
-  {
-    name: '首页',
-    route: '/home',
-  },
-  {
-    name: '动漫视频',
-    route: '/animationVideo',
-  },
-  {
-    name: 'yixiv',
-    route: '/yixiv',
-  },
-  {
-    name: '自定义组件',
-    route: '/component',
-  },
-  {
-    name: 'CSS 特效',
-    route: '/css',
-  },
-  {
-    name: 'JS 妙用',
-    route: '/js',
-  },
-];
-const routerMapRight: Array<Tab> = [
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-];
-
-const router = useRouter();
 const onToPage: (val: Tab) => void = (val) => {
   router.push(val.route);
 };

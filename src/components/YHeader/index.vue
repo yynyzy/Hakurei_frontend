@@ -3,10 +3,9 @@
     <div class="header-nav">
       <div class="header-left">
         <div class="title">{{ WebName }}</div>
-        <y-theme-controller />
         <nav class="navigation-bar">
           <ul>
-            <li v-for="(tab, index) in routerMapLeft" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
+            <li v-for="(tab, index) in GlobalHeaderLeftRoute" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
             </li>
           </ul>
         </nav>
@@ -18,7 +17,7 @@
               <y-avatar/>
             </li>
             <li class="li popover-wrap"
-              v-for="(tab, index) in routerMapRight"
+              v-for="(tab, index) in GlobalHeaderRightRoute"
               :key="index"
               @click="onToPage(tab)"
             >
@@ -27,60 +26,29 @@
                 <span >{{ tab.name }}</span>
               </a>
             </li>
+            <setting-icon />
           </ul>
+
         </nav>
       </div>
     </div>
-    <slot name="header-bg"></slot>
   </header>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/asyncRoutes';
+import SettingIcon from './settingIcon.vue'
+
+
+const WebName: string = 'YzYn';
+
+const router = useRouter();
 
 interface Tab {
   name: string,
   route: string,
 }
-const WebName: string = 'YzYn';
-const routerMapLeft: Array<Tab> = [
-  {
-    name: '首页',
-    route: '/home',
-  },
-  {
-    name: '自定义组件',
-    route: '/component',
-  },
-  {
-    name: 'CSS 特效',
-    route: '/css',
-  },
-  {
-    name: 'JS 妙用',
-    route: '/js',
-  },
-];
-const routerMapRight: Array<Tab> = [
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-  {
-    name: '博客',
-    route: '/blog',
-  },
-];
-
-const router = useRouter();
 const onToPage: (val: Tab) => void = (val) => {
   router.push(val.route);
 };
@@ -105,8 +73,8 @@ const onToPage: (val: Tab) => void = (val) => {
   height: 64px;
   padding: 10px 20px;
   z-index: 99;
-
-  // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 
   .header-left {
     display: flex;
@@ -185,7 +153,7 @@ const onToPage: (val: Tab) => void = (val) => {
           text-align: center;
           font-size: 13px;
           box-sizing: border-box;
-          color: #fff;
+          color: #000000;
 
           .entry {
             display: flex;

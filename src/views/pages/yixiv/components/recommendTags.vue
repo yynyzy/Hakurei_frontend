@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive,toRefs,onBeforeMount,onMounted} from 'vue';
 import { ITag, TagColor } from '../../../types/Yixiv';
 
 
@@ -30,7 +29,6 @@ const emits = defineEmits<Emits>();
 
 const colors = Object.values(TagColor);
 const clen = colors.length;
-console.log('colors', colors);
 const getRandomColor = () =>{
   return colors[Math.floor(Math.random() * clen)]; // Return the randomly selected color
 };

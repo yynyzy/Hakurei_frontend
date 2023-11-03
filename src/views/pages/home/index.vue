@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <custom-header class="home-header" />
+    <y-header />
     <parallax-scroll/>
       <!-- <div @click="getUserInfo">getUserInfo</div>
       <roleModal class="role-model"/> -->
@@ -9,8 +9,7 @@
 
 <script setup lang="ts">
 // import { tokenStore } from "@/stores";
-import customHeader from './components/customHeader.vue';
-import roleModal from './components/roleModel.vue';
+// import roleModal from './components/roleModel.vue';
 import parallaxScroll from './components/parallaxScroll.vue';
 
 // import { User } from '../../engine';

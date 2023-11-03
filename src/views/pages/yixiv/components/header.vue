@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <div class="left-header">
-      <div class="logo">yixiv</div>
+      <div class="logo">{{ i18n.logo }}</div>
       <a-menu :selectedKeys="current" mode="horizontal" :items="items" @click="onclickMenu"/>
     </div>
     <div class="right-header">
@@ -12,6 +12,7 @@
       </a-input>
     <div class="tag">tag</div>
     </div>
+    <a class="back" href="/#">back</a>
   </nav>
 </template>
 
@@ -27,6 +28,7 @@ interface Emits {
 const emits = defineEmits<Emits>();
 
 const i18n = {
+  logo: 'yixiv',
   searchIllustration: '搜索插画'
 }
 const current = ref<string[]>(['home']);
@@ -41,7 +43,8 @@ const items = ref<MenuProps['items']>([
     label: '排行榜',
     title: 'rank',
 }])
-const onclickMenu = ({key, item}) => {
+const onclickMenu = (e: any) => {
+  const { key, item } = e;
   current.value = [key];
   emits('changeMenu', item.title);
 }
@@ -68,13 +71,11 @@ const onSearch = () => {
     justify-content: center;
 
     .logo {
-      width: 80px;
+      min-width: 80px;
       text-align: center;
       color: #00ffff;
       font: 28px bold;
     }
-
-
   }
 
   .right-header {
@@ -115,5 +116,11 @@ const onSearch = () => {
       margin-left: 10px;
     }
   }
+
+  .back {
+      font: 20px bold sans-serif;
+      border-bottom: 1px solid #000;
+    }
+
 }
 </style>
