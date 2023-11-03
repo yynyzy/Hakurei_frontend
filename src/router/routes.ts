@@ -1,10 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
-import animationVideo from './modules/animationVideo';
-import CSSRouter from './modules/css';
-import componentsRouter from './modules/component';
 import Login from '@/views/pages/login/index.vue';
 import Home from '@/views/pages/home/index.vue';
 import Theme from '@/views/pages/theme/index.vue';
+import asyncRoutes from './asyncRoutes';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -24,7 +22,5 @@ export const routes: RouteRecordRaw[] = [
     path: '/theme',
     component: Theme,
   },
-  ...animationVideo,
-  ...CSSRouter,
-  ...componentsRouter,
+  ...asyncRoutes,
 ]

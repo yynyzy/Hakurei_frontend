@@ -7,6 +7,7 @@ import YSupport from './YSupport/index.vue';
 import YModal from './YModal/index.vue';
 
 import {
+  Input,
   Menu
 } from 'ant-design-vue';
 
@@ -23,6 +24,7 @@ const CustomComponents: [string, Component][] = [
 // 注册 Antd 全局组件
 const AntdComponents: Component[] = [
   Menu,
+  Input,
 ];
 
 const ComponentPlugin = {

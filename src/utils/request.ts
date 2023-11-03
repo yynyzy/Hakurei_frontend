@@ -93,4 +93,5 @@ const installer = {
 export {
   installer as VueAxios,
   service as axios,
+  baseService as http,
 };

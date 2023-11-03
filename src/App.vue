@@ -9,6 +9,5 @@
 * {
   margin: 0;
   padding: 0;
-  background-color: red;
 }
 </style>

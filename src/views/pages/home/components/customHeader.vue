@@ -55,6 +55,10 @@ const routerMapLeft: Array<Tab> = [
     route: '/animationVideo',
   },
   {
+    name: 'yixiv',
+    route: '/yixiv',
+  },
+  {
     name: '自定义组件',
     route: '/component',
   },
