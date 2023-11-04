@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/asyncRoutes';
+import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/routes';
 import SettingIcon from '@/components/YHeader/settingIcon.vue'
 
 

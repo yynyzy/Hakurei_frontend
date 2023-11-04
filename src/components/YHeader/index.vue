@@ -21,7 +21,7 @@
               :key="index"
               @click="onToPage(tab)"
             >
-              <a href="#" class="entry">
+              <a class="entry">
                 <i class="fa fa-book-open" />
                 <span >{{ tab.name }}</span>
               </a>
@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/asyncRoutes';
+import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/routes';
 import SettingIcon from './settingIcon.vue'
 
 
@@ -49,8 +49,17 @@ interface Tab {
   name: string,
   route: string,
 }
-const onToPage: (val: Tab) => void = (val) => {
-  router.push(val.route);
+const onToPage = (val: Tab): void => {
+  switch (val.route) {
+    case '/blog':
+      const  { href } = router.resolve({ path: val.route,query: {} });
+      window.open(href, '_blank');
+      break;
+    default:
+      router.push(val.route);
+      break;
+  }
+
 };
 </script>
 
@@ -153,7 +162,7 @@ const onToPage: (val: Tab) => void = (val) => {
           text-align: center;
           font-size: 13px;
           box-sizing: border-box;
-          color: #000000;
+          color: #fff;
 
           .entry {
             display: flex;
