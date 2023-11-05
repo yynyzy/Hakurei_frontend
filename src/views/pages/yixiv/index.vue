@@ -1,18 +1,28 @@
 <template>
-  <section class="wrapper">
+  <div class="page">
     <yixiv-header class="nav" @change-menu="onChangeMenu" @search="onSearch"/>
     <recommend-tags :tags="tags"/>
     <div class="container">
-      zhaop
+      <section class="recommend-container wrapper">
+        <h2>{{ i18n.recommendTitle }}</h2>
+        <ul class="illust-box">
+          <li class="illust" v-for="(item, index) in recommendPictures" :key="index">
+            <picture-box :item="item" />
+          </li>
+        </ul>
+      </section>
     </div>
-  </section>
+  </div>
 </template>
 <script setup lang='ts'>
 import YixivHeader from './components/header.vue';
 import recommendTags from './components/recommendTags.vue';
+import pictureBox from './components/pictureBox.vue';
 import { Yixiv } from '@/views/engine';
-import { ref, reactive,toRefs,onBeforeMount,onMounted} from 'vue'
-
+import { ref } from 'vue'
+const i18n = {
+  recommendTitle: '推荐作品',
+}
 const onChangeMenu = (value: any) => {
   console.log(value);
 };
@@ -29,13 +39,43 @@ const getRecommendTags  = async () => {
 }
 getRecommendTags();
 
+const recommendPictures = ref([]);
+const getRecommendPicture  = async () => {
+  const { rows } = await Yixiv.getRecommendPicture({ limit: 18, offset: 90 });
+  recommendPictures.value = rows;
+}
+getRecommendPicture();
+
+
 </script>
 <style lang="less" scoped>
-.wrapper {
+.page {
   min-height: 100vh;
+  background-color: #F1FAFA;
 }
 
 .container {
-  background: yellow
+  padding: 0 220px;
+
+  .wrapper {
+    padding-bottom: 64px;
+
+    h2 {
+      font-size: 20px;
+      line-height: 28px;
+      color: #000000a3;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+    .illust-box {
+      background-color: #fff;
+      display: flex;
+      flex-wrap: wrap;
+
+      .illust {
+        margin: 12px;
+      }
+    }
+  }
 }
 </style>

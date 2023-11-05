@@ -13,3 +13,8 @@ export interface ITag {
   title: string
   zh?: string | null
 }
+
+export interface RecommendPictureParams {
+  limit: number
+  offset: number
+}

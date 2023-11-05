@@ -18,7 +18,7 @@
     (event: 'maskTap'): void;
   };
 
-  const props = defineProps<Props>();
+  defineProps<Props>();
   const emits = defineEmits<Emits>();
 
   const onContentTap = (e: Event): void => {

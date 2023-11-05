@@ -3,7 +3,7 @@
     <y-modal :visible="navStatus" @maskTap="onClickOff">
       <div class="menu">
         <div class="setting" v-for="(item, index) in menu" :key="index">
-          <a class="option" href="#">
+          <a class="option">
             <component :is="item.icon" />
             <h3 class="title">{{ item.title }}</h3>
             <p class="description">{{ item.description }}</p>

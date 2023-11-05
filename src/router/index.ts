@@ -1,11 +1,11 @@
-import { createRouter, createWebHashHistory,
+import { createRouter, createWebHistory,
  } from 'vue-router';
 import { routes } from './routes';
 import { tokenStore } from '@/stores';
 import { ElMessage } from "element-plus";
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

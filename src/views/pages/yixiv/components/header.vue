@@ -14,7 +14,7 @@
       />
     <div class="tag">tag</div>
     </div>
-    <a class="back" href="/#">back</a>
+    <a class="back" href="/home">back</a>
   </nav>
 </template>
 

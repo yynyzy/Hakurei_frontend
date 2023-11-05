@@ -3,7 +3,7 @@
     <div class="logo">YZYN</div>
     <div class="login-btn-group">
       <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a>
-      <a class="navigation" href="#">Introduce</a>
+      <a class="navigation">Introduce</a>
       <y-theme-controller class="theme-btn"/>
       <input type="button" class="login" @click="onClickLogin" value="Login"/>
     </div>

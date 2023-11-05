@@ -9,6 +9,7 @@ import YModal from './YModal/index.vue';
 import {
   ElInput,
   ElTag,
+  ElImage,
 } from 'element-plus';
 // 注册自定义全局组件
 const CustomComponents: [string, Component][] = [
@@ -25,6 +26,7 @@ const ElComponents: Component[] = [
   // Menu,
   ElInput,
   ElTag,
+  ElImage,
 ];
 const ComponentPlugin = {
   install(vm: App) {
