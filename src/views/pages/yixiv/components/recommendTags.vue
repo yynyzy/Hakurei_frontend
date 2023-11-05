@@ -2,11 +2,11 @@
   <div class="tags-container">
     <div class="tags-content">
       <ul>
-        <li v-for="(item, index) in tags" key="index">
-          <a-tag :color="getRandomColor()" class="tag">
+        <li v-for="(item, index) in tags" :key="index">
+          <el-tag :color="getRandomColor()" class="tag">
             <div class="title">{{ item.title }}</div>
             <div v-if="item.zh" class="sub-title">{{ item.zh }}</div>
-          </a-tag>
+          </el-tag>
         </li>
       </ul>
     </div>
@@ -24,13 +24,13 @@ interface Emits {
   (event: 'clickTags', value: string): void;
 };
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const emits = defineEmits<Emits>();
 
 const colors = Object.values(TagColor);
 const clen = colors.length;
 const getRandomColor = () =>{
-  return colors[Math.floor(Math.random() * clen)]; // Return the randomly selected color
+  return colors[Math.floor(Math.random() * clen)];
 };
 
 </script>
@@ -51,6 +51,7 @@ const getRandomColor = () =>{
       .tag {
           max-width: 200px;
           min-height: 54px;
+          margin-left: 10px;
           display: flex;
           flex-direction: column;
           align-items: center;

@@ -5,11 +5,13 @@
       <a-menu :selectedKeys="current" mode="horizontal" :items="items" @click="onclickMenu"/>
     </div>
     <div class="right-header">
-      <a-input class="search" v-model:value="searchValue" :placeholder="i18n.searchIllustration" @pressEnter="onSearch">
-        <template #prefix>
-          <search-outlined />
-        </template>
-      </a-input>
+      <el-input
+      class="search"
+      v-model="searchValue"
+      :placeholder="i18n.searchIllustration"
+      :prefix-icon="Search"
+      @change="onSearch"
+      />
     <div class="tag">tag</div>
     </div>
     <a class="back" href="/#">back</a>
@@ -18,7 +20,7 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
+import { Search } from '@element-plus/icons-vue'
 import { MenuProps } from 'ant-design-vue';
 
 interface Emits {
@@ -84,18 +86,16 @@ const onSearch = () => {
     align-items: center;
     justify-content: center;
 
-    .search {
-      line-height: 22px;
-      flex: 1 1 auto;
-      height: 100%;
-      // padding: 9px 16px 9px 36px;
-      border: none;
-      border-radius: 4px;
-      color: rgba(0,0,0,.64);
-      background-color: #0000000a;
 
-      /deep/ .ant-input{
-        background-color: transparent;
+    .search {
+      height: 40px;
+      background: #0000000a;
+
+      /deep/ .el-input__wrapper{
+        background-color: #0000000a;
+      }
+
+      /deep/ .el-input__inner{
         &::placeholder {
           color: rgba(0,0,0,.64);
         }

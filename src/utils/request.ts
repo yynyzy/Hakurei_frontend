@@ -1,6 +1,6 @@
 import { App } from 'vue';
 import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig }from "axios";
-import { message } from 'ant-design-vue';
+import { ElMessage } from "element-plus";
 
 declare module "axios" {
   interface AxiosResponse<T = any> {
@@ -46,7 +46,7 @@ const formatResponseData = (response: AxiosResponse) => {
 
 const err = ({ response }: { response: any}) => {
   if (!response) {
-    message.error('networkError');
+    ElMessage.error('networkError');
   } else {
     const { status } = response;
     switch (status) {

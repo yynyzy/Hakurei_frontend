@@ -7,11 +7,9 @@ import YSupport from './YSupport/index.vue';
 import YModal from './YModal/index.vue';
 
 import {
-  Input,
-  Menu,
-  Tag,
-} from 'ant-design-vue';
-
+  ElInput,
+  ElTag,
+} from 'element-plus';
 // 注册自定义全局组件
 const CustomComponents: [string, Component][] = [
   ['YThemeController', YThemeController],
@@ -22,19 +20,18 @@ const CustomComponents: [string, Component][] = [
   ['YModal', YModal],
 ];
 
-// 注册 Antd 全局组件
-const AntdComponents: Component[] = [
-  Menu,
-  Input,
-  Tag,
+// 按需注册 element-plus 全局组件
+const ElComponents: Component[] = [
+  // Menu,
+  ElInput,
+  ElTag,
 ];
-
 const ComponentPlugin = {
   install(vm: App) {
     CustomComponents.forEach((component) => {
       vm.component(component[0], component[1])
     });
-    AntdComponents.forEach((component) => {
+    ElComponents.forEach((component) => {
       vm.component(component.name!, component)
     })
   }
