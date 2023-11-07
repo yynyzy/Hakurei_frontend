@@ -2,15 +2,29 @@
   <nav class="nav">
     <div class="left-header">
       <div class="logo">{{ i18n.logo }}</div>
-      <a-menu :selectedKeys="current" mode="horizontal" :items="items" @click="onclickMenu"/>
+      <el-menu
+        mode="horizontal"
+        :default-active="activeIndex"
+        :ellipsis="false"
+        background-color="transparent"
+        @select="onclickMenu"
+      >
+        <el-menu-item
+          v-for="(item, index) in items"
+          :key="index"
+          :index="index"
+        >
+          {{ item.label }}
+        </el-menu-item>
+      </el-menu>
     </div>
     <div class="right-header">
       <el-input
-      class="search"
-      v-model="searchValue"
-      :placeholder="i18n.searchIllustration"
-      :prefix-icon="Search"
-      @change="onSearch"
+        class="search"
+        v-model="searchValue"
+        :placeholder="i18n.searchIllustration"
+        :prefix-icon="Search"
+        @change="onSearch"
       />
     <div class="tag">tag</div>
     </div>
@@ -19,41 +33,43 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { Search } from '@element-plus/icons-vue'
-import { MenuProps } from 'ant-design-vue';
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
   (event: 'search', value: string): void;
 }
 const emits = defineEmits<Emits>();
-
 const i18n = {
   logo: 'yixiv',
   searchIllustration: '搜索插画'
-}
-const current = ref<string[]>(['home']);
-const items = ref<MenuProps['items']>([
+};
+
+const activeIndex = ref<number>(0);
+interface MenuProps {
+  key: string,
+  label: string,
+};
+const items = ref<MenuProps[]>([
   {
     key: 'home',
     label: '首页',
-    title: 'home',
   },
   {
     key: 'rank',
     label: '排行榜',
-    title: 'rank',
 }])
-const onclickMenu = (e: any) => {
-  const { key, item } = e;
-  current.value = [key];
-  emits('changeMenu', item.title);
-}
+const onclickMenu = (index: number) => {
+  activeIndex.value = index;
+};
+watch(activeIndex, (nv) => {
+  emits('changeMenu', items.value[nv].key);
+}, { immediate: true });
 
 const searchValue = ref<string>('');
 const onSearch = () => {
-  current.value = [];
+  activeIndex.value = 0;
   emits('search', searchValue.value);
 };
 
@@ -77,6 +93,13 @@ const onSearch = () => {
       text-align: center;
       color: #00ffff;
       font: 28px bold;
+    }
+
+    .el-menu-item.is-active {
+      background-color: transparent !important;
+    }
+    .el-menu-item:hover {
+      background-color: transparent !important;
     }
   }
 

@@ -23,29 +23,31 @@ import { ref } from 'vue'
 const i18n = {
   recommendTitle: '推荐作品',
 }
-const onChangeMenu = (value: any) => {
-  console.log(value);
-};
-
-const onSearch = (value: any) => {
-  console.log(value);
-};
-
 
 const tags = ref([]);
 const getRecommendTags  = async () => {
   const { rows } = await Yixiv.getTags();
   tags.value = rows.slice(0, 20);
 }
-getRecommendTags();
-
 const recommendPictures = ref([]);
 const getRecommendPicture  = async () => {
   const { rows } = await Yixiv.getRecommendPicture({ limit: 18, offset: 90 });
   recommendPictures.value = rows;
 }
-getRecommendPicture();
 
+const onChangeMenu = (value: string) => {
+  console.log('onChangeMenu', value)
+  switch(value) {
+    case 'home':
+    getRecommendTags();
+    getRecommendPicture();
+    break;
+  }
+};
+
+const onSearch = (value: any) => {
+  console.log(value);
+};
 
 </script>
 <style lang="less" scoped>

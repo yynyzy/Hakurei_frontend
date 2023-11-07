@@ -7,9 +7,11 @@ import YSupport from './YSupport/index.vue';
 import YModal from './YModal/index.vue';
 
 import {
+  ElMenu,
   ElInput,
   ElTag,
   ElImage,
+  ElMenuItem,
 } from 'element-plus';
 // 注册自定义全局组件
 const CustomComponents: [string, Component][] = [
@@ -23,7 +25,8 @@ const CustomComponents: [string, Component][] = [
 
 // 按需注册 element-plus 全局组件
 const ElComponents: Component[] = [
-  // Menu,
+  ElMenu,
+  ElMenuItem,
   ElInput,
   ElTag,
   ElImage,

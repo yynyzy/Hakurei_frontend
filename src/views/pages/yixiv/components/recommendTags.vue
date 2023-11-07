@@ -3,7 +3,7 @@
     <div class="tags-content">
       <ul>
         <li v-for="(item, index) in tags" :key="index">
-          <el-tag :color="getRandomColor()" class="tag">
+          <el-tag :color="getRandomColor()" class="tag" @click="onClickTags(item.tag_id)">
             <div class="title">{{ item.title }}</div>
             <div v-if="item.zh" class="sub-title">{{ item.zh }}</div>
           </el-tag>
@@ -33,6 +33,9 @@ const getRandomColor = () =>{
   return colors[Math.floor(Math.random() * clen)];
 };
 
+const onClickTags = (tagId: number) => {
+  console.log(tagId);
+}
 </script>
 <style lang="less" scoped>
 .tags-container {
