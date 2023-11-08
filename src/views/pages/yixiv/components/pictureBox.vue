@@ -1,11 +1,15 @@
 <template>
   <div class="box">
     <ElImage
-      style="height: 184px;width: 184px;"
+      style="height: 184px;width: 184px; borderRadius: 8px;"
       :src="item.regular_url"
       fit="cover"
       @click="onClickImage"
     />
+    <div v-if="item.page_total > 1" class="page_total">
+      <i class="far fa-clone" />
+      <p>{{ item.page_total }}</p>
+    </div>
     <div>
       <div class="title">
         <a :href='`/illust/${item.picture_id}`' :alt="item.title">{{ item.title }}</a>
@@ -35,7 +39,26 @@ const onClickImage = () => {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 
+  .page_total {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 3px;
+    border-radius: 0 0 0 4px;
+    background-color: rgba(0,0,0,.4);
+    line-height: 1;
+    font-size: 12px;
+    color: #fff;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    p {
+      margin-left: 5px;
+    }
+  }
   .title {
     display: flex;
     margin-top: 8px;

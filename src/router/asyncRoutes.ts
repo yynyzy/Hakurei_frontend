@@ -8,8 +8,28 @@ export default [
   {
     path: '/yixiv',
     component: () => import('@/views/pages/yixiv/index.vue'),
+    redirect: '',
     meta: { isAuth: true },
-    children: [],
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/pages/yixiv/home.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'illust/:pictureId',
+        component: () => import('@/views/pages/yixiv/illust.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'ranking',
+        component: () => import('@/views/pages/yixiv/ranking.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+    ],
   },
   {
     path: '/blog',

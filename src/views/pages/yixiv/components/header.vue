@@ -57,7 +57,7 @@ const items = ref<MenuProps[]>([
     label: '首页',
   },
   {
-    key: 'rank',
+    key: 'ranking',
     label: '排行榜',
 }])
 const onclickMenu = (index: number) => {
@@ -65,7 +65,7 @@ const onclickMenu = (index: number) => {
 };
 watch(activeIndex, (nv) => {
   emits('changeMenu', items.value[nv].key);
-}, { immediate: true });
+});
 
 const searchValue = ref<string>('');
 const onSearch = () => {

@@ -18,3 +18,8 @@ export interface RecommendPictureParams {
   limit: number
   offset: number
 }
+
+export interface UserBestPictureParams {
+  pictureId: string
+  userId: string
+}
