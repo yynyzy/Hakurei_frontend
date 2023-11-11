@@ -1,5 +1,5 @@
 import { httpRequest } from "@/utils";
-import { RecommendPictureParams, UserBestPictureParams } from "../types/Yixiv";
+import { RecommendPictureParams } from "../types/Yixiv";
 
 export default class Yixiv {
   // 缓存 tags
@@ -26,8 +26,13 @@ export default class Yixiv {
     return data;
   };
 
-  public static getUserBestPicture = async (params: UserBestPictureParams) => {
-    const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/picture/user_best_picture?limit=8&offset=0&picture_id=${params.pictureId}&user_id=${params.userId}`);
+  // public static getUserBestPicture = async (params: UserBestPictureParams) => {
+  //   const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/picture/user_best_picture?limit=8&offset=0&picture_id=${params.pictureId}&user_id=${params.userId}`);
+  //   return data;
+  // };
+
+  public static getUserPictureInfo = async (pictureId: string) => {
+    const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/picture/${pictureId}?picture_id=${pictureId}`);
     return data;
   };
 }

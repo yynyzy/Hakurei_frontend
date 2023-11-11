@@ -1,5 +1,4 @@
-import { createRouter, createWebHistory,
- } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from './routes';
 import { tokenStore } from '@/stores';
 import { ElMessage } from "element-plus";
