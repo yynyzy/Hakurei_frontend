@@ -18,14 +18,14 @@ export default [
         children: [],
       },
       {
-        path: 'illust/:pictureId',
-        component: () => import('@/views/pages/yixiv/illust.vue'),
+        path: 'ranking',
+        component: () => import('@/views/pages/yixiv/ranking.vue'),
         meta: { isAuth: true },
         children: [],
       },
       {
-        path: 'ranking',
-        component: () => import('@/views/pages/yixiv/ranking.vue'),
+        path: 'illust/:pictureId',
+        component: () => import('@/views/pages/yixiv/illust.vue'),
         meta: { isAuth: true },
         children: [],
       },

@@ -9,6 +9,7 @@ import { useRouter } from 'vue-router';
 import YixivHeader from './components/header.vue';
 
 const router = useRouter();
+
 const onChangeMenu = (value: string) => {
   let path = '';
   switch(value) {
@@ -21,7 +22,7 @@ const onChangeMenu = (value: string) => {
     default:
       break
   }
-  router.push(path)
+  router.push(path);
 };
 
 const onSearch = (value: any) => {

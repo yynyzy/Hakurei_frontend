@@ -4,10 +4,10 @@
       <div class="logo">{{ i18n.logo }}</div>
       <el-menu
         mode="horizontal"
-        :default-active="activeIndex"
+        :default-active="headerActiveIndex"
         :ellipsis="false"
         background-color="transparent"
-        @select="onclickMenu"
+        @select="onclickHeader"
       >
         <el-menu-item
           v-for="(item, index) in items"
@@ -33,20 +33,27 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, watch } from 'vue';
+import { ref, toRefs } from 'vue';
 import { Search } from '@element-plus/icons-vue'
+import { yixivStore } from "@/stores";
+
+const store = yixivStore();
+const { setHeaderActiveIndex } =  store;
+const { headerActiveIndex } = toRefs(store);
+
+console.log('ac', headerActiveIndex);
+
+const i18n = {
+  logo: 'yixiv',
+  searchIllustration: '搜索插画'
+};
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
   (event: 'search', value: string): void;
 }
 const emits = defineEmits<Emits>();
-const i18n = {
-  logo: 'yixiv',
-  searchIllustration: '搜索插画'
-};
 
-const activeIndex = ref<number>(0);
 interface MenuProps {
   key: string,
   label: string,
@@ -60,16 +67,15 @@ const items = ref<MenuProps[]>([
     key: 'ranking',
     label: '排行榜',
 }])
-const onclickMenu = (index: number) => {
-  activeIndex.value = index;
+
+const onclickHeader = (index: number) => {
+  setHeaderActiveIndex(index);
+  emits('changeMenu', items.value[index].key);
 };
-watch(activeIndex, (nv) => {
-  emits('changeMenu', items.value[nv].key);
-});
 
 const searchValue = ref<string>('');
 const onSearch = () => {
-  activeIndex.value = 0;
+  setHeaderActiveIndex(-1);
   emits('search', searchValue.value);
 };
 

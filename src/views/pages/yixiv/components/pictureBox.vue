@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <ElImage
+    <el-image
       style="height: 184px;width: 184px; borderRadius: 8px;"
       :src="item.regular_url"
       fit="cover"
@@ -12,7 +12,7 @@
     </div>
     <div>
       <div class="title">
-        <a :href='`/illust/${item.picture_id}`' :alt="item.title">{{ item.title }}</a>
+        <router-link :to="`/yixiv/illust/${item.picture_id}`">{{ item.title }}</router-link>
       </div>
       <div class="favor"><i class="far fa-heart" />{{ item.like_total }}</div>
     </div>
@@ -21,16 +21,17 @@
 
 <script setup lang='ts'>
 import { useRouter } from 'vue-router';
+
 const router = useRouter();
 
 interface Props {
   item: any
 };
-
 const props = defineProps<Props>();
 
 const onClickImage = () => {
-  router.push(`/illust/${props.item.picture_id}`);
+  const  { href } = router.resolve({ path: `/yixiv/illust/${props.item.picture_id}`});
+  window.open(href, '_blank');
 }
 </script>
 <style lang="less" scoped>
