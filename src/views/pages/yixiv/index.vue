@@ -33,6 +33,6 @@ const onSearch = (value: any) => {
 <style lang="less" scoped>
 .page {
   min-height: 100vh;
-  background-color: #F1FAFA;
+  background-color: #f5f5f5;
 }
 </style>
