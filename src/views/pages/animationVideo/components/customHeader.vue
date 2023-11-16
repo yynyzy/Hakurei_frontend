@@ -2,7 +2,7 @@
   <header class="header-wrapper">
     <div class="header-nav">
       <div class="header-left">
-        <div class="title">{{ WebName }}</div>
+        <div class="title" v-text="WebName"></div>
         <nav class="navigation-bar">
           <ul>
             <li v-for="(tab, index) in GlobalHeaderLeftRoute" :key="index" @click="onToPage(tab)" :text="tab.name">{{ tab.name }}
@@ -23,7 +23,7 @@
             >
               <a href="#" class="entry">
                 <i class="fa fa-book-open" />
-                <span >{{ tab.name }}</span>
+                <span v-text="tab.name" ></span>
               </a>
             </li>
             <setting-icon />

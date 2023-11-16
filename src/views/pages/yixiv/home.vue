@@ -3,7 +3,7 @@
     <recommend-tags :tags="tags"/>
     <div class="container">
       <section class="recommend-container wrapper">
-        <h2>{{ i18n.recommendTitle }}</h2>
+        <h2 v-text="i18n.recommendTitle"></h2>
         <ul class="illust-box">
           <li class="illust" v-for="(item, index) in recommendPictures" :key="index">
             <picture-box :item="item" />

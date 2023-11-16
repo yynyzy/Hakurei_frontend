@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <div class="left-header">
-      <div class="logo">{{ i18n.logo }}</div>
+      <div class="logo" v-text="i18n.logo"></div>
       <el-menu
         mode="horizontal"
         :default-active="headerActiveIndex"
@@ -40,8 +40,6 @@ import { yixivStore } from "@/stores";
 const store = yixivStore();
 const { setHeaderActiveIndex } =  store;
 const { headerActiveIndex } = toRefs(store);
-
-console.log('ac', headerActiveIndex);
 
 const i18n = {
   logo: 'yixiv',

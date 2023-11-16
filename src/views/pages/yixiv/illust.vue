@@ -38,29 +38,33 @@
     </div>
     <aside class="illust-aside">
       <section class="user-box">
-        <a>
-          <span class="avatar">
-            <img :src="authorInfo.avatar" alt="">
-          </span>
-        </a>
+        <router-link :to="`/yixiv/author/${authorInfo.user_id}`">
+            <span class="avatar">
+              <img :src="authorInfo.avatar" />
+            </span>
+          </router-link>
         <div class="info">
           <h2 class="ellipsis">
-            <a>{{ authorInfo.nick_name }}</a>
+            <router-link :to="`/yixiv/author/${authorInfo.user_id}`">
+              {{ authorInfo.nick_name }}
+            </router-link>
           </h2>
-          <p class="desc ellipsis">{{ authorInfo.user_id }}</p>
+          <p class="desc ellipsis" v-text="authorInfo.user_id"></p>
         </div>
       </section>
       <section class="others">
         <header class="header">
           <h5>{{  i18n.otherWorks }}</h5>
-          <a href="">{{ i18n.moreWorks }}</a>
+          <router-link class="more" :to="`/yixiv/author/${authorInfo.user_id}`">
+            {{ i18n.moreWorks }}
+          </router-link>
         </header>
         <div class="content">
           <ul class="other-list">
             <li v-for="(item, index) in userBestPictureArr" :key="index">
-              <a>
+              <router-link class="link" :key="item.picture_id" :to="`/yixiv/illust/${item.picture_id}`">
                 <img :src="`${item.regular_url}?x-oss-process=image/resize,m_fill,w_450`">
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -70,7 +74,7 @@
 </template>
 
 <script setup lang='ts'>
-import { reactive, ref } from 'vue';
+import { reactive, ref, watch } from 'vue';
 import { Yixiv } from '@/views/engine';
 import { useRoute } from 'vue-router';
 import { UserBestPictureParams } from '@/views/types/Yixiv';
@@ -83,8 +87,6 @@ const i18n = {
 
 const route = useRoute();
 const loading = ref<boolean>(false);
-const { pictureId } = route.params;
-const picture_id = Array.isArray(pictureId) ? pictureId[0] : pictureId;
 
 const illusts = ref<any[]>([]);
 const previewList = ref<string[]>([]);
@@ -119,9 +121,8 @@ const authorInfo = reactive<AuthorInfo>({
 
 const init = async () => {
   loading.value = true;
-  // const  = await Yixiv.getUserPictureInfo(picture_id);
-  const data = await Yixiv.getUserPictureInfo('112773104');
-
+  const picture_id = getRouteParams();
+  const data = await Yixiv.getUserPictureInfo(picture_id);
   const {
     pages,
     author,
@@ -131,7 +132,6 @@ const init = async () => {
     desc,
     tags,
   } = data;
-  console.log('data', data);
   illusts.value = pages.map((item: any) => {
     item.regular_url = item.regular_url.replace("http://", "https://") + "?x-oss-process=image/resize,m_fill,w_1000";
     return item;
@@ -156,7 +156,10 @@ const init = async () => {
   loading.value = false;
 }
 
-
+const getRouteParams = () => {
+  const { pictureId } = route.params;
+  return Array.isArray(pictureId) ? pictureId[0] : pictureId;
+}
 const userBestPictureArr = ref<any[]>([]);
 const getUserBestPicture = async(params: UserBestPictureParams ) => {
   try {
@@ -165,11 +168,13 @@ const getUserBestPicture = async(params: UserBestPictureParams ) => {
   } catch (error) {
     return [];
   }
-}
+};
 init();
 
+watch(route, ()=>{
+  init();
+})
 console.log('pictureInfo', pictureInfo);
-console.log('authorInfo', authorInfo);
 
 </script>
 
@@ -222,6 +227,7 @@ console.log('authorInfo', authorInfo);
 
       .info-rang {
         width: 600px;
+        margin: 32px auto;
 
         .title {
           margin: 0 0 8px;
@@ -350,7 +356,7 @@ console.log('authorInfo', authorInfo);
         color: #666;
         }
 
-        a {
+        .more {
           margin-left: auto;
           font-size: 12px;
           color: #999;
@@ -370,7 +376,7 @@ console.log('authorInfo', authorInfo);
             margin-bottom: 3px;
             margin-top: 3px;
 
-            a {
+            .link {
               width: 90px;
               height: 90px;
               display: block;

@@ -5,8 +5,8 @@
         <div class="setting" v-for="(item, index) in menu" :key="index">
           <a class="option">
             <component :is="item.icon" />
-            <h3 class="title">{{ item.title }}</h3>
-            <p class="description">{{ item.description }}</p>
+            <h3 class="title" v-text="item.title"></h3>
+            <p class="description" v-text="item.description"></p>
           </a>
         </div>
       </div>

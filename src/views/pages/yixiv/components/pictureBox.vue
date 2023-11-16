@@ -8,7 +8,7 @@
     />
     <div v-if="item.page_total > 1" class="page_total">
       <i class="far fa-clone" />
-      <p>{{ item.page_total }}</p>
+      <p v-text="item.page_total"></p>
     </div>
     <div>
       <div class="title">

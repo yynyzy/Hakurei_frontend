@@ -4,8 +4,8 @@
       <ul>
         <li v-for="(item, index) in tags" :key="index">
           <el-tag :color="getRandomColor()" class="tag" @click="onClickTags(item.tag_id)">
-            <div class="title">{{ item.title }}</div>
-            <div v-if="item.zh" class="sub-title">{{ item.zh }}</div>
+            <div class="title" v-text="item.title"></div>
+            <div v-if="item.zh" class="sub-title" v-text="item.zh"></div>
           </el-tag>
         </li>
       </ul>

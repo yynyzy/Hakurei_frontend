@@ -29,6 +29,12 @@ export default [
         meta: { isAuth: true },
         children: [],
       },
+      {
+        path: 'author/:userId',
+        component: () => import('@/views/pages/yixiv/author.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
     ],
   },
   {

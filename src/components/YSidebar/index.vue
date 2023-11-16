@@ -2,7 +2,10 @@
   <nav class="nav">
     <div class="brand">
       <img src="../images/head.jpeg" alt="..." />
-      <p>{{ introduce.tipOne }}<span>{{ introduce.tipTwo }}</span></p>
+      <p>
+        {{ introduce.tipOne }}
+        <span v-text="introduce.tipTwo"></span>
+      </p>
     </div>
     <hr class="line">
     <ul class="list">
@@ -13,7 +16,7 @@
         @click="onClickMenu(idx)"
       >
         <i class="far fa-hand-point-right" />
-        <span :style="{'animation-delay': (idx * 0.1) + 0.5 + 's' }">{{ item.name }}</span>
+        <span :style="{'animation-delay': (idx * 0.1) + 0.5 + 's' }" v-text="item.name"></span>
       </li>
     </ul>
   </nav>
