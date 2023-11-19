@@ -22,6 +22,7 @@ import Yixiv from '@/views/engine/Yixiv';
 import { yixivStore } from "@/stores";
 
 const { setHeaderActiveIndex } = yixivStore();
+setHeaderActiveIndex(0)
 const i18n = {
   recommendTitle: '推荐作品',
 };
@@ -37,7 +38,7 @@ const getRecommendPicture  = async () => {
   const { rows } = await Yixiv.getRecommendPicture({ limit: 18, offset: 90 });
   recommendPictures.value = rows;
 };
-setHeaderActiveIndex(0)
+
 getRecommendTags();
 getRecommendPicture();
 </script>

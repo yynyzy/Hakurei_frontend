@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <div class="illust-box">
+    <div class="illust-box" v-loading="loading">
       <h2 class="title" v-text="i18n.title"></h2>
       <ul class="illust-content">
         <li class="illust"
@@ -33,14 +33,19 @@ import { ref } from 'vue'
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
 import { IGetNewWorksParams } from '@/views/types/Yixiv';
+import { yixivStore } from "@/stores";
+
+const { setHeaderActiveIndex } = yixivStore();
+setHeaderActiveIndex(1);
 
 const i18n = {
   title: '#最新插画'
 };
 
-
+const loading = ref<boolean>(false);
 const newWorkPictures = ref<any[]>([]);
 const getNewWorks = async() => {
+  loading.value = true;
   const params: IGetNewWorksParams = {
     offset: currentPage.value - 1,
     limit: pageSize,
@@ -52,8 +57,7 @@ const getNewWorks = async() => {
       return item;
     });
     total.value = count;
-
-
+    loading.value = false;
   } catch (error) {
     /** */
   }
@@ -77,6 +81,7 @@ getNewWorks();
 
   .illust-box {
     margin-top: 45px;
+    min-height: 200px;
     .title {
       font-size: 20px;
       line-height: 28px;

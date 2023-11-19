@@ -3,11 +3,11 @@
     <div class="left-header">
       <div class="logo" v-text="i18n.logo"></div>
       <el-menu
-        mode="horizontal"
-        :default-active="headerActiveIndex"
-        :ellipsis="false"
-        background-color="transparent"
-        @select="onclickHeader"
+      mode="horizontal"
+      background-color="transparent"
+      :default-active="headerActiveIndex"
+      :ellipsis="false"
+      @select="onclickHeader"
       >
         <el-menu-item
           v-for="(item, index) in items"
@@ -24,21 +24,48 @@
         v-model="searchValue"
         :placeholder="i18n.searchIllustration"
         :prefix-icon="Search"
+        :disabled="disabled"
         @change="onSearch"
       />
-    <div class="tag">tag</div>
+      <div class="tag">
+        <el-dropdown
+          class="dropdown"
+          trigger="click"
+          @command="onChangeType"
+        >
+          <span class="type">
+            {{ currentSelectTypeName }}
+            <!-- <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon> -->
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu class="dropdown-menu">
+              <el-dropdown-item
+                v-for="(item, _) in TYPE"
+                class="tag"
+                :command="item.key"
+                :key="item.key"
+              >
+              {{ item.value }}
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
     <a class="back" href="/home">back</a>
   </nav>
 </template>
 
 <script setup lang='ts'>
-import { ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 
+
 const store = yixivStore();
-const { setHeaderActiveIndex } =  store;
+const { setHeaderActiveIndex } = store;
 const { headerActiveIndex } = toRefs(store);
 
 const i18n = {
@@ -46,9 +73,11 @@ const i18n = {
   searchIllustration: '搜索插画'
 };
 
+const disabled = true;
+
 interface Emits {
   (event: 'changeMenu', value: string): void;
-  (event: 'search', value: string): void;
+  (event: 'search', value: {keyword: string, type: string}): void;
 }
 const emits = defineEmits<Emits>();
 
@@ -79,9 +108,35 @@ const onclickHeader = (index: number) => {
 const searchValue = ref<string>('');
 const onSearch = () => {
   setHeaderActiveIndex(-1);
-  emits('search', searchValue.value);
+  emits('search', {
+    keyword: searchValue.value,
+    type: currentType.value,
+  });
 };
 
+
+// 按标签
+const TYPE = [
+  {
+    key: 'tag',
+    value: '按标签'
+  },
+  {
+    key: 'author',
+    value: '按作者'
+  }
+];
+const currentType = ref<string>(TYPE[0].key);
+
+const currentSelectTypeName = computed(() => {
+  return TYPE.find((item) => item.key === currentType.value)!.value
+}
+)
+const onChangeType = (command: string) => {
+  setHeaderActiveIndex(-1);
+  currentType.value = command;
+
+};
 </script>
 <style lang="less" scoped>
 .nav {
@@ -107,13 +162,14 @@ const onSearch = () => {
     .el-menu-item.is-active {
       background-color: transparent !important;
     }
+
     .el-menu-item:hover {
       background-color: transparent !important;
     }
   }
 
   .right-header {
-    width: 600px;
+    width: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,36 +179,66 @@ const onSearch = () => {
       height: 40px;
       background: #0000000a;
 
-      /deep/ .el-input__wrapper{
+      /deep/ .el-input__wrapper {
         background-color: #0000000a;
       }
 
-      /deep/ .el-input__inner{
+      /deep/ .el-input__inner {
         &::placeholder {
-          color: rgba(0,0,0,.64);
+          color: rgba(0, 0, 0, .64);
         }
       }
     }
 
     .tag {
+      margin-left: 10px;
+      padding: 0 15px;
       border-radius: 4px;
       border: 1px solid #dcdfe6;
       box-sizing: border-box;
-      color: #606266;
-      display: inline-block;
-      font-size: inherit;
-      height: 40px;
-      line-height: 40px;
-      outline: 0;
-      padding: 0 15px;
-      margin-left: 10px;
+      white-space: nowrap;
+
+      &:hover {
+        border: 1px solid #409eff;
+      }
+
+      .dropdown {
+        color: #606266;
+        font-size: 14px;
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+
+      }
     }
   }
 
   .back {
-      font: 20px bold sans-serif;
-      border-bottom: 1px solid #000;
-    }
+    font: 20px bold sans-serif;
+    border-bottom: 1px solid #000;
+  }
 
+}
+
+// el 的下拉组件下拉部分默认是挂载在 body 上的
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+
+  .tag {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+
+    &:hover {
+      background-color: #f5f7fa;
+      color: #409eff;
+    }
+  }
 }
 </style>

@@ -29,7 +29,9 @@ const onChangeMenu = (value: string) => {
 };
 
 const onSearch = (value: any) => {
+  const type = 'tag'
   console.log(value);
+  router.push(`/yixiv/search/${type}/${value}`);
 };
 
 </script>

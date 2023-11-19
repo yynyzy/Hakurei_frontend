@@ -41,6 +41,12 @@ export default [
         meta: { isAuth: true },
         children: [],
       },
+      {
+        path: 'search/:type/:key',
+        component: () => import('@/views/pages/yixiv/searchType.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
     ],
   },
   {
