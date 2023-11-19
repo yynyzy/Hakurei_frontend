@@ -1,5 +1,5 @@
 import { httpRequest } from "@/utils";
-import { IGetPictureByUserIdParams, IRecommendPictureParams, IUserBestPictureParams } from "../types/Yixiv";
+import { IGetNewWorksParams, IGetPictureByUserIdParams, IRecommendPictureParams, IUserBestPictureParams } from "../types/Yixiv";
 
 export default class Yixiv {
   // 缓存 tags
@@ -49,10 +49,9 @@ export default class Yixiv {
   };
 
 
-  // https://www.vilipix.com/api/v1/picture/public?limit=30&sort=new&offset=0
-
-  public static test = async () => {
-    const { data } = await httpRequest.get(`/api/v1/album/list`);
+  public static getNewWorks = async (params: IGetNewWorksParams) => {
+    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?sort=new&limit=${params.limit}&offset=${params.offset}`);
     return data;
   };
+
 }

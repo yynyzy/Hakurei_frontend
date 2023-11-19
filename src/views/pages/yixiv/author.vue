@@ -102,11 +102,10 @@ const getPictureByUserId = async() => {
 };
 
 const onCurrentPageChange = (value: number) => {
-  console.log('value', value);
-
   currentPage.value = value;
   getPictureByUserId();
-}
+};
+
 const init = async() => {
   getAuthorInfo();
   getPictureByUserId();

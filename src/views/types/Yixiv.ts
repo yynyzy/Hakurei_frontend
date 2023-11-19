@@ -29,3 +29,8 @@ export interface IGetPictureByUserIdParams {
   offset: number
   limit: number
 }
+
+export interface IGetNewWorksParams {
+  offset: number
+  limit: number
+}

@@ -1,9 +1,14 @@
 <template>
   <div class="box">
     <el-image
-      style="height: 184px;width: 184px; borderRadius: 8px;"
+      :style="{
+        height: pictureHeight+ 'px',
+        width: pictureWidth + 'px',
+        borderRadius: '8px',
+      }"
       :src="item.regular_url"
       fit="cover"
+      lazy
       @click="onClickImage"
     />
     <div v-if="item.page_total > 1" class="page_total">
@@ -26,8 +31,13 @@ const router = useRouter();
 
 interface Props {
   item: any
+  pictureHeight?: number
+  pictureWidth?: number
 };
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(),{
+  pictureHeight: 184,
+  pictureWidth: 184,
+});
 
 const onClickImage = () => {
   const  { href } = router.resolve({ path: `/yixiv/illust/${props.item.picture_id}`});
@@ -36,7 +46,6 @@ const onClickImage = () => {
 </script>
 <style lang="less" scoped>
 .box {
-  width: 184px;
   display: flex;
   justify-content: center;
   flex-direction: column;
