@@ -62,9 +62,14 @@ const items = ref<MenuProps[]>([
     label: '首页',
   },
   {
+    key: 'new',
+    label: '新作',
+  },
+  {
     key: 'ranking',
     label: '排行榜',
-}])
+  }
+])
 
 const onclickHeader = (index: number) => {
   setHeaderActiveIndex(index);

@@ -16,25 +16,45 @@
         {{ i18n.PID }} {{ authorInfo.user_id }}
       </a>
     </header>
+    <main class="inner-box">
+      <div class="wrapper">
+        <h2 class="title" v-text="i18n.illustTitle"></h2>
+        <ul class="illust-content">
+          <li class="illust" v-for="(item, index) in userPictureArr" :key="index">
+            <picture-box :item="item" />
+          </li>
+        </ul>
+        <div class="pagination">
+          <el-pagination
+          style="justifyContent: center;"
+          background
+          layout="prev, pager, next"
+          :current-page="currentPage"
+          :total="total"
+          :page-size="pageSize"
+          @current-change="onCurrentPageChange"
+        />
+        </div>
+      </div>
+    </main>
   </section>
 </template>
 
 <script setup lang='ts'>
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { Yixiv } from '@/views/engine';
+import pictureBox from './components/pictureBox.vue';
+import { IGetPictureByUserIdParams } from '@/views/types/Yixiv';
 
 const i18n = {
-  PID: 'P站：'
+  PID: 'P站：',
+  illustTitle: '#作品列表',
 }
 const route = useRoute();
+const { userId } = route.params;
+const user_Id = Array.isArray(userId) ? userId[0] : userId;
 
-const getRouteParams = () => {
-  const { userId } = route.params;
-  return Array.isArray(userId) ? userId[0] : userId;
-};
-
-// 作者
 interface AuthorInfo {
   avatar: string
   nick_name: string
@@ -49,11 +69,9 @@ const authorInfo = reactive<AuthorInfo>({
 });
 
 const getAuthorInfo = async() => {
-  const user_Id= getRouteParams();
   try {
     const { rows } = await Yixiv.searchUser(user_Id);
     const author = rows[0];
-    console.log('author', author);
     authorInfo.avatar = author.avatar;
     authorInfo.desc = author.desc;
     authorInfo.nick_name = author.nick_name;
@@ -63,13 +81,40 @@ const getAuthorInfo = async() => {
   }
 };
 
+const pageSize = 24;
+const currentPage = ref<number>(1);
+const total = ref<number>(0);
+const userPictureArr = ref<any[]>([]);
+
+const getPictureByUserId = async() => {
+  const params: IGetPictureByUserIdParams = {
+    author_user_id: user_Id,
+    offset: currentPage.value - 1,
+    limit: pageSize,
+  }
+  try {
+    const { count, rows } = await Yixiv.getPictureByUserId(params);
+    userPictureArr.value = rows;
+    total.value = count;
+  } catch (error) {
+    /** */
+  }
+};
+
+const onCurrentPageChange = (value: number) => {
+  console.log('value', value);
+
+  currentPage.value = value;
+  getPictureByUserId();
+}
 const init = async() => {
   getAuthorInfo();
+  getPictureByUserId();
 }
-
 init();
 
 </script>
+
 <style lang="less" scoped>
 .wrapper {
   position: relative;
@@ -104,7 +149,6 @@ init();
     }
 
     .info {
-      // background: #a24747;
       flex: 1;
 
       .name {
@@ -137,6 +181,41 @@ init();
     font-size: 13px;
     color: #999;
     display: block;
+  }
+}
+
+.inner-box {
+  padding: 0 0 48px;
+  min-height: 100vh;
+  margin-top: 45px;
+
+  .wrapper {
+    margin: 0 auto;
+    width: 1224px;
+
+    .title {
+      font-size: 20px;
+      line-height: 28px;
+      color: #000000a3;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .illust-content {
+      display: flex;
+      padding: 0;
+      flex-wrap: wrap;
+      margin: -12px;
+      list-style: none;
+
+      .illust {
+        margin: 12px;
+      }
+    }
+
+    .pagination {
+      padding: 60px 0 20px;
+    }
   }
 }
 </style>

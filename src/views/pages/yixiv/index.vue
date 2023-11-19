@@ -16,6 +16,9 @@ const onChangeMenu = (value: string) => {
     case 'home':
       path = '/yixiv';
       break;
+    case 'new':
+      path = '/yixiv/new';
+      break;
     case 'ranking':
       path = '/yixiv/ranking';
       break;

@@ -1,5 +1,5 @@
 import { httpRequest } from "@/utils";
-import { RecommendPictureParams, UserBestPictureParams } from "../types/Yixiv";
+import { IGetPictureByUserIdParams, IRecommendPictureParams, IUserBestPictureParams } from "../types/Yixiv";
 
 export default class Yixiv {
   // 缓存 tags
@@ -17,7 +17,7 @@ export default class Yixiv {
   };
 
 
-  public static getRecommendPicture = async (params: RecommendPictureParams) => {
+  public static getRecommendPicture = async (params: IRecommendPictureParams) => {
     if(Yixiv.recommendPicture) {
       return Yixiv.recommendPicture;
     }
@@ -26,13 +26,33 @@ export default class Yixiv {
     return data;
   };
 
-  public static getUserBestPicture = async (params: UserBestPictureParams) => {
+  public static getUserBestPicture = async (params: IUserBestPictureParams) => {
     const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/picture/user_best_picture?limit=8&offset=0&picture_id=${params.picture_id}&user_id=${params.user_id}`);
     return data;
   };
 
   public static getUserPictureInfo = async (pictureId: string) => {
     const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/picture/${pictureId}?picture_id=${pictureId}`);
+    return data;
+  };
+
+
+  public static searchUser = async (author_Id: string) => {
+    const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/search/user?type=author&keyword=${author_Id}&limit=30&offset=0`);
+    return data;
+  };
+
+
+  public static getPictureByUserId = async (params: IGetPictureByUserIdParams) => {
+    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?sort=new&type=0&author_user_id=${params.author_user_id}&limit=${params.limit}&offset=${params.offset}`);
+    return data;
+  };
+
+
+  // https://www.vilipix.com/api/v1/picture/public?limit=30&sort=new&offset=0
+
+  public static test = async () => {
+    const { data } = await httpRequest.get(`/api/v1/album/list`);
     return data;
   };
 }

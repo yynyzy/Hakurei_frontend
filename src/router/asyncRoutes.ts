@@ -18,6 +18,12 @@ export default [
         children: [],
       },
       {
+        path: 'new',
+        component: () => import('@/views/pages/yixiv/newWorks.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
         path: 'ranking',
         component: () => import('@/views/pages/yixiv/ranking.vue'),
         meta: { isAuth: true },

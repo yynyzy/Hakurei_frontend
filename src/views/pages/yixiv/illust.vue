@@ -77,7 +77,7 @@
 import { reactive, ref, watch } from 'vue';
 import { Yixiv } from '@/views/engine';
 import { useRoute } from 'vue-router';
-import { UserBestPictureParams } from '@/views/types/Yixiv';
+import { IUserBestPictureParams } from '@/views/types/Yixiv';
 
 const i18n = {
   otherWorks: '其他作品',
@@ -161,7 +161,7 @@ const getRouteParams = () => {
   return Array.isArray(pictureId) ? pictureId[0] : pictureId;
 }
 const userBestPictureArr = ref<any[]>([]);
-const getUserBestPicture = async(params: UserBestPictureParams ) => {
+const getUserBestPicture = async(params: IUserBestPictureParams ) => {
   try {
     const { rows: userBestPicture } = await Yixiv.getUserBestPicture(params)
     return userBestPicture;

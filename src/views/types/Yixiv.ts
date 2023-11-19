@@ -14,12 +14,18 @@ export interface ITag {
   zh?: string | null
 }
 
-export interface RecommendPictureParams {
+export interface IRecommendPictureParams {
   limit: number
   offset: number
 }
 
-export interface UserBestPictureParams {
+export interface IUserBestPictureParams {
   picture_id: string
   user_id: number
+}
+
+export interface IGetPictureByUserIdParams {
+  author_user_id: string | number,
+  offset: number
+  limit: number
 }
