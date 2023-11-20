@@ -3,11 +3,11 @@
     <div class="left-header">
       <div class="logo" v-text="i18n.logo"></div>
       <el-menu
-      mode="horizontal"
-      background-color="transparent"
-      :default-active="headerActiveIndex"
-      :ellipsis="false"
-      @select="onclickHeader"
+        mode="horizontal"
+        background-color="transparent"
+        :default-active="headerActiveIndex"
+        :ellipsis="false"
+        @select="onclickHeader"
       >
         <el-menu-item
           v-for="(item, index) in items"
@@ -24,8 +24,7 @@
         v-model="searchValue"
         :placeholder="i18n.searchIllustration"
         :prefix-icon="Search"
-        :disabled="disabled"
-        @change="onSearch"
+        @keyup.enter.native="onSearch"
       />
       <div class="tag">
         <el-dropdown
@@ -34,20 +33,19 @@
           @command="onChangeType"
         >
           <span class="type">
-            {{ currentSelectTypeName }}
-            <!-- <el-icon class="el-icon--right">
-              <arrow-down />
-            </el-icon> -->
+            <!-- {{ currentSelectTypeName }} -->
+            {{ TYPE[currentTypeIndex].label }}
+            <arrow-down class="arrow"/>
           </span>
           <template #dropdown>
             <el-dropdown-menu class="dropdown-menu">
               <el-dropdown-item
-                v-for="(item, _) in TYPE"
+                v-for="(item, index) in TYPE"
                 class="tag"
-                :command="item.key"
-                :key="item.key"
+                :command="index"
+                :key="index"
               >
-              {{ item.value }}
+              {{ item.label }}
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -59,11 +57,13 @@
 </template>
 
 <script setup lang='ts'>
-import { computed, ref, toRefs } from 'vue';
+import { ref, toRefs } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
+import { ArrowDown } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
 
-
+const router = useRouter();
 const store = yixivStore();
 const { setHeaderActiveIndex } = store;
 const { headerActiveIndex } = toRefs(store);
@@ -72,8 +72,6 @@ const i18n = {
   logo: 'yixiv',
   searchIllustration: '搜索插画'
 };
-
-const disabled = true;
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
@@ -105,38 +103,34 @@ const onclickHeader = (index: number) => {
   emits('changeMenu', items.value[index].key);
 };
 
+// 按标签
+const TYPE = [
+  {
+    label: '按标签',
+    value: 'tag',
+  },
+  {
+    label: '按作者',
+    value: 'author',
+  }
+];
+const currentTypeIndex = ref<number>(0);
+const onChangeType = (command: number) => {
+  currentTypeIndex.value = command;
+};
+
 const searchValue = ref<string>('');
+
 const onSearch = () => {
   setHeaderActiveIndex(-1);
   emits('search', {
     keyword: searchValue.value,
-    type: currentType.value,
+    type: TYPE[currentTypeIndex.value].value,
   });
-};
-
-
-// 按标签
-const TYPE = [
-  {
-    key: 'tag',
-    value: '按标签'
-  },
-  {
-    key: 'author',
-    value: '按作者'
-  }
-];
-const currentType = ref<string>(TYPE[0].key);
-
-const currentSelectTypeName = computed(() => {
-  return TYPE.find((item) => item.key === currentType.value)!.value
-}
-)
-const onChangeType = (command: string) => {
-  setHeaderActiveIndex(-1);
-  currentType.value = command;
+  router.push(`/yixiv/search/${TYPE[currentTypeIndex.value].value}/${searchValue.value}`);
 
 };
+
 </script>
 <style lang="less" scoped>
 .nav {
@@ -210,6 +204,17 @@ const onChangeType = (command: string) => {
         line-height: 40px;
         cursor: pointer;
 
+        .type {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .arrow {
+            height: 100%;
+            width: 15px;
+            margin-left: 5px;
+          }
+        }
       }
     }
   }

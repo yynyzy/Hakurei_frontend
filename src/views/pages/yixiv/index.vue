@@ -1,6 +1,9 @@
 <template>
   <div class="page">
-    <yixiv-header class="nav" @change-menu="onChangeMenu" @search="onSearch"/>
+    <yixiv-header
+      class="nav"
+      @change-menu="onChangeMenu"
+      />
     <router-view />
   </div>
 </template>
@@ -26,12 +29,6 @@ const onChangeMenu = (value: string) => {
       break
   }
   router.push(path);
-};
-
-const onSearch = (value: any) => {
-  const type = 'tag'
-  console.log(value);
-  router.push(`/yixiv/search/${type}/${value}`);
 };
 
 </script>

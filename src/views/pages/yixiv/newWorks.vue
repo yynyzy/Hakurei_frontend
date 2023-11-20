@@ -16,14 +16,14 @@
     </div>
     <div class="pagination">
       <el-pagination
-      style="justifyContent: center;"
-      background
-      layout="prev, pager, next"
-      :current-page="currentPage"
-      :total="total"
-      :page-size="pageSize"
-      @current-change="onCurrentPageChange"
-    />
+        style="justifyContent: center;"
+        background
+        layout="prev, pager, next"
+        :current-page="currentPage"
+        :total="total"
+        :page-size="pageSize"
+        @current-change="onCurrentPageChange"
+      />
     </div>
   </section>
 </template>

@@ -41,7 +41,7 @@ export interface IGetNewWorksParams {
 };
 
 export interface ISearchByTypeParams {
-  type?: 'author'
+  type: string
   keyword: string
   offset: number
   limit: number

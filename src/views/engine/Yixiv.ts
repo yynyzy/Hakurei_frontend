@@ -54,7 +54,6 @@ export default class Yixiv {
     return data;
   };
 
-  //
 
   public static searchByType = async (params: ISearchByTypeParams) => {
     const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/search/user?type=${params.type}&keyword=${params.keyword}&limit=${params.limit}&offset=${params.offset}`);
