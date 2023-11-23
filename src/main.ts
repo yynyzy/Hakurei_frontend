@@ -9,7 +9,7 @@ import {
   DirectivePlugin,
   VueAxios,
   createPinia,
-} from './FrontendCore'
+} from './FrontendCore';
 
 const app = createApp(App);
 

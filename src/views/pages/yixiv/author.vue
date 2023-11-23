@@ -24,6 +24,9 @@
             <picture-box :item="item" />
           </li>
         </ul>
+        <div class="not-found">
+          <no-works />
+        </div>
         <div class="pagination">
           <el-pagination
           style="justifyContent: center;"
@@ -45,6 +48,7 @@ import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
+import noWorks from './components/noWorks.vue';
 import { IGetPictureByUserIdParams } from '@/views/types/Yixiv';
 
 const i18n = {
@@ -210,6 +214,15 @@ init();
       .illust {
         margin: 12px;
       }
+    }
+
+    .not-found {
+      text-align: center;
+      min-height: 360px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .pagination {

@@ -5,8 +5,17 @@
         <ul class="pages">
           <li v-for="(item, index) in illusts" :key="index">
             <div class="image-wrapper">
-              <el-image class="image" :src="item.regular_url" fit="cover" lazy :zoom-rate="1.2" :max-scale="7"
-                :min-scale="1" :initial-index="0" :preview-src-list="previewList" />
+              <el-image
+                class="image"
+                lazy
+                fit="cover"
+                :src="item.regular_url"
+                :zoom-rate="1.2"
+                :max-scale="7"
+                :min-scale="1"
+                :initial-index="0"
+                :preview-src-list="previewList"
+              />
             </div>
           </li>
         </ul>

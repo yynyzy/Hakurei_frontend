@@ -46,7 +46,7 @@ const ComponentPlugin = {
     });
     ElComponents.forEach((component) => {
       vm.component(component.name!, component)
-    })
+    });
   }
 };
 
