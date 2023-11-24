@@ -110,7 +110,7 @@ const TYPE = [
     value: 'tag',
   },
   {
-    label: '按作者',
+    label: '按画师',
     value: 'author',
   }
 ];

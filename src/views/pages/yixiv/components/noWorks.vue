@@ -1,6 +1,6 @@
 <template>
   <div class="no-works">
-    <i class="fa-light fa-file-magnifying-glass"></i>
+    <i class="fa fa-search" />
     <h3 class="title" v-text="i18n.noWorks"></h3>
   </div>
 </template>
@@ -12,6 +12,12 @@ const i18n = {
 </script>
 <style lang="less" scoped>
 .no-works {
+
+  i {
+    font-size: 54px;
+    height: 72px;
+    color: rgba(0,0,0,.16);
+  }
 
   .title {
     font-weight: 700;
