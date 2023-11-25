@@ -33,8 +33,7 @@
           @command="onChangeType"
         >
           <span class="type">
-            <!-- {{ currentSelectTypeName }} -->
-            {{ TYPE[currentTypeIndex].label }}
+            {{ currentSelectTypeLabel }}
             <arrow-down class="arrow"/>
           </span>
           <template #dropdown>
@@ -42,7 +41,7 @@
               <el-dropdown-item
                 v-for="(item, index) in TYPE"
                 class="tag"
-                :command="index"
+                :command="item.value"
                 :key="index"
               >
               {{ item.label }}
@@ -57,7 +56,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 import { ArrowDown } from '@element-plus/icons-vue';
@@ -65,8 +64,8 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { setHeaderActiveIndex } = store;
-const { headerActiveIndex } = toRefs(store);
+const { setHeaderActiveIndex, setSearchType } = store;
+const { headerActiveIndex, searchType } = toRefs(store);
 
 const i18n = {
   logo: 'yixiv',
@@ -76,7 +75,7 @@ const i18n = {
 interface Emits {
   (event: 'changeMenu', value: string): void;
   (event: 'search', value: {keyword: string, type: string}): void;
-}
+};
 const emits = defineEmits<Emits>();
 
 interface MenuProps {
@@ -96,38 +95,39 @@ const items = ref<MenuProps[]>([
     key: 'ranking',
     label: '排行榜',
   }
-])
+]);
 
 const onclickHeader = (index: number) => {
   setHeaderActiveIndex(index);
   emits('changeMenu', items.value[index].key);
 };
 
-// 按标签
+// 搜索标签功能
 const TYPE = [
   {
     label: '按标签',
-    value: 'tag',
+    value: '0',
   },
   {
     label: '按画师',
-    value: 'author',
+    value: '1',
   }
 ];
-const currentTypeIndex = ref<number>(0);
-const onChangeType = (command: number) => {
-  currentTypeIndex.value = command;
-};
+const currentSelectTypeLabel =  computed(()=>TYPE[searchType.value].label);
+const onChangeType = (value: number) => setSearchType(value);
 
+// 搜索内容
 const searchValue = ref<string>('');
-
 const onSearch = () => {
+  if(searchValue.value === '') return;
   setHeaderActiveIndex(-1);
+  const type = Number(searchType.value) === 0 ? 'tag' : 'author';
+
   emits('search', {
     keyword: searchValue.value,
-    type: TYPE[currentTypeIndex.value].value,
+    type,
   });
-  router.push(`/yixiv/search/${TYPE[currentTypeIndex.value].value}/${searchValue.value}`);
+  router.push(`/yixiv/search/${type}/${searchValue.value}`);
 
 };
 
@@ -173,11 +173,11 @@ const onSearch = () => {
       height: 40px;
       background: #0000000a;
 
-      /deep/ .el-input__wrapper {
+      :deep(.el-input__wrapper) {
         background-color: #0000000a;
       }
 
-      /deep/ .el-input__inner {
+      :deep(.el-input__inner) {
         &::placeholder {
           color: rgba(0, 0, 0, .64);
         }
