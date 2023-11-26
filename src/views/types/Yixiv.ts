@@ -40,6 +40,11 @@ export interface IGetNewWorksParams {
   limit: number
 };
 
+export interface IGetRankingListsParams {
+  offset: number
+  limit: number
+};
+
 export interface ISearchByTypeParams {
   type: string
   keyword: string

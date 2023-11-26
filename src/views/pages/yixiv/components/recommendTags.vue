@@ -3,7 +3,7 @@
     <div class="tags-content">
       <ul>
         <li v-for="(item, index) in tags" :key="index">
-          <el-tag :color="getRandomColor()" class="tag" @click="onClickTags(item.tag_id)">
+          <el-tag :color="getRandomColor()" effect="dark" class="tag" @click="onClickTags(item.tag_id)">
             <div class="title" v-text="item.title"></div>
             <div v-if="item.zh" class="sub-title" v-text="item.zh"></div>
           </el-tag>
@@ -59,6 +59,7 @@ const onClickTags = (tagId: number) => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          border: none;
         }
     }
   }
