@@ -2,30 +2,24 @@
   <section class="wrapper">
     <div class="actions">
       <div class="modes-content">
-        <a
-        data-index="0"
-        data-mode="daily"
+        <router-link
         :class="['mode-btn', { active: modeActiveIndex === 0 }]"
-        @click="onClickMode"
+        :to="{ name: '', query: { date: 20231125, mode: 'daily' }}"
         >
-          今日
-        </a>
-        <a
-        data-index="1"
-        data-mode="weekly"
+          {{ i18n.daily }}
+        </router-link>
+        <router-link
         :class="['mode-btn', { active: modeActiveIndex === 1 }]"
-        @click="onClickMode"
+        :to="{ name: '', query: { date: 20231125, mode: 'weekly' }}"
         >
-          本周
-        </a>
-        <a
-        data-index="2"
-        data-mode="monthly"
+          {{ i18n.weekly }}
+        </router-link>
+        <router-link
         :class="['mode-btn', { active: modeActiveIndex === 2 }]"
-        @click="onClickMode"
+        :to="{ name: '', query: { date: 20231125, mode: 'monthly' }}"
         >
-          本月
-        </a>
+          {{ i18n.monthly }}
+        </router-link>
       </div>
       <div class="filters">
         <div class="current">{{ Date.now() }}</div>
@@ -48,11 +42,14 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
-import { IGetNewWorksParams } from '@/views/types/Yixiv';
+import { IGetRankingListsParams } from '@/views/types/Yixiv';
 import { yixivStore } from "@/stores";
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const { setHeaderActiveIndex } = yixivStore();
 setHeaderActiveIndex(2);
@@ -60,30 +57,57 @@ setHeaderActiveIndex(2);
 const i18n = {
   title: '#排行榜',
   lastDay: '上一日',
+  daily: '今日',
+  weekly: '本周',
+  monthly: '本月',
 };
 
-const modeActiveIndex = ref<number>(0);
-const modeType = ref<string>('daily');
-const onClickMode = (e: Event) => {
-  const { index, mode } = (e.target as HTMLElement).dataset;
-  if(modeActiveIndex.value === Number(index)) return;
-  modeActiveIndex.value = Number(index);
-  modeType.value = mode!;
-  console.log(modeType.value)
-};
-
-// <!-- href="/yixiv/ranking?date=20231125&mode=weekly" -->
 
 const loading = ref<boolean>(false);
+
+watch(() => route.query,() => {
+  console.log('route.query', route.query)
+  const { date, mode } = route.query;
+  setModeActiveIndex(mode as string);
+  setRankingListsParams(date as string, mode as string);
+  getRankingList();
+},{ deep: true })
+
+const modeActiveIndex = ref<number>(0);
+const setModeActiveIndex = (mode: string) => {
+  if (mode === 'daily') {
+    modeActiveIndex.value = 0;
+  } else if(mode=== 'weekly') {
+    modeActiveIndex.value = 1;
+  } else {
+    modeActiveIndex.value = 2;
+  }
+};
+
+
+const rankingListsParams = reactive<IGetRankingListsParams>({
+  type: '0',
+  ranking_date: '20231125',
+  offset: 0,
+  limit: 30,
+});
+const setRankingListsParams = (date: string, mode: string) => {
+  rankingListsParams.ranking_date = date;
+  let temp = 0
+  if (mode=== 'weekly') {
+    temp = 1;
+  }
+  if (mode=== 'monthly') {
+    temp = 2;
+  }
+  rankingListsParams.type = String(temp);
+};
+
 const rankingPictures = ref<any[]>([]);
 const getRankingList = async () => {
   loading.value = true;
-  const params: IGetNewWorksParams = {
-    offset: currentPage.value - 1,
-    limit: pageSize,
-  }
   try {
-    const { count, rows } = await Yixiv.getRankingList(params);
+    const { count, rows } = await Yixiv.getRankingList(rankingListsParams);
     rankingPictures.value = rows.map((item: any) => {
       item.regular_url = item.regular_url + '?x-oss-process=image/resize,w_450';
       return item;
@@ -105,6 +129,7 @@ const onCurrentPageChange = (value: number) => {
 };
 
 getRankingList();
+
 </script>
 <style lang="less" scoped>
 .wrapper {

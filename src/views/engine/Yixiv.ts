@@ -55,7 +55,7 @@ export default class Yixiv {
   };
 
   public static getRankingList = async (params: IGetRankingListsParams) => {
-    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?sort=new&limit=${params.limit}&offset=${params.offset}`);
+    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/ranking?type=${params.type}&ranking_date=${params.ranking_date}&limit=${params.limit}&offset=${params.offset}`);
     return data;
   };
 
