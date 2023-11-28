@@ -41,7 +41,7 @@ export interface IGetNewWorksParams {
 };
 
 export interface IGetRankingListsParams {
-  type: string
+  type: number
   ranking_date: string
   offset: number
   limit: number

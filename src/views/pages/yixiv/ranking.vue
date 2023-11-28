@@ -4,26 +4,39 @@
       <div class="modes-content">
         <router-link
         :class="['mode-btn', { active: modeActiveIndex === 0 }]"
-        :to="{ name: '', query: { date: 20231125, mode: 'daily' }}"
+        :to="{ name: '', query: { date:ranking_date, mode: 'daily' }}"
         >
           {{ i18n.daily }}
         </router-link>
         <router-link
         :class="['mode-btn', { active: modeActiveIndex === 1 }]"
-        :to="{ name: '', query: { date: 20231125, mode: 'weekly' }}"
+        :to="{ name: '', query: { date:ranking_date, mode: 'weekly' }}"
         >
           {{ i18n.weekly }}
         </router-link>
         <router-link
         :class="['mode-btn', { active: modeActiveIndex === 2 }]"
-        :to="{ name: '', query: { date: 20231125, mode: 'monthly' }}"
+        :to="{ name: '', query: { date:ranking_date, mode: 'monthly' }}"
         >
           {{ i18n.monthly }}
         </router-link>
       </div>
       <div class="filters">
-        <div class="current">{{ Date.now() }}</div>
-        <div class="prev" style="margin-right: 15px;">{{ i18n.lastDay }}</div>
+        <div class="date-btn"
+          style="margin-right: 15px;"
+        >
+          <router-link :to="{ name: '', query: { date: next_ranking_date, mode: initMode }}" >
+            {{ i18n.nextDay }}
+          </router-link>
+        </div>
+        <div class="current-date">{{ currentDate }}</div>
+        <div class="date-btn"
+         style="margin-right: 15px;"
+        >
+          <router-link :to="{ name: '', query: { date: last_ranking_date, mode: initMode }}" >
+            {{ i18n.lastDay }}
+          </router-link>
+        </div>
       </div>
     </div>
     <div class="illust-box" v-loading="loading">
@@ -35,14 +48,22 @@
       </ul>
     </div>
     <div class="pagination">
-      <el-pagination style="justifyContent: center;" background layout="prev, pager, next" :current-page="currentPage"
-        :total="total" :page-size="pageSize" @current-change="onCurrentPageChange" />
+      <el-pagination
+        style="justifyContent: center;"
+        background
+        layout="prev, pager, next"
+        :current-page="currentPage"
+        :total="total"
+        :page-size="pageSize"
+        @current-change="onCurrentPageChange"
+      />
     </div>
   </section>
 </template>
 
 <script setup lang='ts'>
-import { reactive, ref, watch } from 'vue'
+import { ref, watch } from 'vue';
+import moment from 'moment';
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
 import { IGetRankingListsParams } from '@/views/types/Yixiv';
@@ -51,30 +72,22 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
-const { setHeaderActiveIndex } = yixivStore();
-setHeaderActiveIndex(2);
-
 const i18n = {
   title: '#排行榜',
   lastDay: '上一日',
+  nextDay: '下一日',
   daily: '今日',
   weekly: '本周',
   monthly: '本月',
 };
-
-
 const loading = ref<boolean>(false);
+const { setHeaderActiveIndex } = yixivStore();
+setHeaderActiveIndex(2);
 
-watch(() => route.query,() => {
-  console.log('route.query', route.query)
-  const { date, mode } = route.query;
-  setModeActiveIndex(mode as string);
-  setRankingListsParams(date as string, mode as string);
-  getRankingList();
-},{ deep: true })
-
+const initMode = ref<string>('daily');
 const modeActiveIndex = ref<number>(0);
 const setModeActiveIndex = (mode: string) => {
+  initMode.value = mode;
   if (mode === 'daily') {
     modeActiveIndex.value = 0;
   } else if(mode=== 'weekly') {
@@ -84,15 +97,32 @@ const setModeActiveIndex = (mode: string) => {
   }
 };
 
+const currentDate = ref<string>('');
+const ranking_date = ref<string>('');
+const last_ranking_date = ref<string>('');
+const next_ranking_date = ref<string>('');
 
-const rankingListsParams = reactive<IGetRankingListsParams>({
-  type: '0',
-  ranking_date: '20231125',
-  offset: 0,
-  limit: 30,
-});
-const setRankingListsParams = (date: string, mode: string) => {
-  rankingListsParams.ranking_date = date;
+const changeTimeSetting = (date?: string) => {
+  if (date) {
+    console.log('date', date);
+
+    currentDate.value = moment(date).format('YYYY年MM月DD日');
+    ranking_date.value = date;
+    console.log('currentDate', currentDate.value);
+    console.log('ranking_date', ranking_date.value);
+    console.log('last_ranking_date', moment(date).subtract(1, 'days').format('YYYYMMDD'));
+    last_ranking_date.value = moment(date).subtract(1, 'days').format('YYYYMMDD');
+    next_ranking_date.value = moment(date).add(1, 'days').format('YYYYMMDD');
+  } else {
+    currentDate.value = moment().format('YYYY年MM月DD日');
+    ranking_date.value = moment().format('YYYYMMDD');
+    last_ranking_date.value = moment().subtract(1, 'days').format('YYYYMMDD');
+    next_ranking_date.value = moment().add(1, 'days').format('YYYYMMDD');
+  }
+};
+
+const timeType = ref<number>(0);
+const setRankingListsParamsTimeType = (mode: string) => {
   let temp = 0
   if (mode=== 'weekly') {
     temp = 1;
@@ -100,11 +130,16 @@ const setRankingListsParams = (date: string, mode: string) => {
   if (mode=== 'monthly') {
     temp = 2;
   }
-  rankingListsParams.type = String(temp);
+  timeType.value = temp;
 };
-
 const rankingPictures = ref<any[]>([]);
 const getRankingList = async () => {
+  const rankingListsParams: IGetRankingListsParams = {
+    type: timeType.value,
+    ranking_date: ranking_date.value,
+    offset: currentPage.value,
+    limit: 30,
+  };
   loading.value = true;
   try {
     const { count, rows } = await Yixiv.getRankingList(rankingListsParams);
@@ -128,6 +163,23 @@ const onCurrentPageChange = (value: number) => {
   getRankingList();
 };
 
+watch(() => route.query,() => {
+  console.log('route.query', route.query)
+  const { date, mode } = route.query;
+  if(date || mode) {
+  if(mode) {
+    setModeActiveIndex(mode as string);
+    setRankingListsParamsTimeType(mode as string);
+  };
+  if(date) {
+    changeTimeSetting(date as string);
+  }
+    getRankingList();
+  }
+
+}, { immediate: true, deep: true });
+
+changeTimeSetting();
 getRankingList();
 
 </script>
@@ -167,14 +219,14 @@ getRankingList();
       width: 100%;
       flex-flow: row-reverse;
 
-      .current {
+      .current-date {
         color: #333;
         line-height: 40px;
         font-weight: 700;
         font-size: 18px;
       }
 
-      .prev {
+      .date-btn {
         color: #258fb8;
         line-height: 40px;
         text-decoration: none;
