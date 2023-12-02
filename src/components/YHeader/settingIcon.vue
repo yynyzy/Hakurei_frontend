@@ -61,7 +61,6 @@ const onClickOff = (): void => {
 const onClickSetting = (type: string, index: number): void => {
   switch (type) {
     case 'theme':
-    // onChangeTheme()
       tabs.value[index].icon = onChangeTheme() === 'light'
         ?
         h('i', { class: "far fa-sun" })

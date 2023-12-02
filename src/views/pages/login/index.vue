@@ -1,10 +1,9 @@
 <template>
   <section
     :style="`background-image: url('${bgUrl}')`">
-    <login-header @onClickNavigation="onClickNavigation" v-model="isShowForm" />
+    <login-header v-model="isShowForm" />
     <login-form v-model="form" :loading="isLoading" :show="isShowForm" @show="onShow" @login="onLogin" @sign="onSign" />
   </section>
-  <code-rain v-if="isRainShow" />
   <Sakura />
 </template>
 
@@ -13,7 +12,6 @@ import { ref, computed } from 'vue';
 import LoginHeader from "./components/header.vue";
 import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
-import codeRain from "./components/codeRain.vue";
 import { LoginRequest } from '../../types/User';
 import { useRoute, useRouter } from 'vue-router';
 import { tokenStore, themeStore } from "@/stores";
@@ -58,13 +56,6 @@ const onSign = () => {
   console.log("sign")
 };
 
-// header 控制
-const isRainShow = ref(false);
-const onClickNavigation = (value: string) => {
-  if (value === 'rain') {
-    isRainShow.value = !isRainShow.value;
-  }
-};
 
 // 主题切换
 const ThemeBg = {

@@ -19,12 +19,12 @@
     <main class="inner-box">
       <div class="wrapper">
         <h2 class="title" v-text="i18n.illustTitle"></h2>
-        <ul class="illust-content">
+        <ul v-if="userPictureArr.length" class="illust-content">
           <li class="illust" v-for="(item, index) in userPictureArr" :key="index">
             <picture-box :item="item" />
           </li>
         </ul>
-        <div class="not-found">
+        <div v-else class="not-found">
           <no-works />
         </div>
         <div class="pagination">

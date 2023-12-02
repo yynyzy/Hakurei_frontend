@@ -57,7 +57,7 @@ export default [
   },
   {
     path: '/component',
-    component: () => import('@/views/pages/component/index.vue'),
+    component: () => import('@/views/pages/customComponent/index.vue'),
     meta: { isAuth: true },
     children: [],
   },

@@ -3,6 +3,7 @@
 </template>
 
 <script setup lang='ts'>
+import { log } from 'console';
 import { ref,  onMounted, onBeforeUnmount } from 'vue';
 
 const canvasRef = ref<HTMLCanvasElement | null>();

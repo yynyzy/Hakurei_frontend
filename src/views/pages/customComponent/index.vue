@@ -16,6 +16,10 @@ const menus: Array<menuType> = [
     name: '瀑布流组件',
     data: '',
   },
+  {
+    name: '代码风暴',
+    data: '',
+  },
 ];
 const onClickMenu = (val: any) => {
   if (currentCompIndex.value !== val) {

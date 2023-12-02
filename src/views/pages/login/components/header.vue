@@ -2,7 +2,7 @@
   <header>
     <div class="logo">YZYN</div>
     <div class="login-btn-group">
-      <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a>
+      <!-- <a class="navigation" @click="onClickNavigationBar('rain')">Code Rain</a> -->
       <a class="navigation">Introduce</a>
       <y-theme-controller class="theme-btn"/>
       <input type="button" class="login" @click="onClickLogin" value="Login"/>
@@ -28,9 +28,9 @@ const emits = defineEmits<Emits>();
 const onClickLogin = () => {
   emits('update:modelValue', !props.modelValue)
 };
-const onClickNavigationBar = (value: string) => {
-  emits('onClickNavigation', value);
-}
+// const onClickNavigationBar = (value: string) => {
+//   emits('onClickNavigation', value);
+// }
 </script>
 
 <style lang="less" scoped>

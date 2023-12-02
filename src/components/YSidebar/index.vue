@@ -1,7 +1,7 @@
 <template>
   <nav class="nav">
     <div class="brand">
-      <img src="../images/head.jpeg" alt="..." />
+      <img src="@/assets/images/head.jpeg" />
       <p>
         {{ introduce.tipOne }}
         <span v-text="introduce.tipTwo"></span>
