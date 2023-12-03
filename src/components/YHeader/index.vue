@@ -87,8 +87,7 @@ const onToPage = (val: Tab): void => {
 
   .header-left {
     display: flex;
-    justify-content:
-      center;
+    justify-content: center;
     align-items: center;
 
     .title {
