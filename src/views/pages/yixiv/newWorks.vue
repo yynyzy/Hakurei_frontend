@@ -49,7 +49,7 @@ const getNewWorks = async() => {
   const params: IGetNewWorksParams = {
     offset: currentPage.value - 1,
     limit: pageSize,
-  }
+  };
   try {
     const { count, rows } = await Yixiv.getNewWorks(params);
     newWorkPictures.value = rows.map((item: any) => {

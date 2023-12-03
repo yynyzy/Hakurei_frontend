@@ -94,6 +94,10 @@ const items = ref<MenuProps[]>([
   {
     key: 'ranking',
     label: '排行榜',
+  },
+  {
+    key: 'album',
+    label: '特辑',
   }
 ]);
 

@@ -25,6 +25,9 @@ const onChangeMenu = (value: string) => {
     case 'ranking':
       path = '/yixiv/ranking';
       break;
+    case 'album':
+      path = '/yixiv/album ';
+      break;
     default:
       break
   }

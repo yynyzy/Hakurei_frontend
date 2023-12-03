@@ -53,3 +53,8 @@ export interface ISearchByTypeParams {
   offset: number
   limit: number
 };
+
+export interface IGetAlbumList {
+  offset: number
+  limit: number
+};
