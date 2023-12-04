@@ -30,6 +30,12 @@ export default [
         children: [],
       },
       {
+        path: 'album',
+        component: () => import('@/views/pages/yixiv/album.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
         path: 'illust/:pictureId',
         component: () => import('@/views/pages/yixiv/illust.vue'),
         meta: { isAuth: true },

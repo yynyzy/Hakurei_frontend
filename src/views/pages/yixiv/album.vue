@@ -3,23 +3,34 @@
     <div v-for="(item, index) in albumList" class="album-item" :key="index">
       <div class="card">
         <div class="thumbnail">
+          <div class="img-wrapper">
           <el-image class="img" :src="item.cover" fit="cover" lazy @click="onClickImage" />
+        </div>
         </div>
         <div class="title-wrapper">
           <router-link  :to="`/album/${item.album_id}`">
             <h2 class="link-title" v-text="item.title"></h2>
           </router-link>
         </div>
-        <div class="footer"></div>
+        <div class="footer">
+          <div class="tags">
+            <a v-for="(ITag, index) in item._tags" class="tag" :key="index" href="" v-text="`#${ITag}`"></a>
+          </div>
+          <time class="date" v-text="item.create_date"></time>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
+import { yixivStore } from '@/stores';
 import { Yixiv } from '@/views/engine';
 import { IGetAlbumList } from '@/views/types/Yixiv';
 import { ref } from 'vue';
+
+const { setHeaderActiveIndex } = yixivStore();
+setHeaderActiveIndex(3);
 
 const albumList = ref<any[]>([]);
 const getAlbumList = async () => {
@@ -28,12 +39,21 @@ const getAlbumList = async () => {
     limit: 15,
   };
   const { rows } = await Yixiv.getAlbumList(params);
+  rows.forEach((item: any) => {
+    item._tags = formatTags(item.tags);
+  });
   albumList.value = rows;
+};
+
+const formatTags = (tags: string) => {
+  return tags.split(',');
 };
 
 const onClickImage = () => {
 
 };
+
+console.log('haha');
 
 getAlbumList();
 </script>
@@ -49,7 +69,7 @@ getAlbumList();
     padding-right: 7.5px;
 
     .card {
-      min-height: 380px;
+      min-height: 340px;
       background: #fff;
       margin-bottom: 15px;
       box-shadow: 1px 2px 2px 2px #eaeaea;
@@ -61,11 +81,18 @@ getAlbumList();
         height: 238px;
         overflow: hidden;
 
-        .img {
+        .img-wrapper {
           width: 100%;
           height: 100%;
           background-size: cover;
           background-position: top;
+
+          .img {
+            object-fit: cover;
+            object-position: top center;
+            width: 100%;
+            height: 100%;
+          }
         }
       }
 
@@ -76,6 +103,29 @@ getAlbumList();
           letter-spacing: 0;
           line-height: 26px;
           margin: 15px;
+        }
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: nowrap;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-bottom: 26px;
+
+        .tag {
+          color: #ff007a;
+          display: inline;
+          font-weight: 700;
+          font-size: 12px;
+          letter-spacing: 0;
+        }
+
+        .date {
+          font-size: 13px;
+          color: #aaa;
         }
       }
     }
