@@ -5,14 +5,14 @@
       <el-menu
         mode="horizontal"
         background-color="transparent"
-        :default-active="headerActiveIndex"
+        :default-active="String(activeIndex)"
         :ellipsis="false"
         @select="onclickHeader"
-      >
+        >
         <el-menu-item
-          v-for="(item, index) in items"
+          v-for="(item, index) in navigationContent"
           :key="index"
-          :index="item.key"
+          :index="String(index)"
         >
           {{ item.label }}
         </el-menu-item>
@@ -42,7 +42,7 @@
                 v-for="(item, index) in TYPE"
                 class="tag"
                 :command="item.value"
-                :key="index"
+                :key="String(index)"
               >
               {{ item.label }}
               </el-dropdown-item>
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang='ts'>
-import { computed, ref } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 import { ArrowDown } from '@element-plus/icons-vue';
@@ -64,13 +64,27 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { headerActiveIndex, searchType, setHeaderActiveIndex, setSearchType } = store;
-// const { headerActiveIndex, searchType } = toRefs(store);
+const { setHeaderActiveIndex, setSearchType } = store;
+const { searchType } = toRefs(store);
 
 const i18n = {
   logo: 'yixiv',
   searchIllustration: '搜索插画'
 };
+
+interface INavigationContent {
+  key: string,
+  label: string,
+};
+
+interface Props {
+  activeIndex: number
+  navigationContent: INavigationContent[]
+};
+const props = withDefaults(defineProps<Props>(),{
+  activeIndex: 0,
+});
+const { activeIndex } =  toRefs(props);
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
@@ -78,32 +92,10 @@ interface Emits {
 };
 const emits = defineEmits<Emits>();
 
-interface MenuProps {
-  key: string,
-  label: string,
-};
-const items = ref<MenuProps[]>([
-  {
-    key: 'home',
-    label: '首页',
-  },
-  {
-    key: 'new',
-    label: '新作',
-  },
-  {
-    key: 'ranking',
-    label: '排行榜',
-  },
-  {
-    key: 'album',
-    label: '特辑',
-  }
-]);
 
-const onclickHeader = (index: number) => {
-  setHeaderActiveIndex(index);
-  emits('changeMenu', items.value[index].key);
+
+const onclickHeader = (index: string) => {
+  emits('changeMenu', index);
 };
 
 // 搜索标签功能
@@ -117,7 +109,7 @@ const TYPE = [
     value: '1',
   }
 ];
-const currentSelectTypeLabel =  computed(()=>TYPE[searchType.value].label);
+const currentSelectTypeLabel =  computed(() => TYPE[searchType.value].label);
 const onChangeType = (value: number) => setSearchType(value);
 
 // 搜索内容

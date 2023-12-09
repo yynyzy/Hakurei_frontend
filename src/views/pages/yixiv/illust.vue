@@ -161,7 +161,6 @@ const init = async () => {
     picture_id: '112773104',
     user_id: author.user_id
   });
-
   loading.value = false;
 }
 

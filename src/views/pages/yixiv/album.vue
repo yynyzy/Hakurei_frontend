@@ -4,7 +4,9 @@
       <div class="card">
         <div class="thumbnail">
           <div class="img-wrapper">
-          <el-image class="img" :src="item.cover" fit="cover" lazy @click="onClickImage" />
+            <router-link  :to="`/yixiv/album/${item.album_id}`">
+              <el-image class="img" :src="item.cover" fit="cover" lazy />
+            </router-link>
         </div>
         </div>
         <div class="title-wrapper">
@@ -47,10 +49,6 @@ const getAlbumList = async () => {
 
 const formatTags = (tags: string) => {
   return tags.split(',');
-};
-
-const onClickImage = () => {
-
 };
 
 console.log('haha');

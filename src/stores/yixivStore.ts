@@ -2,7 +2,7 @@ import { computed, ref } from "vue"
 
 const SEARCH_TYPE = 'searchType';
 
-const headerActiveIndex = ref<number>(-1);
+const headerActiveIndex = ref<number>(0);
 const initSearchType = ref<number>(-1);
 export const yixivStore = () => {
 
