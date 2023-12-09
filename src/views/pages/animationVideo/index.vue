@@ -13,5 +13,5 @@ import customHeader from './components/customHeader.vue';
 import AutumnBg from './components/autumnBg.vue';
 
 </script>
-<style scoped>
+<style lang="less" scoped>
 </style>

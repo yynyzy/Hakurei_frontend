@@ -8,7 +8,7 @@
         </div>
         </div>
         <div class="title-wrapper">
-          <router-link  :to="`/album/${item.album_id}`">
+          <router-link  :to="`/yixiv/album/${item.album_id}`">
             <h2 class="link-title" v-text="item.title"></h2>
           </router-link>
         </div>
@@ -103,6 +103,9 @@ getAlbumList();
           letter-spacing: 0;
           line-height: 26px;
           margin: 15px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
       }
 

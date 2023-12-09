@@ -12,7 +12,7 @@
         <el-menu-item
           v-for="(item, index) in items"
           :key="index"
-          :index="index"
+          :index="item.key"
         >
           {{ item.label }}
         </el-menu-item>
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang='ts'>
-import { computed, ref, toRefs } from 'vue';
+import { computed, ref } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 import { ArrowDown } from '@element-plus/icons-vue';
@@ -64,8 +64,8 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { setHeaderActiveIndex, setSearchType } = store;
-const { headerActiveIndex, searchType } = toRefs(store);
+const { headerActiveIndex, searchType, setHeaderActiveIndex, setSearchType } = store;
+// const { headerActiveIndex, searchType } = toRefs(store);
 
 const i18n = {
   logo: 'yixiv',
