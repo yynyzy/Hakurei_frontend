@@ -1,11 +1,12 @@
 export enum TagColor {
-  'pink'='pink',
-  'red'='red',
-  'orange'='orange',
-  'green'='green',
-  'cyan'='cyan',
-  'blue'='blue',
-  'purple'='purple',
+  'c1'='rgb(127, 126, 200)',
+  'c2'='rgb(192, 126, 200)',
+  'c3'='rgb(200, 126, 138)',
+  'c4'='rgb(200, 164, 126)',
+  'c5'='rgb(126, 165, 200)',
+  'c6'='rgb(148, 200, 126)',
+  'c7'='rgb(200, 195, 126)',
+  'c8'='rgb(126, 195, 200)',
 };
 
 export enum SearchType {
