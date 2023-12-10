@@ -184,8 +184,7 @@ init();
 
 watch(route, ()=>{
   init();
-})
-console.log('pictureInfo', pictureInfo);
+});
 
 </script>
 

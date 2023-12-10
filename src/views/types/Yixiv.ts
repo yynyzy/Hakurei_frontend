@@ -25,8 +25,8 @@ export interface IRecommendPictureParams {
 };
 
 export interface IUserBestPictureParams {
-  picture_id: string
-  user_id: number
+  picture_id: number | string
+  user_id: number | number
 };
 
 export interface IGetPictureByUserIdParams {
@@ -54,7 +54,13 @@ export interface ISearchByTypeParams {
   limit: number
 };
 
-export interface IGetAlbumList {
+export interface IGetPeriodicalList {
+  offset: number
+  limit: number
+};
+
+export interface IGetPeriodical {
+  periodicalId: string
   offset: number
   limit: number
 };

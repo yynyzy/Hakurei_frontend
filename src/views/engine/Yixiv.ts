@@ -1,5 +1,14 @@
 import { httpRequest } from "@/utils";
-import { IGetAlbumList, IGetNewWorksParams, IGetPictureByUserIdParams, IGetRankingListsParams, IRecommendPictureParams, ISearchByTypeParams, IUserBestPictureParams } from "../types/Yixiv";
+import {
+  IGetPeriodicalList,
+  IGetNewWorksParams,
+  IGetPeriodical,
+  IGetPictureByUserIdParams,
+  IGetRankingListsParams,
+  IRecommendPictureParams,
+  ISearchByTypeParams,
+  IUserBestPictureParams,
+} from "../types/Yixiv";
 
 export default class Yixiv {
   // 缓存 tags
@@ -64,8 +73,13 @@ export default class Yixiv {
     return data;
   };
 
-  public static getAlbumList = async (params: IGetAlbumList) => {
+  public static getPeriodicalList = async (params: IGetPeriodicalList) => {
     const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/album/list?limit=${params.limit}&offset=${params.offset}`);
+    return data;
+  };
+
+  public static getPeriodical = async (params: IGetPeriodical) => {
+    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/album/${params.periodicalId}?limit=${params.limit}&offset=${params.offset}`);
     return data;
   };
 

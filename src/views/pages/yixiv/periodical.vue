@@ -1,16 +1,16 @@
 <template>
-  <div class="album-wrapper">
-    <div v-for="(item, index) in albumList" class="album-item" :key="index">
+  <div class="periodical-wrapper">
+    <div v-for="(item, index) in periodicalList" class="periodical-item" :key="index">
       <div class="card">
         <div class="thumbnail">
           <div class="img-wrapper">
-            <router-link  :to="`/yixiv/album/${item.album_id}`">
+            <router-link  :to="`/yixiv/periodical/${item.album_id}`">
               <el-image class="img" :src="item.cover" fit="cover" lazy />
             </router-link>
         </div>
         </div>
         <div class="title-wrapper">
-          <router-link  :to="`/yixiv/album/${item.album_id}`">
+          <router-link  :to="`/yixiv/periodical/${item.album_id}`">
             <h2 class="link-title" v-text="item.title"></h2>
           </router-link>
         </div>
@@ -28,38 +28,36 @@
 <script setup lang='ts'>
 import { yixivStore } from '@/stores';
 import { Yixiv } from '@/views/engine';
-import { IGetAlbumList } from '@/views/types/Yixiv';
+import { IGetPeriodicalList } from '@/views/types/Yixiv';
 import { ref } from 'vue';
 
 const { setNavigationBarActiveIndex } = yixivStore();
 setNavigationBarActiveIndex(3);
 
-const albumList = ref<any[]>([]);
-const getAlbumList = async () => {
-  const params: IGetAlbumList = {
+const periodicalList = ref<any[]>([]);
+const getPeriodicalList = async () => {
+  const params: IGetPeriodicalList = {
     offset: 0,
     limit: 15,
   };
-  const { rows } = await Yixiv.getAlbumList(params);
+  const { rows } = await Yixiv.getPeriodicalList(params);
   rows.forEach((item: any) => {
     item._tags = formatTags(item.tags);
   });
-  albumList.value = rows;
+  periodicalList.value = rows;
 };
 
 const formatTags = (tags: string) => {
   return tags.split(',');
 };
 
-console.log('haha');
-
-getAlbumList();
+getPeriodicalList();
 </script>
 <style lang="less" scoped>
-.album-wrapper {
+.periodical-wrapper {
   padding: 7px;
 
-  .album-item {
+  .periodical-item {
     float: left;
     box-sizing: border-box;
     width: 33.3%;

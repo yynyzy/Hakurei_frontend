@@ -55,7 +55,6 @@ const searchByType = async() => {
     limit: pageSize,
   }
   const { count, rows } = await Yixiv.searchByType(params);
-  console.log('axxx', rows);
   total.value = count;
   searchAuthor.value = rows;
 }

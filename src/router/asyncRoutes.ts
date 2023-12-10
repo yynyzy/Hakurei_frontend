@@ -30,14 +30,14 @@ export default [
         children: [],
       },
       {
-        path: 'album',
-        component: () => import('@/views/pages/yixiv/album.vue'),
+        path: 'periodical',
+        component: () => import('@/views/pages/yixiv/periodical.vue'),
         meta: { isAuth: true },
         children: [],
       },
       {
-        path: 'album/:albumId',
-        component: () => import('@/views/pages/yixiv/albumDetail.vue'),
+        path: 'periodical/:periodicalId',
+        component: () => import('@/views/pages/yixiv/periodicalDetail.vue'),
         meta: { isAuth: true },
         children: [],
       },

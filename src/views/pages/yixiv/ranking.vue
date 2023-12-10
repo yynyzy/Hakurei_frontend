@@ -150,7 +150,6 @@ const getRankingList = async () => {
     offset: currentPage.value,
     limit: 30,
   };
-  console.log('rankingListsParams', rankingListsParams);
 
   loading.value = true;
   try {
@@ -176,7 +175,6 @@ const onCurrentPageChange = (value: number) => {
 };
 
 watch(() => route.query, () => {
-  console.log('route.query', route.query)
   const { date, mode } = route.query;
   if (mode) {
     setModeActiveIndex(mode as string);

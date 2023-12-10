@@ -37,7 +37,7 @@ const navigationContent = ref<INavigationContent[]>([
     label: '排行榜',
   },
   {
-    key: 'album',
+    key: 'periodical',
     label: '特辑',
   }
 ]);
@@ -54,8 +54,8 @@ const onChangeMenu = (index: string) => {
     case 'ranking':
       path = '/yixiv/ranking';
       break;
-    case 'album':
-      path = '/yixiv/album';
+    case 'periodical':
+      path = '/yixiv/periodical';
       break;
     default:
       break
