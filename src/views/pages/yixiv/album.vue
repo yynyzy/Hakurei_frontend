@@ -31,8 +31,8 @@ import { Yixiv } from '@/views/engine';
 import { IGetAlbumList } from '@/views/types/Yixiv';
 import { ref } from 'vue';
 
-const { setHeaderActiveIndex } = yixivStore();
-setHeaderActiveIndex(3);
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(3);
 
 const albumList = ref<any[]>([]);
 const getAlbumList = async () => {

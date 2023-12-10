@@ -21,8 +21,8 @@ import pictureBox from './components/pictureBox.vue';
 import Yixiv from '@/views/engine/Yixiv';
 import { yixivStore } from "@/stores";
 
-const { setHeaderActiveIndex } = yixivStore();
-setHeaderActiveIndex(0)
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(0)
 const i18n = {
   recommendTitle: '推荐作品',
 };

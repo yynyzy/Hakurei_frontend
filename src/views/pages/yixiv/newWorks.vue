@@ -35,8 +35,8 @@ import pictureBox from './components/pictureBox.vue';
 import { IGetNewWorksParams } from '@/views/types/Yixiv';
 import { yixivStore } from "@/stores";
 
-const { setHeaderActiveIndex } = yixivStore();
-setHeaderActiveIndex(1);
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(1);
 
 const i18n = {
   title: '#最新插画'

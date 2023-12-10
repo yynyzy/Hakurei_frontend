@@ -3,7 +3,7 @@
     <yixiv-header
       class="nav"
       :navigationContent="navigationContent"
-      :active-index="headerActiveIndex"
+      :active-index="navigationBarActiveIndex"
       @change-menu="onChangeMenu"
       />
     <router-view />
@@ -17,7 +17,7 @@ import { yixivStore } from '@/stores';
 
 const router = useRouter();
 const store = yixivStore();
-const { headerActiveIndex } = store;
+const { navigationBarActiveIndex } = store;
 
 interface INavigationContent {
   key: string,
@@ -55,7 +55,7 @@ const onChangeMenu = (index: string) => {
       path = '/yixiv/ranking';
       break;
     case 'album':
-      path = '/yixiv/album ';
+      path = '/yixiv/album';
       break;
     default:
       break

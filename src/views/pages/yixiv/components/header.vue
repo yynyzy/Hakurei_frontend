@@ -64,7 +64,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { setHeaderActiveIndex, setSearchType } = store;
+const { setNavigationBarActiveIndex, setSearchType } = store;
 const { searchType } = toRefs(store);
 
 const i18n = {
@@ -116,7 +116,7 @@ const onChangeType = (value: number) => setSearchType(value);
 const searchValue = ref<string>('');
 const onSearch = () => {
   if(searchValue.value === '') return;
-  setHeaderActiveIndex(-1);
+  setNavigationBarActiveIndex(-1);
   const type = Number(searchType.value) === 0 ? 'tag' : 'author';
 
   emits('search', {

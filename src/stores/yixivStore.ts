@@ -2,7 +2,7 @@ import { computed, ref } from "vue"
 
 const SEARCH_TYPE = 'searchType';
 
-const headerActiveIndex = ref<number>(0);
+const navigationBarActiveIndex = ref<number>(0);
 const initSearchType = ref<number>(-1);
 export const yixivStore = () => {
 
@@ -26,16 +26,16 @@ export const yixivStore = () => {
     localStorage.setItem(SEARCH_TYPE, String(value));
   };
 
-  const setHeaderActiveIndex = (index: number): void => {
-    if(index === headerActiveIndex.value) {
+  const setNavigationBarActiveIndex = (index: number): void => {
+    if(index === navigationBarActiveIndex.value) {
       return;
     }
-    headerActiveIndex.value = index
+    navigationBarActiveIndex.value = index
   };
 
   return {
-    headerActiveIndex,
-    setHeaderActiveIndex,
+    navigationBarActiveIndex,
+    setNavigationBarActiveIndex,
     // 搜索功能标签选项
     searchType,
     setSearchType,

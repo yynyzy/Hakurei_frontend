@@ -74,8 +74,8 @@ const i18n = {
   new: '最新',
 };
 const loading = ref<boolean>(false);
-const { setHeaderActiveIndex } = yixivStore();
-setHeaderActiveIndex(2);
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(2);
 
 /**
  * daily 0

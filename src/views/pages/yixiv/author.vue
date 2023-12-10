@@ -50,6 +50,10 @@ import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
 import noWorks from './components/noWorks.vue';
 import { IGetPictureByUserIdParams } from '@/views/types/Yixiv';
+import { yixivStore } from '@/stores';
+
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(-1);
 
 const i18n = {
   PID: 'P站：',

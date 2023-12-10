@@ -87,7 +87,10 @@ import { reactive, ref, watch } from 'vue';
 import { Yixiv } from '@/views/engine';
 import { useRoute } from 'vue-router';
 import { IUserBestPictureParams } from '@/views/types/Yixiv';
+import { yixivStore } from '@/stores';
 
+const { setNavigationBarActiveIndex } = yixivStore();
+setNavigationBarActiveIndex(-1);
 const i18n = {
   otherWorks: '其他作品',
   moreWorks: '更多作品',
