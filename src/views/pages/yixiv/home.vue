@@ -5,7 +5,7 @@
       <section class="recommend-container wrapper">
         <h2 v-text="i18n.recommendTitle"></h2>
         <ul class="illust-box">
-          <li class="illust" v-for="(item, index) in recommendPictures" :key="index">
+          <li v-for="(item, index) in recommendPictures" :key="index">
             <picture-box :item="item" />
           </li>
         </ul>
@@ -45,10 +45,12 @@ getRecommendPicture();
 <style lang="less" scoped>
 
 .container {
-  padding: 0 220px;
+  margin: 0 auto;
 
   .wrapper {
     padding-bottom: 64px;
+    margin: 0 auto;
+    width: 1224px;
 
     h2 {
       font-size: 20px;
@@ -57,14 +59,14 @@ getRecommendPicture();
       font-weight: 700;
       margin: 0 0 12px;
     }
+  }
+
+  .recommend-container {
     .illust-box {
-      background-color: #fff;
+      background-color: #ffffff;
       display: flex;
       flex-wrap: wrap;
-
-      .illust {
-        margin: 12px;
-      }
+      margin: -12px;
     }
   }
 }

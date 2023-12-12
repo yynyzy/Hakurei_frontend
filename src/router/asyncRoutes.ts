@@ -54,8 +54,14 @@ export default [
         children: [],
       },
       {
-        path: 'search/:type/:key',
-        component: () => import('@/views/pages/yixiv/searchType.vue'),
+        path: 'search/author/:key',
+        component: () => import('@/views/pages/yixiv/searchAuthor.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'search/tags/:key',
+        component: () => import('@/views/pages/yixiv/searchTags.vue'),
         meta: { isAuth: true },
         children: [],
       },

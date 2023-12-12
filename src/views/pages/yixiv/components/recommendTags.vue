@@ -3,8 +3,8 @@
     <div class="tags-content">
       <ul>
         <li v-for="(item, index) in tags" :key="index">
-          <router-link class="link" :to="`/yixiv/tags/${item.title}`">
-          <el-tag :color="getRandomColor()" effect="dark" class="tag" @click="onClickTags(item.tag_id)">
+          <router-link class="link" :to="`/yixiv/search/tags/${item.title}`">
+          <el-tag :color="getRandomColor()" effect="dark" class="tag">
             <div class="title" v-text="item.title"></div>
             <div v-if="item.zh" class="sub-title" v-text="item.zh"></div>
           </el-tag>
@@ -35,9 +35,6 @@ const getRandomColor = () =>{
   return colors[Math.floor(Math.random() * clen)];
 };
 
-const onClickTags = (tagId: number) => {
-  console.log(tagId);
-}
 </script>
 <style lang="less" scoped>
 .tags-container {

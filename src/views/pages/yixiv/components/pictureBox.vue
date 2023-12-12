@@ -15,7 +15,7 @@
       <i class="far fa-clone" />
       <p v-text="item.page_total"></p>
     </div>
-    <div>
+    <div class="img-info" :style="{width: pictureWidth + 'px'}">
       <div class="title">
         <router-link :to="`/yixiv/illust/${item.picture_id}`">{{ item.title }}</router-link>
       </div>
@@ -50,6 +50,8 @@ const onClickImage = () => {
   justify-content: center;
   flex-direction: column;
   position: relative;
+  margin: 12px;
+  padding: 0;
 
   .page_total {
     display: flex;
@@ -69,29 +71,33 @@ const onClickImage = () => {
       margin-left: 5px;
     }
   }
-  .title {
-    display: flex;
-    margin-top: 8px;
+  .img-info {
+    width: 100%;
 
-    a {
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      line-height: 22px;
-      font-weight: 700;
-      color: #000000e0;
-      transition: color .2s ease 0s;
+    .title {
+      display: flex;
+      margin-top: 8px;
+
+      a {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 22px;
+        font-weight: 700;
+        color: #000000e0;
+        transition: color .2s ease 0s;
+      }
     }
-  }
 
-  .favor {
-    font-size: 13px;
-    color: #888;
-    margin-top: 4px;
+    .favor {
+      font-size: 13px;
+      color: #888;
+      margin-top: 4px;
 
-    i {
-      margin-right: 8px;
+      i {
+        margin-right: 8px;
+      }
     }
   }
 }

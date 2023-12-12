@@ -48,9 +48,14 @@ export interface IGetRankingListsParams {
   limit: number
 };
 
-export interface ISearchByTypeParams {
-  type: string
+export interface ISearchAuthorList {
   keyword: string
+  offset: number
+  limit: number
+};
+
+export interface IGetPictureByTags {
+  tags: string,
   offset: number
   limit: number
 };
