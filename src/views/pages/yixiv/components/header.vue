@@ -64,8 +64,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { setNavigationBarActiveIndex, setSearchType } = store;
-const { searchType } = toRefs(store);
+const { setNavigationBarActiveIndex, inputSearchTypes,  setSearchType } = store;
 
 const i18n = {
   logo: 'yixiv',
@@ -93,7 +92,6 @@ interface Emits {
 const emits = defineEmits<Emits>();
 
 
-
 const onclickHeader = (index: string) => {
   emits('changeMenu', index);
 };
@@ -109,7 +107,7 @@ const TYPE = [
     value: '1',
   }
 ];
-const currentSelectTypeLabel =  computed(() => TYPE[searchType.value].label);
+const currentSelectTypeLabel =  computed(() => TYPE[inputSearchTypes.value].label);
 const onChangeType = (value: number) => setSearchType(value);
 
 // 搜索内容
@@ -117,14 +115,11 @@ const searchValue = ref<string>('');
 const onSearch = () => {
   if(searchValue.value === '') return;
   setNavigationBarActiveIndex(-1);
-  const type = Number(searchType.value) === 0 ? 'tag' : 'author';
-
-  emits('search', {
-    keyword: searchValue.value,
-    type,
-  });
-  router.push(`/yixiv/search/${type}/${searchValue.value}`);
-
+  if (inputSearchTypes.value === 0) {
+    router.push(`/yixiv/search/tags/${searchValue.value}`);
+  } else {
+    router.push(`/yixiv/search/author/${searchValue.value}`);
+  }
 };
 
 </script>
