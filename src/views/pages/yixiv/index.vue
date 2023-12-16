@@ -60,6 +60,7 @@ const onChangeMenu = (index: string) => {
     default:
       break
   }
+  console.log('navigationBarActiveIndex 111', navigationBarActiveIndex);
   router.push(path);
 };
 

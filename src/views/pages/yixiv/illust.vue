@@ -28,7 +28,9 @@
           <div class="tags">
             <ul v-if="pictureInfo.tags.length">
               <li v-for="(item, index) in pictureInfo.tags" :key="index">
-                <a class="tag">{{ item }}</a>
+                <router-link class="link" :to="`/yixiv/search/tags/${item}`">
+                  <a class="tag">#{{ item }}</a>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -85,7 +87,7 @@
 <script setup lang='ts'>
 import { reactive, ref, watch } from 'vue';
 import { Yixiv } from '@/views/engine';
-import { useRoute } from 'vue-router';
+import { onBeforeRouteLeave, useRoute } from 'vue-router';
 import { IUserBestPictureParams } from '@/views/types/Yixiv';
 import { yixivStore } from '@/stores';
 
@@ -182,10 +184,12 @@ const getUserBestPicture = async(params: IUserBestPictureParams ) => {
 };
 init();
 
-watch(route, ()=>{
+const stopWatchRoute = watch(route, ()=>{
   init();
 });
-
+onBeforeRouteLeave(() => {
+   stopWatchRoute()
+})
 </script>
 
 <style lang="less" scoped>
@@ -275,7 +279,7 @@ watch(route, ()=>{
                 color: #3d7699;
                 margin: 0 0 2px 4px;
                 padding: 0;
-                word-break: break-word;
+                white-space: nowrap;
               }
             }
           }

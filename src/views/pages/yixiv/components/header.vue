@@ -5,7 +5,7 @@
       <el-menu
         mode="horizontal"
         background-color="transparent"
-        :default-active="String(activeIndex)"
+        :default-active="activeIndex"
         :ellipsis="false"
         @select="onclickHeader"
         >
@@ -56,7 +56,7 @@
 </template>
 
 <script setup lang='ts'>
-import { computed, ref, toRefs } from 'vue';
+import { computed, ref } from 'vue';
 import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 import { ArrowDown } from '@element-plus/icons-vue';
@@ -80,10 +80,8 @@ interface Props {
   activeIndex: number
   navigationContent: INavigationContent[]
 };
-const props = withDefaults(defineProps<Props>(),{
-  activeIndex: 0,
-});
-const { activeIndex } =  toRefs(props);
+const props = defineProps<Props>();
+const { activeIndex } =  props;
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
