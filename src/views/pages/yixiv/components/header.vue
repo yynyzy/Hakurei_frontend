@@ -107,6 +107,7 @@ const TYPE = [
     value: '1',
   }
 ];
+
 const currentSelectTypeLabel =  computed(() => TYPE[inputSearchTypes.value].label);
 const onChangeType = (value: number) => setSearchType(value);
 

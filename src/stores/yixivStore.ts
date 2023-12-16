@@ -9,7 +9,7 @@ export const yixivStore = () => {
   const inputSearchTypes = computed(() => {
     const localSearchType = localStorage.getItem(SEARCH_TYPE);
     if(!localSearchType) {
-      localStorage.setItem(SEARCH_TYPE, String(baseInputSearchTypes));
+      localStorage.setItem(SEARCH_TYPE, String(baseInputSearchTypes.value));
       return 0;
     } else {
       baseInputSearchTypes.value = Number(localSearchType);
