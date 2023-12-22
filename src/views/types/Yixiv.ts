@@ -32,22 +32,12 @@ export interface IUserBestPictureParams {
   user_id: number | number
 };
 
-export interface IGetPictureByUserIdParams extends Pagination {
-  author_user_id: string | number,
-};
-
 export interface IPublicPictureParams extends Pagination {
   sort?: string,
+  tags?: string,
   type?: number,
   author_user_id?: string,
 };
-
-export interface IGetOriginalPictureParams extends Pagination {
-  sort: string,
-  type: number,
-};
-
-export interface IGetNewWorksParams extends Pagination {};
 
 export interface IGetRankingListsParams extends Pagination {
   type: number
@@ -56,10 +46,6 @@ export interface IGetRankingListsParams extends Pagination {
 
 export interface ISearchAuthorList extends Pagination {
   keyword: string
-};
-
-export interface IGetPictureByTags extends Pagination {
-  tags: string,
 };
 
 export interface IGetPeriodicalList extends Pagination {};

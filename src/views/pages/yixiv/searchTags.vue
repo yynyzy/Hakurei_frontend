@@ -24,7 +24,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import pictureBox from './components/pictureBox.vue';
 import { Yixiv } from '@/views/engine';
-import { IGetPictureByTags } from '@/views/types/Yixiv';
+import { IPublicPictureParams } from '@/views/types/Yixiv';
 import { yixivStore } from '@/stores';
 
 const { setNavigationBarActiveIndex } = yixivStore();
@@ -41,12 +41,12 @@ const total = ref<number>(0);
 
 const picturesByTags = ref<any[]>([]);
 const getPictureByTags = async () => {
-  const params: IGetPictureByTags = {
+  const params: IPublicPictureParams = {
     tags: tag,
     offset: currentPage.value,
     limit: pageSize,
   }
-  const { count, rows } = await Yixiv.getPictureByTags(params);
+  const { count, rows } = await Yixiv.getPublicPicture(params);
   total.value = count;
   picturesByTags.value = rows;
 };

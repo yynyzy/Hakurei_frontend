@@ -32,7 +32,7 @@
 import { ref } from 'vue'
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
-import { IGetNewWorksParams } from '@/views/types/Yixiv';
+import { IPublicPictureParams } from '@/views/types/Yixiv';
 import { yixivStore } from "@/stores";
 
 const { setNavigationBarActiveIndex } = yixivStore();
@@ -46,12 +46,13 @@ const loading = ref<boolean>(false);
 const newWorkPictures = ref<any[]>([]);
 const getNewWorks = async() => {
   loading.value = true;
-  const params: IGetNewWorksParams = {
+  const params: IPublicPictureParams = {
+    sort: 'new',
     offset: currentPage.value - 1,
     limit: pageSize,
   };
   try {
-    const { count, rows } = await Yixiv.getNewWorks(params);
+    const { count, rows } = await Yixiv.getPublicPicture(params);
     newWorkPictures.value = rows.map((item: any) => {
       item.regular_url = item.regular_url + '?x-oss-process=image/resize,w_450';
       return item;

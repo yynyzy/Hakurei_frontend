@@ -1,15 +1,11 @@
 import { httpRequest } from "@/utils";
 import {
   IGetPeriodicalList,
-  IGetNewWorksParams,
   IGetPeriodical,
-  IGetPictureByUserIdParams,
   IGetRankingListsParams,
   IRecommendPictureParams,
   ISearchAuthorList,
   IUserBestPictureParams,
-  IGetPictureByTags,
-  IGetOriginalPictureParams,
   IPublicPictureParams,
 } from "../types/Yixiv";
 
@@ -27,7 +23,6 @@ export default class Yixiv {
     Yixiv.Tags = data;
     return data;
   };
-
 
   public static getRecommendPicture = async (params: IRecommendPictureParams) => {
     if(Yixiv.recommendPicture) {
@@ -48,34 +43,13 @@ export default class Yixiv {
     return data;
   };
 
-
   public static searchUser = async (author_Id: string) => {
     const { data } = await httpRequest.get(`https://api2.vilipix.com/api/v1/search/user?type=author&keyword=${author_Id}&limit=30&offset=0`);
     return data;
   };
 
-  // public static getPictureByUserId = async (params: IGetPictureByUserIdParams) => {
-  //   const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?sort=new&type=0&author_user_id=${params.author_user_id}&limit=${params.limit}&offset=${params.offset}`);
-  //   return data;
-  // };
-
   public static getPublicPicture = async (params: IPublicPictureParams) => {
     const { data } = await httpRequest.get('https://www.vilipix.com/api/v1/picture/public',{ params });
-    return data;
-  };
-
-  // public static getPictureByUserId = async (params: IPublicPictureParams) => {
-  //   const { data } = await httpRequest.get('https://www.vilipix.com/api/v1/picture/public',{ params });
-  //   return data;
-  // };
-
-  // public static getOriginalPicture = async (params: IPublicPictureParams) => {
-  //   const { data } = await httpRequest.get('https://www.vilipix.com/api/v1/picture/public',{ params });
-  //   return data;
-  // };
-
-  public static getNewWorks = async (params: IGetNewWorksParams) => {
-    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?sort=new&limit=${params.limit}&offset=${params.offset}`);
     return data;
   };
 
@@ -86,11 +60,6 @@ export default class Yixiv {
 
   public static searchAuthorList = async (params: ISearchAuthorList) => {
     const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/search/user?type=author&keyword=${params.keyword}&limit=${params.limit}&offset=${params.offset}`);
-    return data;
-  };
-
-  public static getPictureByTags = async (params: IGetPictureByTags) => {
-    const { data } = await httpRequest.get(`https://www.vilipix.com/api/v1/picture/public?tags=${params.tags}&sort=new&limit=${params.limit}&offset=${params.offset}`);
     return data;
   };
 
