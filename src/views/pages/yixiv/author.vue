@@ -49,7 +49,7 @@ import { useRoute } from 'vue-router';
 import { Yixiv } from '@/views/engine';
 import pictureBox from './components/pictureBox.vue';
 import noWorks from './components/noWorks.vue';
-import { IGetPictureByUserIdParams } from '@/views/types/Yixiv';
+import { IPublicPictureParams } from '@/views/types/Yixiv';
 import { yixivStore } from '@/stores';
 
 const { setNavigationBarActiveIndex } = yixivStore();
@@ -95,13 +95,15 @@ const total = ref<number>(0);
 const userPictureArr = ref<any[]>([]);
 
 const getPictureByUserId = async() => {
-  const params: IGetPictureByUserIdParams = {
+  const params: IPublicPictureParams = {
     author_user_id: user_Id,
     offset: currentPage.value - 1,
     limit: pageSize,
+    sort: 'new',
+    type: 0,
   }
   try {
-    const { count, rows } = await Yixiv.getPictureByUserId(params);
+    const { count, rows } = await Yixiv.getPublicPicture(params);
     userPictureArr.value = rows;
     total.value = count;
   } catch (error) {

@@ -16,13 +16,28 @@
       <section class="ranking-container wrapper">
         <h3 class="sub-title" v-text="i18n.rankingByDayTitle"></h3>
         <h2 class="today" v-text="today"></h2>
-        <ul class="illust-box">
-          <li v-for="(item, index) in rankingByDayPictures" :key="index">
+        <el-carousel
+          class="illust-box"
+          type="card"
+          indicator-position="false"
+          autoplay="false"
+          >
+          <el-carousel-item class="carousel" v-for="(item, index) in rankingByDayPictures" :key="index">
             <picture-box :item="item" :picture-height="282" :picture-width="282"/>
+          </el-carousel-item>
+        </el-carousel>
+
+      </section>
+
+      <!-- 原创的插画作品 -->
+      <section class="original-container wrapper">
+        <h2 v-text="i18n.originalTitle"></h2>
+        <ul class="illust-box">
+          <li v-for="(item, index) in originalPicture" :key="index">
+            <picture-box :item="item" />
           </li>
         </ul>
       </section>
-
     </div>
   </div>
 </template>
@@ -34,14 +49,15 @@ import pictureBox from './components/pictureBox.vue';
 import Yixiv from '@/views/engine/Yixiv';
 import { yixivStore } from "@/stores";
 import moment from 'moment';
+import { IPublicPictureParams } from '@/views/types/Yixiv';
 
 const { setNavigationBarActiveIndex } = yixivStore();
 setNavigationBarActiveIndex(0)
 const i18n = {
   recommendTitle: '推荐作品',
   rankingByDayTitle: '每日排行榜',
+  originalTitle: '原创插画作品',
 };
-
 const today = `${moment().format('MM月DD日')}的排行榜`;
 
 const tags = ref([]);
@@ -59,20 +75,31 @@ const getRecommendPicture  = async () => {
 const rankingByDayPictures = ref([]);
 const getRankingByDayPictures  = async () => {
   const { rows } = await Yixiv.getRankingList({
-  limit: 4,
+  limit: 16,
   offset: 0,
   type: 0,
   ranking_date: moment().format('YYYYMMDD'),
   });
   rankingByDayPictures.value = rows;
-  console.log('rankingByDayPictures', rankingByDayPictures.value);
+};
 
+const originalPicture = ref([]);
+const getOriginalPicture  = async () => {
+  const params: IPublicPictureParams = {
+    sort: 'hot',
+    type: 0,
+    limit: 18,
+    offset: 0,
+  }
+  const { rows } = await Yixiv.getPublicPicture(params);
+  originalPicture.value = rows;
 };
 
 const init = () => {
   getRecommendTags();
   getRecommendPicture();
   getRankingByDayPictures();
+  getOriginalPicture();
 };
 
 init();
@@ -123,11 +150,22 @@ init();
 
     .illust-box {
       background-color: #ffffff;
-      display: flex;
-      flex-wrap: no wrap;
+
+      .carousel {
+        width: 288px;
+        background-color: red;
+      }
     }
   }
 
+  .original-container {
+    .illust-box {
+      background-color: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      margin: -12px;
+    }
+  }
 }
 
 </style>

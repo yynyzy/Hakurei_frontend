@@ -1,3 +1,8 @@
+type Pagination = {
+  limit: number
+  offset: number
+}
+
 export enum TagColor {
   'c1'='rgb(127, 126, 200)',
   'c2'='rgb(192, 126, 200)',
@@ -20,53 +25,45 @@ export interface ITag {
   zh?: string | null
 };
 
-export interface IRecommendPictureParams {
-  limit: number
-  offset: number
-};
+export interface IRecommendPictureParams extends Pagination {};
 
 export interface IUserBestPictureParams {
   picture_id: number | string
   user_id: number | number
 };
 
-export interface IGetPictureByUserIdParams {
+export interface IGetPictureByUserIdParams extends Pagination {
   author_user_id: string | number,
-  offset: number
-  limit: number
 };
 
-export interface IGetNewWorksParams {
-  offset: number
-  limit: number
+export interface IPublicPictureParams extends Pagination {
+  sort?: string,
+  type?: number,
+  author_user_id?: string,
 };
 
-export interface IGetRankingListsParams {
+export interface IGetOriginalPictureParams extends Pagination {
+  sort: string,
+  type: number,
+};
+
+export interface IGetNewWorksParams extends Pagination {};
+
+export interface IGetRankingListsParams extends Pagination {
   type: number
   ranking_date: string
-  offset: number
-  limit: number
 };
 
-export interface ISearchAuthorList {
+export interface ISearchAuthorList extends Pagination {
   keyword: string
-  offset: number
-  limit: number
 };
 
-export interface IGetPictureByTags {
+export interface IGetPictureByTags extends Pagination {
   tags: string,
-  offset: number
-  limit: number
 };
 
-export interface IGetPeriodicalList {
-  offset: number
-  limit: number
-};
+export interface IGetPeriodicalList extends Pagination {};
 
-export interface IGetPeriodical {
+export interface IGetPeriodical extends Pagination {
   periodicalId: string
-  offset: number
-  limit: number
 };
