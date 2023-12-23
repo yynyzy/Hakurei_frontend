@@ -16,17 +16,11 @@
       <section class="ranking-container wrapper">
         <h3 class="sub-title" v-text="i18n.rankingByDayTitle"></h3>
         <h2 class="today" v-text="today"></h2>
-        <el-carousel
-          class="illust-box"
-          type="card"
-          indicator-position="false"
-          autoplay="false"
-          >
-          <el-carousel-item class="carousel" v-for="(item, index) in rankingByDayPictures" :key="index">
-            <picture-box :item="item" :picture-height="282" :picture-width="282"/>
-          </el-carousel-item>
-        </el-carousel>
-
+        <ul class="illust-box">
+          <li v-for="(item, index) in rankingByDayPictures" :key="index">
+            <picture-box :item="item" />
+          </li>
+        </ul>
       </section>
 
       <!-- 原创的插画作品 -->
@@ -34,6 +28,17 @@
         <h2 v-text="i18n.originalTitle"></h2>
         <ul class="illust-box">
           <li v-for="(item, index) in originalPicture" :key="index">
+            <picture-box :item="item" />
+          </li>
+        </ul>
+      </section>
+
+
+      <!-- 最新的插画作品 -->
+      <section class="new-picture-container wrapper">
+        <h2 v-text="i18n.originalTitle"></h2>
+        <ul class="illust-box">
+          <li v-for="(item, index) in newPictures" :key="index">
             <picture-box :item="item" />
           </li>
         </ul>
@@ -52,12 +57,13 @@ import moment from 'moment';
 import { IPublicPictureParams } from '@/views/types/Yixiv';
 
 const { setNavigationBarActiveIndex } = yixivStore();
-setNavigationBarActiveIndex(0)
+setNavigationBarActiveIndex(0);
 const i18n = {
   recommendTitle: '推荐作品',
   rankingByDayTitle: '每日排行榜',
   originalTitle: '原创插画作品',
 };
+
 const today = `${moment().format('MM月DD日')}的排行榜`;
 
 const tags = ref([]);
@@ -95,11 +101,24 @@ const getOriginalPicture  = async () => {
   originalPicture.value = rows;
 };
 
+const newPictures = ref([]);
+const getNewPicture  = async () => {
+  const params: IPublicPictureParams = {
+    sort: 'new',
+    type: 0,
+    limit: 18,
+    offset: 0,
+  }
+  const { rows } = await Yixiv.getPublicPicture(params);
+  newPictures.value = rows;
+};
+
 const init = () => {
   getRecommendTags();
   getRecommendPicture();
   getRankingByDayPictures();
   getOriginalPicture();
+  getNewPicture();
 };
 
 init();
@@ -150,15 +169,22 @@ init();
 
     .illust-box {
       background-color: #ffffff;
-
-      .carousel {
-        width: 288px;
-        background-color: red;
-      }
+      display: flex;
+      overflow-x: scroll;
+      margin: -12px;
     }
   }
 
   .original-container {
+    .illust-box {
+      background-color: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      margin: -12px;
+    }
+  }
+
+  .new-picture-container {
     .illust-box {
       background-color: #ffffff;
       display: flex;
