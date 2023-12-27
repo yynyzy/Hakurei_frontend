@@ -5,7 +5,7 @@
       <el-menu
         mode="horizontal"
         background-color="transparent"
-        :default-active="activeIndex"
+        :default-active="String(props.activeIndex)"
         :ellipsis="false"
         @select="onclickHeader"
         >
@@ -64,7 +64,7 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const store = yixivStore();
-const { setNavigationBarActiveIndex, inputSearchTypes,  setSearchType } = store;
+const { setNavigationBarActiveIndex, setSearchType } = store;
 
 const i18n = {
   logo: 'yixiv',
@@ -81,7 +81,6 @@ interface Props {
   navigationContent: INavigationContent[]
 };
 const props = defineProps<Props>();
-const { activeIndex } =  props;
 
 interface Emits {
   (event: 'changeMenu', value: string): void;
@@ -105,8 +104,7 @@ const TYPE = [
     value: '1',
   }
 ];
-
-const currentSelectTypeLabel =  computed(() => TYPE[inputSearchTypes.value].label);
+const currentSelectTypeLabel =  computed(() => TYPE[store.inputSearchTypes].label);
 const onChangeType = (value: number) => setSearchType(value);
 
 // 搜索内容
@@ -114,7 +112,7 @@ const searchValue = ref<string>('');
 const onSearch = () => {
   if(searchValue.value === '') return;
   setNavigationBarActiveIndex(-1);
-  if (inputSearchTypes.value === 0) {
+  if (store.inputSearchTypes === 0) {
     router.push(`/yixiv/search/tags/${searchValue.value}`);
   } else {
     router.push(`/yixiv/search/author/${searchValue.value}`);

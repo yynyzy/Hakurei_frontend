@@ -3,7 +3,7 @@
     <yixiv-header
       class="nav"
       :navigationContent="navigationContent"
-      :active-index="navigationBarActiveIndex"
+      :active-index="store.navigationBarActiveIndex"
       @change-menu="onChangeMenu"
       />
     <router-view />
@@ -17,7 +17,6 @@ import { yixivStore } from '@/stores';
 
 const router = useRouter();
 const store = yixivStore();
-const { navigationBarActiveIndex } = store;
 
 interface INavigationContent {
   key: string,
@@ -60,7 +59,6 @@ const onChangeMenu = (index: string) => {
     default:
       break
   }
-  console.log('navigationBarActiveIndex 111', navigationBarActiveIndex);
   router.push(path);
 };
 

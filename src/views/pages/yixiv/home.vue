@@ -57,7 +57,6 @@ import moment from 'moment';
 import { IPublicPictureParams } from '@/views/types/Yixiv';
 
 const { setNavigationBarActiveIndex } = yixivStore();
-setNavigationBarActiveIndex(0);
 const i18n = {
   recommendTitle: '推荐作品',
   rankingByDayTitle: '每日排行榜',
@@ -114,6 +113,7 @@ const getNewPicture  = async () => {
 };
 
 const init = () => {
+  setNavigationBarActiveIndex(0);
   getRecommendTags();
   getRecommendPicture();
   getRankingByDayPictures();

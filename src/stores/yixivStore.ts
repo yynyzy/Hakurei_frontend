@@ -1,8 +1,9 @@
 import { computed, ref } from "vue"
+import { defineStore } from 'pinia';
 
 const SEARCH_TYPE = 'inputSearchTypes';
 
-export const yixivStore = () => {
+export const yixivStore =defineStore('yixivStore', () => {
 
   // 搜索类型
   const baseInputSearchTypes = ref<number>(0);
@@ -28,7 +29,7 @@ export const yixivStore = () => {
     if(index === navigationBarActiveIndex.value) {
       return;
     }
-    navigationBarActiveIndex.value = index
+    navigationBarActiveIndex.value = index;
   };
 
   return {
@@ -38,4 +39,4 @@ export const yixivStore = () => {
     inputSearchTypes,
     setSearchType,
   }
-}
+});
