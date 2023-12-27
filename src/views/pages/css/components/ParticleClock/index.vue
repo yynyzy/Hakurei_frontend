@@ -87,7 +87,9 @@ const getTimeString = () => {
   return new Date().toTimeString().substring(0, 8);
 };
 const clear = (): void => {
-  ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
+  if(canvasRef.value) {
+    ctx.clearRect(0, 0, canvasRef.value!.width, canvasRef.value!.height);
+  }
 };
 </script>
 
