@@ -189,9 +189,11 @@ watch(() => route.query, () => {
 }, { immediate: true, deep: true });
 </script>
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   margin: 0 auto;
-  width: 1224px;
+  width: @contentWidth;
 
   .actions {
     display: flex;
@@ -213,7 +215,7 @@ watch(() => route.query, () => {
       }
 
       .active {
-        background: #0096fa !important;
+        background: @color1 !important;
         color: #fff;
       }
     }

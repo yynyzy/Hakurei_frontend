@@ -76,9 +76,11 @@ const onCurrentPageChange = (value: number) => {
 getNewWorks();
 </script>
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   margin: 0 auto;
-  width: 1224px;
+  width: @contentWidth;
 
   .illust-box {
     margin-top: 45px;

@@ -124,6 +124,7 @@ const init = () => {
 init();
 </script>
 <style lang="less" scoped>
+@import './style/global.less';
 
 .container {
   margin: 0 auto;
@@ -131,7 +132,7 @@ init();
   .wrapper {
     padding-bottom: 64px;
     margin: 0 auto;
-    width: 1224px;
+    width: @contentWidth;
 
     h2 {
       font-size: 20px;
@@ -144,7 +145,7 @@ init();
 
   .recommend-container {
     .illust-box {
-      background-color: #ffffff;
+      background-color: @backgroundColor1;
       display: flex;
       flex-wrap: wrap;
       margin: -12px;
@@ -168,7 +169,7 @@ init();
     }
 
     .illust-box {
-      background-color: #ffffff;
+      background-color: @backgroundColor1;
       display: flex;
       overflow-x: scroll;
       margin: -12px;
@@ -177,7 +178,7 @@ init();
 
   .original-container {
     .illust-box {
-      background-color: #ffffff;
+      background-color: @backgroundColor1;
       display: flex;
       flex-wrap: wrap;
       margin: -12px;
@@ -186,7 +187,7 @@ init();
 
   .new-picture-container {
     .illust-box {
-      background-color: #ffffff;
+      background-color: @backgroundColor1;
       display: flex;
       flex-wrap: wrap;
       margin: -12px;

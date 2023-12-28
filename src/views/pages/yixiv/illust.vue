@@ -193,10 +193,12 @@ onBeforeRouteLeave(() => {
 </script>
 
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   display: flex;
   margin: 24px auto 0;
-  width: 1224px;
+  width: @contentWidth;
   padding-bottom: 56px;
 
   .illust-content {
@@ -262,7 +264,7 @@ onBeforeRouteLeave(() => {
           cursor: pointer;
           display: block;
           font-size: 13px;
-          color: #0096fa;
+          color: @color1;
           margin: 10px 0;
         }
 

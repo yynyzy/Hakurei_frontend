@@ -77,6 +77,8 @@ init();
 
 </script>
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   width: 100%;
   max-width: 768px;
@@ -107,8 +109,8 @@ init();
       letter-spacing: 0;
       color: #fff;
       min-width: 62px;
-      border: 1px solid #0096fa;
-      color: #0096fa;
+      border: 1px solid @color1;
+      color: @color1;
     }
 
     .date {

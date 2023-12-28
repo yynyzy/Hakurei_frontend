@@ -27,9 +27,11 @@ interface Props {
 defineProps<Props>();
 </script>
 <style lang="less" scoped>
+@import '../style/global.less';
+
 .wrapper {
   margin: 0 auto;
-  width: 1224px;
+  width: @contentWidth;
   min-height: 500px;
 
   .user-item .link{

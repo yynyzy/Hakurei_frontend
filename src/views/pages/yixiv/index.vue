@@ -64,6 +64,7 @@ const onChangeMenu = (index: string) => {
 
 </script>
 <style lang="less" scoped>
+
 .page {
   min-height: 100vh;
   background-color: #f5f5f5;

@@ -125,6 +125,8 @@ init();
 </script>
 
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   position: relative;
 }
@@ -138,7 +140,7 @@ init();
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    width: 1224px;
+    width: @contentWidth;
     position: relative;
 
     .profile {
@@ -185,7 +187,7 @@ init();
   .pid {
     width: 100%;
     margin: 0 auto;
-    width: 1224px;
+    width: @contentWidth;
     position: relative;
     font-size: 13px;
     color: #999;
@@ -200,7 +202,7 @@ init();
 
   .wrapper {
     margin: 0 auto;
-    width: 1224px;
+    width: @contentWidth;
 
     .title {
       font-size: 20px;

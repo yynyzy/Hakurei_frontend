@@ -64,12 +64,14 @@ init();
 
 </script>
 <style lang="less" scoped>
+@import './style/global.less';
+
 .wrapper {
   margin-top: 48px;
 
   .tags-box {
     margin: 0 auto 20px;
-    width: 1224px;
+    width: @contentWidth;
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -80,7 +82,7 @@ init();
 
       h2 {
         margin: 0;
-        color: rgba(0, 0, 0, .88);
+        color: #000000e0;
         font-weight: 700;
         font-size: 20px;
         line-height: 28px;
@@ -94,10 +96,10 @@ init();
   .illust-wrapper {
     box-sizing: border-box;
     margin: 0 auto;
-    width: 1224px;
+    width: @contentWidth;
 
     .illust-box {
-      background-color: #ffffff;
+      background-color: @backgroundColor1;
       display: flex;
       flex-wrap: wrap;
       margin: -12px;
