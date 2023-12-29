@@ -60,15 +60,15 @@ export const GlobalHeaderLeftRoute: Array<Tab> = [
 export const GlobalHeaderRightRoute: Array<Tab> = [
   {
     name: '博客',
-    route: '/blogt',
+    route: '/test0',
   },
   {
     name: '博客',
-    route: '/blogt',
+    route: '/test1',
   },
   {
     name: '博客',
-    route: '/blogt',
+    route: '/test2',
   },
   {
     name: '博客',
