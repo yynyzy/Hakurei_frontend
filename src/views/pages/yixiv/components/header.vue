@@ -5,15 +5,15 @@
       <el-menu
         mode="horizontal"
         background-color="transparent"
-        :default-active="String(props.activeIndex)"
+        :default-active="String(props.activeNavigation)"
         :ellipsis="false"
-        @select="onclickHeader"
+        @select="onClickHeader"
         >
         <el-menu-item
-          v-for="(item, index) in navigationContent"
+          v-for="(item, index) in navigation"
           :key="index"
-          :index="String(index)"
-        >
+          :index="item.path"
+          >
           {{ item.label }}
         </el-menu-item>
       </el-menu>
@@ -61,6 +61,7 @@ import { Search } from '@element-plus/icons-vue'
 import { yixivStore } from "@/stores";
 import { ArrowDown } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
+import { INavigation } from '../config/router';
 
 const router = useRouter();
 const store = yixivStore();
@@ -71,14 +72,9 @@ const i18n = {
   searchIllustration: '搜索插画'
 };
 
-interface INavigationContent {
-  key: string,
-  label: string,
-};
-
 interface Props {
-  activeIndex: number
-  navigationContent: INavigationContent[]
+  activeNavigation: string
+  navigation: INavigation[]
 };
 const props = defineProps<Props>();
 
@@ -89,8 +85,8 @@ interface Emits {
 const emits = defineEmits<Emits>();
 
 
-const onclickHeader = (index: string) => {
-  emits('changeMenu', index);
+const onClickHeader = (path: string) => {
+  emits('changeMenu', path);
 };
 
 // 搜索标签功能

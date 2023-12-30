@@ -2,63 +2,22 @@
   <div class="page">
     <yixiv-header
       class="nav"
-      :navigationContent="navigationContent"
-      :active-index="store.navigationBarActiveIndex"
-      @change-menu="onChangeMenu"
+      :navigation="navigation"
+      :active-navigation="navigation[store.navigationBarActiveIndex].path"
+      @change-menu="onChangeRouter"
       />
     <router-view />
   </div>
 </template>
 <script setup lang='ts'>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import YixivHeader from './components/header.vue';
 import { yixivStore } from '@/stores';
-
+import { router as navigation } from './config/router';
 const router = useRouter();
 const store = yixivStore();
 
-interface INavigationContent {
-  key: string,
-  label: string,
-};
-const navigationContent = ref<INavigationContent[]>([
-  {
-    key: 'home',
-    label: '首页',
-  },
-  {
-    key: 'new',
-    label: '新作',
-  },
-  {
-    key: 'ranking',
-    label: '排行榜',
-  },
-  {
-    key: 'periodical',
-    label: '特辑',
-  }
-]);
-const onChangeMenu = (index: string) => {
-  const value = navigationContent.value[Number(index)].key;
-  let path = '';
-  switch(value) {
-    case 'home':
-      path = '/yixiv';
-      break;
-    case 'new':
-      path = '/yixiv/new';
-      break;
-    case 'ranking':
-      path = '/yixiv/ranking';
-      break;
-    case 'periodical':
-      path = '/yixiv/periodical';
-      break;
-    default:
-      break
-  }
+const onChangeRouter = (path: string) => {
   router.push(path);
 };
 

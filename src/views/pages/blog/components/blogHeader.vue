@@ -36,21 +36,6 @@ const navigationContent = ref<INavigationContent[]>([
     label: '聊天室',
   }
 ]);
-// const onChangeMenu = (index: string) => {
-//   const value = navigationContent.value[Number(index)].key;
-//   let path = '';
-//   switch(value) {
-//     case 'home':
-//       path = '/blog';
-//       break;
-//     case 'chatroom':
-//       path = '/blog/chatroom';
-//       break;
-//     default:
-//       break
-//   }
-//   router.push(path);
-// };
 
 const onBack = () => {
   router.push('/home');
