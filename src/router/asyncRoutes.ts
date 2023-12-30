@@ -71,7 +71,14 @@ export default [
     path: '/blog',
     component: () => import('@/views/pages/blog/index.vue'),
     meta: { isAuth: true },
-    children: [],
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/pages/blog/home.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+    ],
   },
   {
     path: '/component',
