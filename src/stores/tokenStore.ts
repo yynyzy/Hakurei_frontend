@@ -28,5 +28,5 @@ export const tokenStore = defineStore('ACCESS_TOKEN', () => {
   return {
     ACCESS_TOKEN,
     setAccessToken,
-  }
+  };
 })

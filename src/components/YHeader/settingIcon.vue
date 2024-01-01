@@ -3,8 +3,7 @@
     <li class="btn" @click="onClickOff">
       <a class="btn-icon">
         <transition mode="out-in">
-          <i  v-if="!state" class="fa fa-angle-double-down" />
-          <i  v-else class="fa fa-angle-double-up" />
+          <i class="fa fa-cog" />
         </transition>
       </a>
     </li>
@@ -91,6 +90,7 @@ li {
   top: calc(10px + var(--default-icon-height));
   left: 0;
   overflow: hidden;
+  z-index: 99;
 }
 .list {
   display: flex;
@@ -160,6 +160,11 @@ li {
         background-color: transparent;
         color: #fff;
         font-size: 1.5em;
+
+        &:hover {
+          animation: rotate-animation .5s linear;
+          animation-iteration-count: 1;
+        }
       }
 }
 
@@ -197,16 +202,8 @@ li {
   }
 }
 
-.v-leave-to{
-  opacity: 0;
-}
-.v-enter-active,
-.v-leave-active
-{
-transition: opacity 0.5s ease-in;
-}
-.v-enter-to,
-.v-leave-from{
-opacity: 1;
+@keyframes rotate-animation {
+  0% { transform: rotate(0deg); } /* 初始状态，角度为0度 */
+  100% { transform: rotate(180deg); } /* 结束状态，角度为360度（完成一圈）*/
 }
 </style>
