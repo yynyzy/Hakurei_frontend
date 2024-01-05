@@ -1,0 +1,24 @@
+/* 暗黑色 */
+html[data-theme=dark] {
+  --g_bg_color: #000;
+  --g_font_color: #fff;
+  --g_border_color: #fff;
+
+  --g_opposite_fontColor: #000;
+  --g_opposite_borderColor: #000;
+  --g_opposite_bgColor: #000;
+
+}
+
+
+/* 默认 */
+:root {
+  --g_bg_color: #fff;
+  --g_font_color: #000;
+  --g_border_color: #000;
+
+  --g_opposite_borderColor: #fff;
+  --g_opposite_fontColor: #fff;
+  --g_opposite_bgColor: #fff;
+
+}

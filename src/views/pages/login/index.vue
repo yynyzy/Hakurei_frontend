@@ -14,7 +14,8 @@ import LoginForm from "./components/form.vue";
 import Sakura from "./components/Sakura/index.vue";
 import { LoginRequest } from '../../types/User';
 import { useRoute, useRouter } from 'vue-router';
-import { tokenStore, themeStore } from "@/stores";
+import { useTheme } from '@/utils';
+import { tokenStore } from "@/stores";
 import { User } from '../../engine';
 
 const isLoading = ref(false);
@@ -62,15 +63,9 @@ const ThemeBg = {
   THEME_LIGHT: new URL('../../images/login/loginBg2.jpg', import.meta.url).href,
   THEME_DARK: new URL('../../images/login/loginBg.jpg', import.meta.url).href,
 };
-const { THEME_TYPES, themeType } = themeStore();
 
-const bgUrl = computed(() => {
-  return themeType.value === THEME_TYPES.THEME_LIGHT
-    ?
-    ThemeBg.THEME_LIGHT
-    :
-    ThemeBg.THEME_DARK;
-});
+const { theme } = useTheme();
+const bgUrl = computed(() => theme.value === 'light' ? ThemeBg.THEME_LIGHT : ThemeBg.THEME_DARK);
 // 背景主题
 </script>
 

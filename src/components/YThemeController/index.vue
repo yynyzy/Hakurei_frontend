@@ -1,31 +1,23 @@
 <template>
-  <div :class="['wrapper', { wrapperDark: !themeType }]">
+  <div :class="['wrapper', { wrapperDark: !isThemeLight  }]">
     <div
-      :class="['icon', { dark: !themeType }]"
+      :class="['icon', { dark: !isThemeLight }]"
       @click="onClickIcon"
     >
-    <i v-if="themeType" class="far fa-sun" />
+    <i v-if="!isThemeLight" class="far fa-sun" />
     <i v-else class="far fa-moon" />
   </div>
   </div>
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue';
-import { themeStore } from "@/stores";
+import { computed } from 'vue';
+import { useTheme } from '@/utils';
 
-const { setLightTheme, setDarkTheme, THEME_TYPES, themeType: themeType_ } = themeStore();
-
-// true 为白天模式， false 为夜晚模式
-const themeType = ref<Boolean>(themeType_.value === THEME_TYPES.THEME_LIGHT);
-
+const { theme } =  useTheme();
+const isThemeLight = computed(() => theme.value === 'light');
 const onClickIcon = (): void => {
-  if(themeType.value) {
-    setDarkTheme();
-  } else {
-    setLightTheme();
-  };
-  themeType.value = !themeType.value;
+  theme.value = isThemeLight.value ? 'dark' : 'light';
 };
 
 </script>

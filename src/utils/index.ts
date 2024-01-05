@@ -1,12 +1,12 @@
 import { axios as request, http as httpRequest } from './request';
 import { isObject } from './lang';
 import { getRandom } from './math';
-import { onChangeTheme } from './themeController';
+import { useTheme } from './theme';
 
 export {
   request,
   httpRequest,
   isObject,
   getRandom,
-  onChangeTheme,
+  useTheme
 };

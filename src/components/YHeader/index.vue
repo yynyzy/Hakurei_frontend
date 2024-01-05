@@ -64,16 +64,16 @@ const onToPage = (val: Tab): void => {
 </script>
 
 <style lang="less" scoped>
-
 .header-wrapper {
-  width: 100%;
-  box-sizing: border-box;
-  background-color: transparent;
-}
-.header-nav {
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  z-index: 99;
+}
+.header-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,9 +81,8 @@ const onToPage = (val: Tab): void => {
   box-sizing: border-box;
   height: 64px;
   padding: 10px 20px;
-  z-index: 99;
   backdrop-filter: blur(10px);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 3px 1px rgba(0, 0, 0, 0.2);
 
   .header-left {
     display: flex;

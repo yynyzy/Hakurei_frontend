@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import 'element-plus/dist/index.css'
 import '@/assets/style/init.css';
+import '@/assets/style/default.css';
 
 import App from './App.vue';
 import {

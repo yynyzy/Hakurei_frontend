@@ -49,6 +49,8 @@ const onClickMenu = (val: any) => {
 </template>
 
 <style lang="less" scoped>
+@import '../../style/common.less';
+
 .page {
   box-sizing: border-box;
   display: flex;
@@ -65,7 +67,7 @@ const onClickMenu = (val: any) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: @bg-color2;
+    background: @bg-color1;
     perspective: 1200px;
     overflow: hidden;
 

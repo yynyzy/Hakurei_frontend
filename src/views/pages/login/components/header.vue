@@ -10,9 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-import { themeStore } from "@/stores";
-const { theme } = themeStore();
-
 interface Props {
   modelValue: Boolean
 }
@@ -43,7 +40,7 @@ const onClickLogin = () => {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-    color: v-bind('theme.bgColor');
+    color: var(--g_font_color);
 
     .logo {
       font-size: 2em;
@@ -58,13 +55,13 @@ const onClickLogin = () => {
     .navigation {
       position: relative;
       font-size: 1.1em;
-      color: v-bind('theme.fontColor');
+      color: var(--g_font_color);
       font-weight: 500;
       margin: 0 20px;
 
       &::after {
         content: "";
-        border: 1px solid v-bind('theme.borderColor');
+        border: 1px solid var(--g_border_color);
         width: 100%;
         position: absolute;
         left: 0;
@@ -88,16 +85,16 @@ const onClickLogin = () => {
       margin-left: 20px;
       background: transparent;
       font-size: 1.1em;
-      color: v-bind('theme.fontColor');
-      border: 2px solid v-bind('theme.borderColor');
+      color: var(--g_font_color);
+      border: 2px solid var(--g_border_color);
       border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
       transition: .5s;
 
       &:hover {
-        background-color: v-bind('theme.bgColor');
-        color: v-bind('theme.opposite_fontColor');
+        background-color: var(--g_font_color);
+        color: var(--g_opposite_bgColor);
       }
     }
 
