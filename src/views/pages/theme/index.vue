@@ -79,7 +79,6 @@
         </div>
       </div>
       <p class="back" @click="onBack">back</p>
-      <y-avatar></y-avatar>
     </section>
   </div>
 </template>

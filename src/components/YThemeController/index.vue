@@ -4,8 +4,8 @@
       :class="['icon', { dark: !isThemeLight }]"
       @click="onClickIcon"
     >
-    <i v-if="!isThemeLight" class="far fa-sun" />
-    <i v-else class="far fa-moon" />
+    <i v-if="!isThemeLight" class="far fa-moon" />
+    <i v-else class="far fa-sun" />
   </div>
   </div>
 </template>
@@ -49,7 +49,13 @@ const onClickIcon = (): void => {
     transition: all 0.5s ease;
 
     i {
-      font-size: 10px;
+      font-size: 14px;
+    }
+    .fa-sun {
+      color: #ffa500;
+    }
+    .fa-moon {
+      color: #3ce4f0;
     }
   }
 

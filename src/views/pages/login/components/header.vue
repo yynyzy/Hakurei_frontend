@@ -40,7 +40,7 @@ const onClickLogin = () => {
     justify-content: space-between;
     align-items: center;
     z-index: 99;
-    color: var(--g_font_color);
+    color: var(--g_login_font_color);
 
     .logo {
       font-size: 2em;
@@ -55,13 +55,13 @@ const onClickLogin = () => {
     .navigation {
       position: relative;
       font-size: 1.1em;
-      color: var(--g_font_color);
+      color: var(--g_login_font_color);
       font-weight: 500;
       margin: 0 20px;
 
       &::after {
         content: "";
-        border: 1px solid var(--g_border_color);
+        border: 1px solid var(--g_login_border_color);
         width: 100%;
         position: absolute;
         left: 0;
@@ -85,15 +85,15 @@ const onClickLogin = () => {
       margin-left: 20px;
       background: transparent;
       font-size: 1.1em;
-      color: var(--g_font_color);
-      border: 2px solid var(--g_border_color);
+      color: var(--g_login_font_color);
+      border: 2px solid var(--g_login_border_color);
       border-radius: 6px;
       cursor: pointer;
       font-weight: 500;
       transition: .5s;
 
       &:hover {
-        background-color: var(--g_font_color);
+        background-color: var(--g_login_font_color);
         color: var(--g_opposite_bgColor);
       }
     }

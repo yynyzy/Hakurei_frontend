@@ -14,7 +14,7 @@
         { 'list-up': animationState === 2 }
       ]">
         <li class="li" v-for="(item, index) in tabs" :key="index">
-          <a class="link" @click="onClickSetting(item.type, index)">
+          <a class="link" @click="onClickSetting(item.type)">
             <component :is="item.icon"/>
           </a>
         </li>
@@ -25,7 +25,7 @@
 
 <script lang="ts" setup>
 import { ref, h, VNode } from 'vue';
-import { onChangeTheme } from '@/utils'
+import { useRouter } from 'vue-router';
 interface Tab {
   icon: VNode
   type: string
@@ -57,14 +57,11 @@ const onClickOff = (): void => {
   animationState.value = state.value ? 1 : 2
 }
 
-const onClickSetting = (type: string, index: number): void => {
+const router = useRouter();
+const onClickSetting = (type: string): void => {
   switch (type) {
     case 'theme':
-      tabs.value[index].icon = onChangeTheme() === 'light'
-        ?
-        h('i', { class: "far fa-sun" })
-        :
-        h('i', { class: "far fa-moon" });
+    router.push('/theme')
       break;
     default:
       break;
@@ -114,7 +111,6 @@ li {
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
       font-size: 1.5em;
       border: 1px solid #ffffff66;
       border-right: 1px solid  #ffffff33;
@@ -158,7 +154,7 @@ li {
         justify-content: center;
         align-items: center;
         background-color: transparent;
-        color: #fff;
+        // color: #000;
         font-size: 1.5em;
 
         &:hover {

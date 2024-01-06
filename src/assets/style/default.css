@@ -1,24 +1,26 @@
 /* 暗黑色 */
 html[data-theme=dark] {
-  --g_bg_color: #000;
-  --g_font_color: #fff;
-  --g_border_color: #fff;
-
-  --g_opposite_fontColor: #000;
-  --g_opposite_borderColor: #000;
+  /* login 页面 */
+  --g_login_font_color: #fff;
+  --g_login_border_color: #fff;
   --g_opposite_bgColor: #000;
-
+  /* 全局banner */
+    --g_banner_bg: #000;
+    --g_banner_color: #fff;
+  /* home 页面 */
+  /* --g_home_banner_bg: #000; */
 }
 
 
 /* 默认 */
 :root {
-  --g_bg_color: #fff;
-  --g_font_color: #000;
-  --g_border_color: #000;
-
-  --g_opposite_borderColor: #fff;
-  --g_opposite_fontColor: #fff;
+  --g_login_font_color: #000;
+  --g_login_border_color: #000;
   --g_opposite_bgColor: #fff;
+  /* 全局banner */
+  --g_banner_bg: #fff;
+  --g_banner_color: #000;
 
+  /* home 页面 */
+  /* --g_banner_bg: #fff; */
 }

@@ -13,6 +13,9 @@
       <div class="header-right">
         <nav class="navigation-bar">
           <ul class="bar-wrapper">
+            <li>
+              <y-theme-controller class="theme-btn"/>
+            </li>
             <li class="li">
               <y-avatar/>
             </li>
@@ -26,7 +29,7 @@
                 <span v-text="tab.name"></span>
               </a>
             </li>
-            <setting-icon />
+            <setting-icon class="setting-icon"/>
           </ul>
 
         </nav>
@@ -70,7 +73,7 @@ const onToPage = (val: Tab): void => {
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+  background: var(--g_banner_bg);
   z-index: 99;
 }
 .header-nav {
@@ -160,7 +163,7 @@ const onToPage = (val: Tab): void => {
           text-align: center;
           font-size: 13px;
           box-sizing: border-box;
-          color: #fff;
+          color: var(--g_banner_color);
 
           .entry {
             display: flex;
@@ -186,7 +189,11 @@ const onToPage = (val: Tab): void => {
           }
         }
 
-      .popover-wrap {
+        .setting-icon {
+          color: var(--g_banner_color);
+        }
+
+        .popover-wrap {
         &:hover {
             i {
               animation: iconJump 0.3s;
