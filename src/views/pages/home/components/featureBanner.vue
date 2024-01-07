@@ -26,6 +26,7 @@ const i18n = {
   position: relative;
   height: 100%;
   border-radius: .3rem;
+  border: 2px solid #3c3c3c;
   background-color: #fff;
   transition: transform .2s ease-in-out;
 

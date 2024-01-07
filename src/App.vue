@@ -2,12 +2,16 @@
 </script>
 
 <template>
-    <router-view />
+    <section>
+        <router-view />
+    </section>
 </template>
 
 <style lang="less" scoped>
-// * {
-//   margin: 0;
-//   padding: 0;
-// }
+section {
+    width: 100vw;
+    height: 100vh;
+    min-width: 1000px;
+    overflow-x: auto;
+}
 </style>

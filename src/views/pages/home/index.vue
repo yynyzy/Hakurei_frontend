@@ -3,11 +3,12 @@
     <y-header />
     <main class="container">
       <feature-banner />
-    </main>
-    <!-- <parallax-scroll/> -->
-      <!-- <div @click="getUserInfo">getUserInfo</div>
-      <roleModal class="role-model"/> -->
-  </div>
+        <div style="height: 300px; width: 1600px; background: red;"></div>
+        <!-- <parallax-scroll/> -->
+          <!-- <div @click="getUserInfo">getUserInfo</div>
+          <roleModal class="role-model"/> -->
+      </main>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -30,11 +31,11 @@ import FeatureBanner from './components/featureBanner.vue';
 
 .home {
   position: relative;
-  width: 100vw;
-  min-height: 100vh;
-  background: @background;
+  width: 100%;
+  min-height: 100%;
+  background: var(--g_home_bg);
   opacity: 0.91;
-  overflow: hidden;
+  overflow-x: scroll;
 
   .home-header {
     position: absolute;
@@ -43,8 +44,8 @@ import FeatureBanner from './components/featureBanner.vue';
   }
 
   .container {
+    width: 100%;
     margin: 0 auto;
-    max-width: 1536px;
     padding: 2rem 1rem;
   }
 }

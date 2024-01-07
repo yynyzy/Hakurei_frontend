@@ -238,3 +238,7 @@ a {
 * {
     box-sizing: border-box;
 }
+
+body {
+    overscroll-behavior-y: none;
+}

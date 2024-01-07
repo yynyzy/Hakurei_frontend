@@ -3,6 +3,7 @@
     <section class="container-wrapper">
       <h1>Good Morning, Good Night</h1>
       <p id="subtitle">Click on the sun or moon for change theme</p>
+      <p id="subtitle">点击太阳或月亮来切换主题</p>
       <div class="container">
         <div class="circle-container">
 
@@ -85,6 +86,9 @@
 
 <script setup lang='ts'>
 import { useRouter } from 'vue-router';
+import { useTheme } from '@/utils';
+import { onMounted } from 'vue';
+
 const router = useRouter();
 
 const onBack = (): void => {
@@ -117,7 +121,10 @@ const onChangeMorningOrEvening = (e: MouseEvent) => {
       changeToggleClass('.shooting-star', 'shooting');
       delayClass('.cloud', 2500);
       changeAngle('.sun-container', 360)
-}
+      if(initClick) {
+        theme.value = theme.value === 'dark' ? 'light' : 'dark';
+      }
+};
 
 const changeToggleClass = (targetClass: string, className: string) => {
   // 遍历所有匹配的元素并切换类名
@@ -146,10 +153,24 @@ const delayClass = (targetClass: string, delay: number) => {
 
 const changeAngle = (targetClass: string, changeAngle: number) => {
   const sunContainer = document.querySelector(targetClass) as HTMLElement;
-  const angle = (parseFloat(sunContainer.dataset.angle!) + changeAngle) || changeAngle;
+  const angle = (parseFloat(sunContainer.dataset?.angle!) + changeAngle) || changeAngle;
   sunContainer.style.transform = 'rotate(' + angle + 'deg)';
   sunContainer.dataset.angle = angle + '';
+};
+
+const { theme } = useTheme();
+let initClick = false;
+const init = () => {
+  if (theme.value === 'dark') {
+    const el = document.querySelector('.sun') as HTMLElement;
+    el.click();
+  };
+  initClick = true;
 }
+onMounted(() => {
+  init();
+})
+
 </script>
 <style lang="less" scoped>
 
