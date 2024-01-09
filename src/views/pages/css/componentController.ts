@@ -1,4 +1,5 @@
 import type { Component } from 'vue';
+import BubblingBubble from './components/BubblingBubble/index.vue';
 import ParticleClock from './components/ParticleClock/index.vue';
 import BorderCssAnimation from './components/BorderCssAnimation/index.vue';
 import AutoSeatSelection from './components/AutoSeatSelection/index.vue';
@@ -14,45 +15,51 @@ interface ComponentsType {
   meta: any
 }
 const components: ComponentsType[] = [
+    {
+    component: BubblingBubble,
+    name: '冒泡',
+    meta: {},
+  },
   {
     component: ParticleClock,
     name: '1.粒子时钟',
     meta: {},
   },
   {
+    component: Loading,
+    name: '2.炫酷loading效果',
+    meta: {},
+  },
+  {
     component: Book3D,
-    name: '2.立体翻页书',
+    name: '3.立体翻页书',
     meta: {},
   },
   {
     component: AutoSeatSelection,
-    name: '3.vue3+canvas实现选票功能',
+    name: '4.vue3+canvas实现选票功能',
     meta: {},
   },
   {
     component: TextScanningLoading,
-    name: '4.css动画 文字扫描加载（文字描边、伪元素、动画）',
+    name: '5.css动画 文字扫描加载（文字描边、伪元素、动画）',
     meta: {},
   },
   {
     component: BorderCssAnimation,
-    name: '5.使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
+    name: '6.使用CSS repeating-conic-gradient创建令人惊叹的边框动画效果',
     meta: {},
   },
   {
     component: TypeWritingText,
-    name: '6.文字逐渐打印',
+    name: '7.文字逐渐打印',
     meta: {},
   },
   {
     component: WaveButton,
-    name: '7.波浪按钮',
+    name: '8.波浪按钮',
     meta: {},
   },
-  {
-    component: Loading,
-    name: '8.炫酷loading效果',
-    meta: {},
-  },
+
 ]
 export default components;
