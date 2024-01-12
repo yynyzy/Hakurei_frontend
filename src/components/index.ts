@@ -19,15 +19,6 @@ import {
   ElCarousel,
   ElCarouselItem,
 } from 'element-plus';
-// 注册自定义全局组件
-const CustomComponents: [string, Component][] = [
-  ['YThemeController', YThemeController],
-  ['YHeader', YHeader],
-  ['YSidebar', YSidebar],
-  ['YAvatar', YAvatar],
-  ['YSupport', YSupport],
-  ['YModal', YModal],
-];
 
 // 按需注册 element-plus 全局组件
 const ElComponents: Component[] = [
@@ -43,6 +34,17 @@ const ElComponents: Component[] = [
   ElCarousel,
   ElCarouselItem,
 ];
+
+// 注册自定义全局组件
+const CustomComponents: [string, Component][] = [
+  ['YThemeController', YThemeController],
+  ['YHeader', YHeader],
+  ['YSidebar', YSidebar],
+  ['YAvatar', YAvatar],
+  ['YSupport', YSupport],
+  ['YModal', YModal],
+];
+
 const ComponentPlugin = {
   install(vm: App) {
     CustomComponents.forEach((component) => {

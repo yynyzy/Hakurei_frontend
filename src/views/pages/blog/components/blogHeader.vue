@@ -6,12 +6,27 @@
     </div>
     <div class="left">
       <ul class="left-navigation-wrapper">
-        <li class="navigation" v-for="(item, index) in navigationContent" :key="index">
+        <li class="btn navigation" v-for="(item, index) in navigationContent" :key="index">
           {{ item.label }}
         </li>
       </ul>
     </div>
-    <div class="right" @click="onBack">BACK</div>
+    <div class="right">
+      <y-theme-controller />
+      <el-dropdown @command="handleCommand" class="btn admin">
+        <span class="title">
+          ADMIN
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item v-for="(item ,index) in adminMenu" :key="index" :command="item.key">
+            {{ item.title }}
+           </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+      <div class="btn back" @click="onBack">BACK</div>
+    </div>
   </nav>
 </template>
 
@@ -37,9 +52,24 @@ const navigationContent = ref<INavigationContent[]>([
   }
 ]);
 
+
+const adminMenu = [
+  {
+    key: 'message',
+    title: '我的消息',
+  },
+  {
+    key: 'logout',
+    title: '退出',
+  }
+]
+const handleCommand = (command: string | number | object) => {
+  console.log(`click on item ${command}`)
+};
+
 const onBack = () => {
   router.push('/home');
-}
+};
 </script>
 <style lang="less" scoped>
 .header {
@@ -53,13 +83,18 @@ const onBack = () => {
   font-size: 16px;
 
   .logo {
-    color: blue;
+    color: #0000ff;
+    font-size: 26px;
+    font-weight: 600px;
     margin-right: 60px;
   }
 
+  .btn {
+    margin: 0 10px;
+  }
   .left {
     min-width: 600px;
-    background-color: red;
+    background-color: rgb(242, 183, 183);
     margin-right: 60px;
 
     .left-navigation-wrapper {
@@ -67,14 +102,25 @@ const onBack = () => {
       align-items: center;
 
       .navigation {
-        margin: 0 10px;
-        background-color: green;
+        // background-color: green;
+        font-size: 18px;
+        border-bottom: 1px solid #ffc0cb;
       }
     }
   }
 
   .right {
+    display: flex;
+    align-items: center;
 
+    .admin {
+      color: blue;
+
+      .title {
+        font-size: 22px;
+        border: 1px solid red;
+      }
+    }
   }
 }
 </style>
