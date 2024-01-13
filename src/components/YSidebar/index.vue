@@ -60,6 +60,8 @@ const onClickMenu = (index: number) => {
   border: 2px solid rgba(230, 235, 240, .7);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   transition: .6s cubic-bezier(.8, .5, .5, .8);
+  overflow-x: hidden;
+  overflow-y: scroll;
 
   &:hover {
     width: 320px;

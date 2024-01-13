@@ -54,7 +54,6 @@ const onClickMenu = (val: any) => {
       top: 80px;
       left: 10px;
       max-height: 80vh;
-      overflow-y: scroll;
   }
 }
 </style>
