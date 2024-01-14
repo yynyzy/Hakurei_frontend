@@ -22,6 +22,5 @@ html[data-theme=dark] {
   --g_banner_color: #000;
 
   /* home 页面 */
-  --g_home_bg: #fff;
-
+  --g_home_bg: #f1f3f9;
 }

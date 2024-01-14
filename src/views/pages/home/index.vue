@@ -2,8 +2,11 @@
   <div class="home">
     <y-header />
     <main class="container">
-      <feature-banner />
-        <div style="height: 300px; width: 1600px; background: red;"></div>
+      <div class="banner">
+        <feature-banner />
+        <div class="banner-cover"></div>
+      </div>
+        <div style="height: 300px; width: 1000px; background: red;"></div>
         <!-- <parallax-scroll/> -->
           <!-- <div @click="getUserInfo">getUserInfo</div>
           <roleModal class="role-model"/> -->
@@ -46,7 +49,25 @@ import FeatureBanner from './components/featureBanner.vue';
   .container {
     width: 100%;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    // padding: 2rem 1rem;
+
+    .banner {
+      position: relative;
+      width: 100%;
+      padding: 2rem 1rem 0.5rem 1rem;
+      background: @main-gradient;
+
+      .banner-cover{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100px;
+        width: 100%;
+        background: @banner-cover;
+      }
+    }
+
   }
 }
+
 </style>
