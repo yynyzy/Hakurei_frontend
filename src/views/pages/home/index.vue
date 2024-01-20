@@ -1,24 +1,27 @@
 <template>
   <div class="home">
     <y-header />
-    <main class="container">
-      <div class="banner">
-        <feature-banner />
-        <div class="banner-cover"></div>
+    <main class="content">
+      <h1 class="title">东方幻想乡地图</h1>
+      <div class="map">
+        <img src="../../images/home/map.png" />
       </div>
-        <div style="height: 300px; width: 1000px; background: red;"></div>
-        <!-- <parallax-scroll/> -->
-          <!-- <div @click="getUserInfo">getUserInfo</div>
-          <roleModal class="role-model"/> -->
-      </main>
-    </div>
+      <!-- <div class="list">
+        <role-list />
+      </div> -->
+      <!-- <parallax-scroll/> -->
+  <!-- <div @click="getUserInfo">getUserInfo</div>
+  <roleModal class="role-model"/> -->
+
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
 // import { tokenStore } from "@/stores";
 // import roleModal from './components/roleModel.vue';
 // import parallaxScroll from './components/parallaxScroll.vue';
-import FeatureBanner from './components/featureBanner.vue';
+// import RoleList from './components/roleList.vue';
 
 // import { User } from '../../engine';
 // const store = tokenStore();
@@ -37,8 +40,6 @@ import FeatureBanner from './components/featureBanner.vue';
   width: 100%;
   min-height: 100%;
   background: var(--g_home_bg);
-  opacity: 0.91;
-  overflow-x: scroll;
 
   .home-header {
     position: absolute;
@@ -46,28 +47,32 @@ import FeatureBanner from './components/featureBanner.vue';
     z-index: 99;
   }
 
-  .container {
+  .content {
     width: 100%;
-    margin: 0 auto;
-    // padding: 2rem 1rem;
+    padding: 1.5rem 1rem 0;
 
-    .banner {
-      position: relative;
-      width: 100%;
-      padding: 2rem 1rem 0.5rem 1rem;
-      background: @main-gradient;
-
-      .banner-cover{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 100px;
-        width: 100%;
-        background: @banner-cover;
-      }
+    .title {
+      font-size: 48px;
+      justify-content: center;
+      text-align: center;
+      margin: 20px 0;
     }
 
+    .map {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        overflow-clip-margin: content-box;
+        overflow: clip;
+      }
+    }
   }
 }
 
+
+.list {
+  background-color: aqua;
+}
 </style>
