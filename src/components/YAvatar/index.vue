@@ -2,68 +2,61 @@
   <div class="information">
     <div class="img-box">
       <img src="@/assets/images/head.jpeg" alt="*" />
-    <div class="menu-wrapper">
-      <div class="menu">
-        <div class="menu-content">
-          <div class="nick-name">YZYYYN</div>
-          <div class="count-items">
-            <div class="count">
-              <span class="count-num">150</span>
-              <span class="count-text">文章</span>
+      <div class="menu-wrapper">
+        <div class="menu">
+          <div class="menu-content">
+            <div class="nick-name">YZYYYN</div>
+            <div class="count-items">
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
+              <div class="count">
+                <span class="count-num">150</span>
+                <span class="count-text">文章</span>
+              </div>
             </div>
-            <div class="count">
-              <span class="count-num">150</span>
-              <span class="count-text">文章</span>
-            </div>
-            <div class="count">
-              <span class="count-num">150</span>
-              <span class="count-text">文章</span>
-            </div>
-          </div>
 
-          <a-menu
-            :selectable="canMenuSelect"
-            forceSubMenuRender="true"
-            style="text-align: left;color: #61666D; border: none;"
-            mode="vertical"
-            :items="menus"
-            @click="handleClick"
-          />
+            <el-menu class="el-menu" @click="onMenuClick" text-color="#61666D" active-text-color="#61666D">
+              <el-menu-item v-for="(item, index) in menus" :index="index">
+                <span>{{ item.label }}</span>
+              </el-menu-item>
+            </el-menu>
 
-          <div class="line"></div>
-          <div class="login-out">
-            <i class="fa fa-sign-out" />
-            <span class="text">退出登录</span>
+            <div class="line"></div>
+            <div class="login-out">
+              <i class="fa fa-sign-out" />
+              <span class="text">退出登录</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue';
-import type { MenuProps } from 'ant-design-vue';
 
-const canMenuSelect = false;
-const menus  = [
+const onMenuClick = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+// import { h } from 'vue';
+const menus = [
   {
     key: '1',
-    icon: h('i', { class: "fa fa-sign-out" }),
+    // icon: h('i', { class: "fa fa-sign-out" }),
     label: '个人中心',
-    title: '个人中心',
   },
   {
     key: '2',
-    icon: h('i', { class: "fa fa-user" }),
+    // icon: h('i', { class: "fa fa-user" }),
     label: '主题切换',
-    title: '主题切换',
   },
 ];
-const handleClick: MenuProps['onClick'] = (menuInfo) => {
-  console.log('click ', menuInfo);
-};
 
 </script>
 
@@ -93,6 +86,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   margin-top: 30px;
   width: 100px;
   height: 100px;
+
   .menu-wrapper {
     display: block;
 
@@ -120,6 +114,7 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
   left: 50%;
   transform: translateX(-50%);
 }
+
 .menu {
   opacity: 0;
   box-shadow: 0 0 30px #0000001a;
@@ -137,80 +132,95 @@ const handleClick: MenuProps['onClick'] = (menuInfo) => {
     height: 100%;
     width: 100%;
 
-  .nick-name {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #fb7299;
-  }
-
-  .count-items {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    padding: 0 20px;
-    color: #000;
-    .count {
+    .nick-name {
       display: flex;
-      align-items: center;
-      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 2px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #fb7299;
+    }
+
+    .count-items {
+      display: flex;
       justify-content: space-between;
-      transition: color .2s;
-      .count-num {
-        font-size: 18px;
-        font-weight: 500;
-      }
+      margin-bottom: 12px;
+      padding: 0 20px;
+      color: #000;
 
-      .count-text {
-        color: #9499A0;
-        font-weight: 400;
-        font-size: 12px;
+      .count {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
         transition: color .2s;
-      }
 
-      &:hover {
-        .count-num, .count-text {
-          color: #00AEEC;
+        .count-num {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .count-text {
+          color: #9499A0;
+          font-weight: 400;
+          font-size: 12px;
+          transition: color .2s;
+        }
+
+        &:hover {
+
+          .count-num,
+          .count-text {
+            color: #00AEEC;
+          }
         }
       }
     }
-  }
 
-  .line {
-    margin: 10px 0;
-    width: 100%;
-    height: 1px;
-    background: #E3E5E7;
-  }
+    .el-menu {
+      font-weight: 500;
+      border: none;
 
-  .login-out {
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    padding: 10px 16px;
-    border-radius: 8px;
-    color: #61666D;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color .3s;
-    .text {
-      margin-left: 10px;
+      /deep/ .el-menu-item {
+        font-size: 14px;
+        line-height: 14px;
+        height: auto;
+        padding: 10px 16px;
+        margin: 10px 0;
+        border-radius: 8px;
+
+        &:hover {
+          background-color: #E3E5E7;
+        }
+      }
     }
-    &:hover {
-      background-color: #E3E5E7;
+
+    .line {
+      margin: 10px 0;
+      width: 100%;
+      height: 1px;
+      background: #E3E5E7;
+    }
+
+    .login-out {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-radius: 8px;
+      color: #61666D;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color .3s;
+
+      .text {
+        margin-left: 10px;
+      }
+
+      &:hover {
+        background-color: #E3E5E7;
+      }
     }
   }
-  }
 }
-
-:deep(.ant-menu-item) {
-    padding-inline: 14px;
-}
-
-:deep(.ant-menu-submenu-title) {
-    padding-inline: 14px;
-}
-
 </style>
