@@ -7,7 +7,9 @@
 </script>
 <style lang="less" scoped>
 .home {
-  width: 500px;
-  // height: 2px;
+  width: 1200px;
+  min-height: 1000px;
+  background-color: #fff;
+  margin-top: 20px;
 }
 </style>

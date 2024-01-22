@@ -9,6 +9,9 @@ html[data-theme=dark] {
     --g_banner_color: #fff;
   /* home 页面 */
   --g_home_bg: #3c3c3c;
+
+    /* blog 页面 */
+    --g_blog_bg: #3c3c3c;
 }
 
 
@@ -23,4 +26,7 @@ html[data-theme=dark] {
 
   /* home 页面 */
   --g_home_bg: #f1f3f9;
+
+  /* blog 页面 */
+  --g_blog_bg: #f1f3f9;
 }

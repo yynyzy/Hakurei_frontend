@@ -75,12 +75,14 @@ const onBack = () => {
 .header {
   width: 100vw;
   height: 60px;
-  background-color: #fff;
-  box-shadow:1px 1px 5px#0003;
+  background-color: var(--g_banner_bg);
+  box-shadow: 1px 1px 5px#0003;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 16px;
+  color: var(--g_login_font_color);
+  z-index: 10;
 
   .logo {
     color: #0000ff;
@@ -94,7 +96,6 @@ const onBack = () => {
   }
   .left {
     min-width: 600px;
-    background-color: rgb(242, 183, 183);
     margin-right: 60px;
 
     .left-navigation-wrapper {
@@ -102,9 +103,8 @@ const onBack = () => {
       align-items: center;
 
       .navigation {
-        // background-color: green;
         font-size: 18px;
-        border-bottom: 1px solid #ffc0cb;
+        border-bottom: 2px solid #ffc0cb;
       }
     }
   }
