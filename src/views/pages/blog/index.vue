@@ -1,7 +1,7 @@
 <template>
   <section class="page">
-    <blog-header class="header"/>
-    <nav-banner class="banner"/>
+    <blog-header class="header" />
+    <nav-banner class="banner" />
 
     <main class="container">
       <router-view />
@@ -10,9 +10,27 @@
 </template>
 
 <script setup lang='ts'>
-// import { ref, reactive,toRefs,onBeforeMount,onMounted} from 'vue';
+import { ref, onMounted} from 'vue';
 import blogHeader from './components/blogHeader.vue';
 import navBanner from './components/navBanner.vue';
+
+const ob = new IntersectionObserver(
+  (entries) => {
+    const entry = entries[0];
+    const dom = document.querySelector('.header')!as HTMLElement;
+    if (entry.isIntersecting) {
+      dom.style.backgroundColor = 'transparent';
+    } else {
+      dom.style.backgroundColor = 'var(--g_banner_bg)';
+    }
+  },
+  {
+    threshold: 0.01,
+  }
+);
+onMounted(() => {
+  ob.observe(document.querySelector('.banner')!);
+})
 </script>
 <style lang="less" scoped>
 @import './style/global.less';
@@ -27,7 +45,6 @@ import navBanner from './components/navBanner.vue';
   .header {
     position: fixed;
     top: 0;
-    background-color: transparent;
   }
 
   .container {
