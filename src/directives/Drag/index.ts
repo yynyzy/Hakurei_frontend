@@ -1,14 +1,16 @@
-import type { Directive } from "vue";
+import type { Directive, DirectiveBinding } from "vue";
 interface ElType extends HTMLElement {
     parentNode: any;
 }
 const drag: Directive = {
-  beforeMount(el: ElType) {
+  beforeMount(el: ElType, binding: DirectiveBinding) {
+        const useDirective = binding.value;
         let disX = 0;
         let disY = 0;
         let canMove = false;
         el.style.position = "absolute";
         el.onmousedown =  (e) => {
+            if(!useDirective) return;
             canMove = true;
             disX = e.clientX - el.offsetLeft;
             disY = e.clientY - el.offsetTop;

@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, onMounted} from 'vue';
+import { onMounted} from 'vue';
 import blogHeader from './components/blogHeader.vue';
 import navBanner from './components/navBanner.vue';
 
