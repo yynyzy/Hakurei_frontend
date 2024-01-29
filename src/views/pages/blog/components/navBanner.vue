@@ -11,7 +11,7 @@
 .banner {
   width: 100%;
   .banner-img {
-    height: 600px;
+    height: 400px;
     width: 100%;
     overflow: hidden;
     background-color: #2b3539;

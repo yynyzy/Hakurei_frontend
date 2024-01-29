@@ -1,8 +1,8 @@
 <template>
-  <div class="card" ref="cardRef"></div>
+  <div class="card" ref="cardRef">创建多个窗口拖动方块，将在三个页面的移动</div>
 </template>
 <script setup lang='ts'>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 function barHeight(): number {
   return window.outerHeight - window.innerHeight;
 }
@@ -50,6 +50,10 @@ onMounted(() => {
   };
 })
 
+onUnmounted(() => {
+  window.onmousemove = null;
+  window.onmouseup = null;
+})
 </script>
 <style lang="less" scoped>
 .card {
@@ -57,5 +61,6 @@ onMounted(() => {
   width: 300px;
   height: 300px;
   background-color: #ff0000;
+  line-height: 300px;
 }
 </style>

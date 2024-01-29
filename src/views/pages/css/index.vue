@@ -25,7 +25,7 @@ const onClickMenu = (val: any) => {
         @getMenuIndex="onClickMenu"
       />
       <component
-        v-drag = "currentCompIndex === 0 ? false : true"
+        v-drag = "currentCompIndex === 2 ? false : true"
         :key="currentCompIndex"
         :is="components[currentCompIndex].component"
       />
