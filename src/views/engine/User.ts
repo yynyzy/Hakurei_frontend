@@ -1,9 +1,14 @@
 import { request } from "@/utils";
-import { LoginRequest, LoginResponse, UserInfo } from "../types/User";
+import { AuthRequest, LoginResponse, UserInfo } from "../types/User";
 
 export default class User {
-  public static login = async (params: LoginRequest) => {
+  public static login = async (params: AuthRequest) => {
     const res = await request.post<LoginResponse>('/user/login', params);
+    return res;
+  }
+
+  public static register = async (params: AuthRequest) => {
+    const res = await request.post<LoginResponse>('/user/register', params);
     return res;
   }
 

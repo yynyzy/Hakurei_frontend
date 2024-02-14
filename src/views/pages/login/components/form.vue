@@ -5,76 +5,74 @@
     </span>
     <div class="form-box login">
       <h2>Login</h2>
-      <form class="form">
+      <div class="form">
         <div class="input-box">
-          <input v-model="modelValue.username" type="text" required />
+          <input v-model="model.username" type="text" required />
           <label>Username</label>
         </div>
         <div class="input-box">
-          <input v-model="modelValue.password" type="password" required />
+          <input v-model="model.password" type="password" required />
           <label>Password</label>
         </div>
         <div>
           <button class="btn" @click="onLogin">login</button>
         </div>
         <p class="tip">Don't have a account ? <a @click="onToSignForm">Sign up</a></p>
-      </form>
+      </div>
     </div>
     <div class="form-box register">
       <h2>Registration</h2>
-      <form class="form">
+      <div class="form">
         <div class="input-box">
-          <input v-model="modelValue.username" type="text" />
+          <input v-model="model.username" type="text" />
           <label>Username</label>
         </div>
-        <div class="input-box">
-          <input v-model="modelValue.phone" type="text" required />
+        <!-- <div class="input-box">
+          <input v-model="model.phone" type="text" required />
           <label>Phone</label>
-        </div>
+        </div> -->
         <div class="input-box">
-          <input v-model="modelValue.password" type="password" required />
+          <input v-model="model.password" type="password" required />
           <label>Password</label>
         </div>
         <div>
           <button class="btn" @click="onSign">Register</button>
         </div>
         <p class="tip">Already have a account ? <a @click="onToLoginForm">Login</a></p>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { LoginRequest } from '../../../types/User';
+import { AuthRequest } from '../../../types/User';
 
 interface Props {
-  modelValue: LoginRequest
+  model: AuthRequest
   show: Boolean
   loading: Boolean
 }
 interface Emits {
+  (event: 'reset'): void;
   (event: 'login'): void;
   (event: 'sign'): void;
   (event: 'show', value: boolean): void;
 }
-const props = defineProps<Props>();
+defineProps<Props>();
 const emits = defineEmits<Emits>();
 
 const onCloseForm = (): void => {
   emits('show', false)
 };
 const isLoginForm = ref(false);
+
 const onToSignForm = (): void => {
   isLoginForm.value = true;
-  props.modelValue.username = '';
-  props.modelValue.password = '';
 };
+
 const onToLoginForm = (): void => {
   isLoginForm.value = false;
-  props.modelValue.username = '';
-  props.modelValue.password = '';
-  props.modelValue.phone = '';
 };
 const onLogin = (): void => {
   emits('login');
@@ -225,4 +223,3 @@ const onSign = (): void => {
   }
 }
 </style>
-../../interface/User.ts

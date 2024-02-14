@@ -6,17 +6,17 @@ import asyncRoutes from './asyncRoutes';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/home',
-    meta: { isAuth: true },
-    component: Home,
+    path: '/login',
+    component: Login
   },
   {
     path:'/',
     redirect:"/home"
   },
   {
-    path: '/login',
-    component: Login
+    path: '/home',
+    meta: { isAuth: true },
+    component: Home,
   },
   {
     path: '/theme',

@@ -18,7 +18,6 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
-        // additionalData: '@import "./src/assets/style/default.less";',
       }
     },
   }

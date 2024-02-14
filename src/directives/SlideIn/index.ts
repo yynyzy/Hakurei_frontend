@@ -31,7 +31,6 @@ const slideIn: Directive = {
     if (!isBelowViewport(el)) {
       return;
     }
-    console.log('el', el);
     const animation = el.animate([
       { transform: `translateY(${SLIDE_DISTANCE}px)`, opacity: 0.5 },
       { transform: 'translateY(0)', opacity: 1 },

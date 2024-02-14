@@ -22,11 +22,10 @@ const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
 const onClickLogin = () => {
-  emits('update:modelValue', !props.modelValue)
+  if (!props.modelValue) {
+    emits('update:modelValue', !props.modelValue)
+  }
 };
-// const onClickNavigationBar = (value: string) => {
-//   emits('onClickNavigation', value);
-// }
 </script>
 
 <style lang="less" scoped>

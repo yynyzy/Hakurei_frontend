@@ -44,7 +44,7 @@
 const onMenuClick = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-// import { h } from 'vue';
+
 const menus = [
   {
     key: '1',
