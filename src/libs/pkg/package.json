@@ -1,0 +1,14 @@
+{
+  "name": "webAssembly",
+  "version": "0.1.0",
+  "files": [
+    "webAssembly_bg.wasm",
+    "webAssembly.js",
+    "webAssembly.d.ts"
+  ],
+  "module": "webAssembly.js",
+  "types": "webAssembly.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
