@@ -13,7 +13,7 @@ export default class Blog {
 
   public static getArticlesByUserId = async (user_id: String) => {
     const res = await request.get('/blog/list', {
-      params: { user_id, }
+      params: { user_id }
     });
     return res;
   }

@@ -25,7 +25,11 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item v-for="(item ,index) in adminMenu" :key="index" :command="item.key">
+            <el-dropdown-item
+            v-for="(item ,index) in adminMenu"
+            :key="index"
+             :command="item.key"
+             >
             {{ item.title }}
            </el-dropdown-item>
           </el-dropdown-menu>
@@ -53,13 +57,13 @@ const navigationContent = ref<INavigationContent[]>([
     label: '首页',
   },
   {
-    router: 'myArticle',
-    label: '我的文章',
+    router: 'like',
+    label: '我的收藏',
   },
-  {
-    router: 'chatroom',
-    label: '聊天室',
-  }
+  // {
+  //   router: 'chatroom',
+  //   label: '聊天室',
+  // }
 ]);
 
 const active = ref(0);
@@ -70,16 +74,21 @@ const onChangeRoute = (value: string, index: number) => {
 
 const adminMenu = [
   {
+    key: 'myArticle',
+    title: '我的文章',
+  },
+  {
     key: 'message',
     title: '我的消息',
   },
-  {
-    key: 'logout',
-    title: '退出',
-  }
 ]
 const handleCommand = (command: string | number | object) => {
   console.log(`click on item ${command}`)
+  switch (command) {
+    case "myArticle":
+      router.push('/blog/myArticle');
+      break;
+  }
 };
 
 const onBack = () => {

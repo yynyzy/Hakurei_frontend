@@ -13,10 +13,10 @@
 
 <script setup lang='ts'>
 import { defineProps } from 'vue';
-import { Articles } from '@/views/types/blog';
+import { Article } from '@/views/types/blog';
 import router from '@/router';
 interface Props {
-  articles: Articles[],
+  articles: Article[],
 };
 
 defineProps<Props>();

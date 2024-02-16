@@ -9,9 +9,9 @@ import { ref } from 'vue';
 import { Blog } from '@/views/engine';
 import { ElMessage } from 'element-plus';
 import articleList from './components/articleList.vue';
-import { Articles } from '@/views/types/blog';
+import { Article } from '@/views/types/blog';
 
-const articles  = ref<Articles[]>([]);
+const articles  = ref<Article[]>([]);
 
 const getArticlesByUserId = async () => {
   const res = await Blog.getArticlesByMySelf();
@@ -28,7 +28,7 @@ getArticlesByUserId();
 <style lang="less" scoped>
 
 .wrapper {
-  margin-top: 20px;
+  margin-top: 220px;
   background-color: #fff;
   min-height: 1000px;
 }

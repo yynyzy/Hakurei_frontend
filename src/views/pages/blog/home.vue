@@ -5,13 +5,13 @@
 </template>
 
 <script setup lang='ts'>
-import type { Articles } from '@/views/types/blog';
+import type { Article } from '@/views/types/blog';
 import articleList from './components/articleList.vue';
 import Blog from '@/views/engine/Blog';
 import { ElMessage } from 'element-plus';
 import { ref } from 'vue';
 
-const articles  = ref<Articles[]>([]);
+const articles  = ref<Article[]>([]);
 
 const getArticles = async () => {
   const res = await Blog.getArticles();

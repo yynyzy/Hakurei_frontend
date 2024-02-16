@@ -18,6 +18,9 @@
 </template>
 
 <script setup lang="ts">
+// import * as wasm from "hakureireimu-webassembly";
+// wasm.greet("hah");
+
 // import { tokenStore } from "@/stores";
 // import roleModal from './components/roleModel.vue';
 // import parallaxScroll from './components/parallaxScroll.vue';

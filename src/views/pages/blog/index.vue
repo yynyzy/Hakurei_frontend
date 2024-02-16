@@ -17,11 +17,11 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const showNavBanner= ref(true);
 const showNavBannerRouters = [
   "/blog/",
-  "/blog/myArticle",
-]
+];
+const showNavBanner= ref(showNavBannerRouters.includes(router.currentRoute.value.fullPath));
+
 watch(router.currentRoute, (v)=> {
   if (showNavBannerRouters.includes(v.fullPath)) {
     showNavBanner.value = true;
