@@ -1,7 +1,7 @@
 <template>
   <section class="page">
     <blog-header class="header" />
-    <nav-banner class="banner" />
+    <nav-banner class="banner" v-show="showNavBanner"/>
 
     <main class="container">
       <router-view />
@@ -10,14 +10,32 @@
 </template>
 
 <script setup lang='ts'>
-import { onMounted} from 'vue';
+import { onMounted, ref, watch} from 'vue';
 import blogHeader from './components/blogHeader.vue';
 import navBanner from './components/navBanner.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
+
+const showNavBanner= ref(true);
+const showNavBannerRouters = [
+  "/blog/",
+  "/blog/myArticle",
+]
+watch(router.currentRoute, (v)=> {
+  if (showNavBannerRouters.includes(v.fullPath)) {
+    showNavBanner.value = true;
+  } else {
+    showNavBanner.value = false;
+  }
+}, {
+  deep: true,
+})
 const ob = new IntersectionObserver(
   (entries) => {
     const entry = entries[0];
     const dom = document.querySelector('.header')!as HTMLElement;
+    if (!dom) return;
     if (entry.isIntersecting) {
       dom.style.backgroundColor = 'transparent';
     } else {

@@ -12,10 +12,10 @@ export default class User {
     return res;
   }
 
-  public static getUserInfo = async (params: any) => {
-    const res = await request.get<UserInfo>('/user/info', {
-      params,
-    });
-    return res;
-  }
+  // public static getUserInfo = async (params: any) => {
+  //   const res = await request.get<UserInfo>('/user/info', {
+  //     params,
+  //   });
+  //   return res;
+  // }
 }

@@ -78,6 +78,18 @@ export default [
         meta: { isAuth: true },
         children: [],
       },
+      {
+        path: 'myArticle',
+        component: () => import('@/views/pages/blog/myArticle.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'article/:id',
+        component: () => import('@/views/pages/blog/articleDetail.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
     ],
   },
   {

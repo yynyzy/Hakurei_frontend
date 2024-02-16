@@ -36,6 +36,8 @@ function setBaseUrl() {
   return `${VITE_APP_BASE_URL}:${VITE_APP_PORT}`;
 }
 const formatRequestConfig = (config: InternalAxiosRequestConfig) => {
+  let auth =  JSON.parse(localStorage.getItem("TOKEN")!)  || {};
+  config.headers.Authorization = `Bearer ${auth.token || ''}`
   return config;
 };
 
@@ -60,6 +62,9 @@ const err = ({ response }: { response: any}) => {
       case 401:
         break;
       case 400:
+        break;
+      case 500:
+        ElMessage.error("服务器内部错误")
         break;
       default:
         break;

@@ -6,7 +6,13 @@
     </div>
     <div class="left">
       <ul class="left-navigation-wrapper">
-        <li class="btn navigation" v-for="(item, index) in navigationContent" :key="index">
+        <li
+          class="btn navigation"
+          :class="['btn', 'navigation', { active: index === active}]"
+          v-for="(item, index) in navigationContent"
+          :key="index"
+          @click="onChangeRoute(item.router, index)"
+        >
           {{ item.label }}
         </li>
       </ul>
@@ -25,7 +31,7 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <div class="btn back" @click="onBack">BACK</div>
+      <div class="btn back" @click="onBack">BACK HOME</div>
     </div>
   </nav>
 </template>
@@ -37,21 +43,30 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 interface INavigationContent {
-  key: string,
+  router: string,
   label: string,
 };
 
 const navigationContent = ref<INavigationContent[]>([
   {
-    key: 'home',
+    router: '',
     label: '首页',
   },
   {
-    key: 'chatroom',
+    router: 'myArticle',
+    label: '我的文章',
+  },
+  {
+    router: 'chatroom',
     label: '聊天室',
   }
 ]);
 
+const active = ref(0);
+const onChangeRoute = (value: string, index: number) => {
+  active.value = index;
+  router.push(`/blog/${value}`);
+}
 
 const adminMenu = [
   {
@@ -104,8 +119,11 @@ const onBack = () => {
 
       .navigation {
         font-size: 18px;
-        border-bottom: 2px solid #ffc0cb;
       }
+
+      .active {
+          color: #0000ff;
+        }
     }
   }
 
@@ -114,12 +132,16 @@ const onBack = () => {
     align-items: center;
 
     .admin {
-      color: blue;
+      color: #0000ff;
 
       .title {
         font-size: 22px;
-        border: 1px solid red;
       }
+    }
+
+    .back {
+      font-size: 18px;
+      border: 1px solid #000;
     }
   }
 }
