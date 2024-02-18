@@ -6,6 +6,17 @@ export default class Blog {
     return res;
   }
 
+  public static getArticleInfoByArticleId = async (articleId: number) => {
+    const res = await request.get(`/blog/${articleId}`);
+    return res;
+  }
+
+  public static deleteArticleByArticleId = async (articleId: number) => {
+    const res = await request.delete(`/blog/${articleId}`);
+    return res;
+  }
+
+
   public static getArticlesByMySelf= async () => {
     const res = await request.get('/blog/list/my');
     return res;

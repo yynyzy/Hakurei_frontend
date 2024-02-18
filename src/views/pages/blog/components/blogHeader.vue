@@ -60,6 +60,10 @@ const navigationContent = ref<INavigationContent[]>([
     router: 'like',
     label: '我的收藏',
   },
+  {
+    router: 'myArticle',
+    label: '我的文章',
+  },
   // {
   //   router: 'chatroom',
   //   label: '聊天室',

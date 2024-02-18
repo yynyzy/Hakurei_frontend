@@ -51,10 +51,10 @@ export const GlobalHeaderLeftRoute: Array<Tab> = [
     name: 'CSS 特效',
     route: '/css',
   },
-  {
-    name: 'JS 妙用',
-    route: '/js',
-  },
+  // {
+  //   name: 'JS 妙用',
+  //   route: '/js',
+  // },
 ];
 
 export const GlobalHeaderRightRoute: Array<Tab> = [

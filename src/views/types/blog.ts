@@ -5,6 +5,6 @@ export interface Article {
   description: String,
   content: String,
   status: number,
-  createdAt: any,
-  updatedAt: any,
+  created_at: any,
+  updated_at: any,
 }

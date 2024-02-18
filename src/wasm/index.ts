@@ -1,10 +1,6 @@
-import init, {greet} from "./pkg/webAssembly.js";
-
-async function initWebAssembly() {
-  await init();
-};
+import init, {greet} from "../../webAssembly/pkg";
 
 export {
-  initWebAssembly,
+  init,
   greet,
 }

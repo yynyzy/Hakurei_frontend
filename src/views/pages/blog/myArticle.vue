@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <article-list :articles="articles"></article-list>
+    <article-list :articles="articles" @delete="onClickArticleDelete"></article-list>
   </section>
 </template>
 
@@ -22,13 +22,16 @@ const getArticlesByUserId = async () => {
   }
 }
 
+const onClickArticleDelete = () => {
+  getArticlesByUserId();
+};
+
 getArticlesByUserId();
 
 </script>
 <style lang="less" scoped>
 
 .wrapper {
-  margin-top: 220px;
   background-color: #fff;
   min-height: 1000px;
 }

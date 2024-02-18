@@ -29,6 +29,5 @@ getArticles();
   width: 1200px;
   min-height: 1000px;
   background-color: #fff;
-  margin-top: 20px;
 }
 </style>
