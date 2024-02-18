@@ -1,8 +1,14 @@
 import { request } from "@/utils";
+import { ArticleCreate } from "../types/blog";
 
 export default class Blog {
   public static getArticles = async () => {
     const res = await request.get('/blog/list');
+    return res;
+  }
+
+  public static createArticle = async (params: ArticleCreate) => {
+    const res = await request.post('/blog/create', params);
     return res;
   }
 

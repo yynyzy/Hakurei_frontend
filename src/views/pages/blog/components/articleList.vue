@@ -19,7 +19,7 @@
               <i class="fa fa-book-reader read" />
               <text class="read-text">阅读</text>
             </div>
-            <div class="btn" @click="onArticleDelete(item.id)">
+            <div v-if="showDeleteBtn" class="btn" @click="onArticleDelete(item.id)">
               <i class="fa fa-trash-alt bin" />
               <text class="bin-text">删除</text>
             </div>
@@ -38,6 +38,7 @@ import { Blog } from '@/views/engine';
 import { ElMessage } from 'element-plus';
 interface Props {
   articles: Article[],
+  showDeleteBtn?: boolean,
 };
 defineProps<Props>();
 interface Emits {

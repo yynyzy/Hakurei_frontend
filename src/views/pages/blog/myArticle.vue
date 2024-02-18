@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <article-list :articles="articles" @delete="onClickArticleDelete"></article-list>
+    <article-list :articles="articles" :showDeleteBtn ="showDeleteBtn" @delete="onClickArticleDelete"></article-list>
   </section>
 </template>
 
@@ -10,6 +10,8 @@ import { Blog } from '@/views/engine';
 import { ElMessage } from 'element-plus';
 import articleList from './components/articleList.vue';
 import { Article } from '@/views/types/blog';
+
+const showDeleteBtn = true;
 
 const articles  = ref<Article[]>([]);
 

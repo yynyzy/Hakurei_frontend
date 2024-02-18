@@ -53,7 +53,6 @@ getArticleById()
 <style lang="less" scoped>
 
 .wrapper {
-  margin-top: 100px;
   width: 1000px;
   padding-bottom: 100px;
 
@@ -82,17 +81,17 @@ getArticleById()
         line-height: 22px;
       }
     }
-    .title {
+    // .title {
 
-    }
+    // }
 
-    .description {
+    // .description {
 
-    }
+    // }
 
-    .content {
+    // .content {
 
-    }
+    // }
   }
 }
 </style>

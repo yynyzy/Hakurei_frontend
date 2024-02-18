@@ -90,6 +90,12 @@ export default [
         meta: { isAuth: true },
         children: [],
       },
+      {
+        path: 'create',
+        component: () => import('@/views/pages/blog/articleCreate.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
     ],
   },
   {

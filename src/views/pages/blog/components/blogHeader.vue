@@ -35,7 +35,12 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <div class="btn back" @click="onBack">BACK HOME</div>
+      <div class="btn">
+        <el-button type="success" @click="onToCreateArticle">创建文章</el-button>
+      </div>
+      <div class="btn">
+        <el-button @click="onBack" type="primary">返回主站</el-button>
+      </div>
     </div>
   </nav>
 </template>
@@ -92,11 +97,17 @@ const handleCommand = (command: string | number | object) => {
     case "myArticle":
       router.push('/blog/myArticle');
       break;
+    default:
+      break;
   }
 };
 
 const onBack = () => {
   router.push('/home');
+};
+
+const onToCreateArticle = () => {
+  router.push('/blog/create');
 };
 </script>
 <style lang="less" scoped>
@@ -152,10 +163,6 @@ const onBack = () => {
       }
     }
 
-    .back {
-      font-size: 18px;
-      border: 1px solid #000;
-    }
   }
 }
 </style>

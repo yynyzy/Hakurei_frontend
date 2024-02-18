@@ -7,6 +7,7 @@ import YSupport from './YSupport/index.vue';
 import YModal from './YModal/index.vue';
 
 import {
+  ElButton,
   ElMenu,
   ElInput,
   ElTag,
@@ -22,9 +23,10 @@ import {
 
 // 按需注册 element-plus 全局组件
 const ElComponents: Component[] = [
+  ElButton,
+  ElInput,
   ElMenu,
   ElMenuItem,
-  ElInput,
   ElTag,
   ElImage,
   ElPagination,
