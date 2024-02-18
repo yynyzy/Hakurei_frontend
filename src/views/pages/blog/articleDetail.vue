@@ -15,7 +15,7 @@
       </div>
       <div class="part content">
         <div class="mean">内容：</div>
-        <div class="content">{{ articleInfo?.content }}</div>
+        <v-md-editor v-model="articleInfo.content" mode="preview" />
       </div>
     </div>
   </div>
@@ -36,7 +36,16 @@ const getArticleIdRouteParams = () => {
   return Array.isArray(id) ? id[0] : id;
 };
 
-const articleInfo = ref<Article | null>(null);
+const articleInfo = ref<Article>({
+  id: 0,
+  user_id: '',
+  title: '',
+  description: '',
+  content: '',
+  status: 0,
+  created_at: undefined,
+  updated_at: undefined
+});
 
 const getArticleById = async() => {
   const res = await Blog.getArticleInfoByArticleId(Number(getArticleIdRouteParams()));

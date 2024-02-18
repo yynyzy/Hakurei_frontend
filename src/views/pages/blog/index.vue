@@ -66,7 +66,7 @@ onMounted(() => {
   }
 
   .container {
-    margin-top: 100px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
