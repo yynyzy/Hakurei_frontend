@@ -1,11 +1,11 @@
 <template>
   <div class="information">
     <div class="img-box">
-      <img src="@/assets/images/head.jpeg" alt="*" />
+      <img :src="info?.avatar ? info?.avatar : '/src/assets/images/head.jpeg'" alt="*" />
       <div class="menu-wrapper">
         <div class="menu">
           <div class="menu-content">
-            <div class="nick-name">YZYYYN</div>
+            <div class="nick-name">{{ info?.username || '未知' }}</div>
             <div class="count-items">
               <div class="count">
                 <span class="count-num">150</span>
@@ -40,7 +40,12 @@
 </template>
 
 <script setup lang="ts">
+import { UserInfo } from '@/views/types/User';
 
+interface Props {
+  info: UserInfo,
+}
+defineProps<Props>();
 const onMenuClick = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }

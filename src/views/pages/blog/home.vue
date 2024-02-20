@@ -26,6 +26,7 @@ getArticles();
 </script>
 <style lang="less" scoped>
 .home {
+  margin-top: -50px;
   width: 1200px;
   min-height: 1000px;
   background-color: #fff;

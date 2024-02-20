@@ -17,7 +17,7 @@
               <y-theme-controller class="theme-btn"/>
             </li>
             <li class="li">
-              <y-avatar/>
+              <y-avatar :info="userInfo"/>
             </li>
             <li class="li popover-wrap"
               v-for="(tab, index) in GlobalHeaderRightRoute"
@@ -42,7 +42,9 @@
 import { useRouter } from 'vue-router';
 import { GlobalHeaderLeftRoute, GlobalHeaderRightRoute } from '@/router/routes';
 import SettingIcon from './settingIcon.vue'
-
+import Member from '@/utils/member';
+import { UserInfo } from '@/views/types/User';
+import { ref } from 'vue';
 
 const WebName: string = 'YzYn';
 
@@ -64,6 +66,15 @@ const onToPage = (val: Tab): void => {
   }
 
 };
+
+const userInfo = ref<UserInfo | null>(null);
+
+const getUserInfo = async () => {
+  const user = await Member.getUserInfo();
+  console.log("res", user);
+  userInfo.value = user;
+}
+getUserInfo();
 </script>
 
 <style lang="less" scoped>

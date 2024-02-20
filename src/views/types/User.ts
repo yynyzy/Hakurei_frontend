@@ -10,9 +10,12 @@ export interface LoginResponse {
 }
 
 export interface UserInfo {
+  id: string,
   username: string
-  password: string
-  email: string
-  phone: number
-  avatar: string
+  password?: string
+  email?: string
+  phone?: number
+  avatar?: string
+  role: number
+  status: number
 }

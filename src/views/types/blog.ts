@@ -1,6 +1,7 @@
 export interface Article {
   id: number,
   user_id: String,
+  user_name: String,
   title: String,
   description: String,
   content: String,

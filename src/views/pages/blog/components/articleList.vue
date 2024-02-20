@@ -5,12 +5,16 @@
         <div class="content">
           <div class="left">
             <div class="line">
-              <div class="text">标题:</div>
-              <div class="title" v-text="item.title"></div>
+              <div class="title-text line-text">标题:</div>
+              <div class="title-content" v-text="item.title"></div>
             </div>
             <div class="line">
-              <div class="text">描述:</div>
-              <div class="description" v-text="item.description"></div>
+              <div class="description-text line-text">描述:</div>
+              <div class="description-content" v-text="item.description"></div>
+            </div>
+            <div class="line">
+              <div class="author-text line-text">作者:</div>
+              <div class="author-content" v-text="item.user_name"></div>
             </div>
           </div>
 
@@ -81,32 +85,39 @@ const onArticleDelete = async (articleId: number) => {
         .line {
           display: flex;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
         }
-        .text {
+        .line-text {
           font-size: 16px;
           line-height: 16px;
-          width: 90px;
+          width: 60px;
         }
 
-        .title {
+        .title-content {
           font-weight: 600;
           font-size: 16px;
           line-height: 16px;
-          width: 100%;
           display: -webkit-box;
           overflow: hidden;
           text-overflow: ellipsis;
         }
 
-        .description {
+        .description-content {
           display: -webkit-box;
-          font-size: 13px;
+          font-size: 16px;
           line-height: 16px;
           overflow: hidden;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           color: @descriptionColor;
+        }
+
+        .author-content {
+          color: @descriptionColor;
+        }
+
+        .author-text {
+          font-size: 12px;
         }
       }
 

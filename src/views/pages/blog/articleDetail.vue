@@ -5,17 +5,23 @@
         <div class="mean">标题：</div>
         <div class="content">{{ articleInfo?.title }}</div>
       </div>
+      <div class="part author">
+        <div class="mean">作者：</div>
+        <div class="content">{{ articleInfo?.user_name }}</div>
+      </div>
       <div class="part title">
         <div class="mean">创建时间：</div>
-        <div class="content">{{articleInfo?.created_at}}</div>
+        <div class="content">{{ articleInfo?.created_at }}</div>
       </div>
       <div class="part description">
         <div class="mean">摘要：</div>
         <div class="content">{{ articleInfo?.description }}</div>
       </div>
-      <div class="part content">
+      <div class="part-without-border content">
         <div class="mean">内容：</div>
-        <v-md-editor v-model="articleInfo.content" mode="preview" />
+        <div class="articleInfo-content">
+          <v-md-editor v-model="articleInfo.content" mode="preview" />
+        </div>
       </div>
     </div>
   </div>
@@ -39,6 +45,7 @@ const getArticleIdRouteParams = () => {
 const articleInfo = ref<Article>({
   id: 0,
   user_id: '',
+  user_name: '',
   title: '',
   description: '',
   content: '',
@@ -47,7 +54,7 @@ const articleInfo = ref<Article>({
   updated_at: undefined
 });
 
-const getArticleById = async() => {
+const getArticleById = async () => {
   const res = await Blog.getArticleInfoByArticleId(Number(getArticleIdRouteParams()));
   if (res.status === 200) {
     const info = res.data[0];
@@ -60,7 +67,6 @@ const getArticleById = async() => {
 getArticleById()
 </script>
 <style lang="less" scoped>
-
 .wrapper {
   width: 1000px;
   padding-bottom: 100px;
@@ -73,34 +79,32 @@ getArticleById()
     background-color: #fff;
 
     .part {
-      // overflow: hidden;
-      word-wrap:break-word;
+      word-wrap: break-word;
       margin-top: 20px;
-
-      .mean {
-        font-size: 20px;
-        font-weight: 600;
-      }
-
-      .content {
-        margin-top: 20px;
-        // background-color: var(--g_blog_bg);
-        width: 100%;
-        font-size: 16px;
-        line-height: 22px;
-      }
+      border-bottom: 1px solid #808080;
     }
-    // .title {
 
-    // }
+    .part-without-border {
+      word-wrap: break-word;
+      margin-top: 20px;
+      border: none;
+    }
 
-    // .description {
+    .mean {
+      font-size: 20px;
+      font-weight: 600;
+    }
 
-    // }
+    .content {
+      margin-top: 20px;
+      width: 100%;
+      font-size: 16px;
+      line-height: 22px;
+    }
 
-    // .content {
-
-    // }
+    .articleInfo-content {
+      border: 1px solid #808080;
+    }
   }
 }
 </style>
