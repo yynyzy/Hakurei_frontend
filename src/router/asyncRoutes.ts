@@ -99,6 +99,12 @@ export default [
     ],
   },
   {
+    path: '/webRtc',
+    component: () => import('@/views/pages/webRtc/index.vue'),
+    meta: { isAuth: true },
+    children: [],
+  },
+  {
     path: '/component',
     component: () => import('@/views/pages/customComponent/index.vue'),
     meta: { isAuth: true },
