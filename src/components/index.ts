@@ -19,10 +19,12 @@ import {
   ElDropdownItem,
   ElCarousel,
   ElCarouselItem,
+  ElDialog,
 } from 'element-plus';
 
 // 按需注册 element-plus 全局组件
 const ElComponents: Component[] = [
+  ElDialog,
   ElButton,
   ElInput,
   ElMenu,

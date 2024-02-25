@@ -25,7 +25,7 @@
 // import parallaxScroll from './components/parallaxScroll.vue';
 // import RoleList from './components/roleList.vue';
 
-import Member from '@/utils/member';
+import { Member } from '@/utils';
 import { UserInfo } from '@/views/types/User';
 import { ref } from 'vue';
 
