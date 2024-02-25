@@ -1,20 +1,16 @@
 <template>
   <div class="home">
-    <y-header/>
     <main class="content">
-      <h1 class="title">东方幻想乡地图</h1>
-      <div class="map">
-        <img src="../../images/home/map.png" />
-      </div>
-      <!-- <div class="list">
-        <role-list />
-      </div> -->
-      <!-- <parallax-scroll/> -->
-  <!-- <div @click="getUserInfo">getUserInfo</div>
-  <roleModal class="role-model"/> -->
+
+
 
     </main>
   </div>
+
+      <!-- <img src="../../images/home/map.png" /> -->
+      <!-- <role-list /> -->
+    <!-- <parallax-scroll/> -->
+    <!-- <roleModal class="role-model"/> -->
 </template>
 
 <script setup lang="ts">
@@ -55,22 +51,21 @@ getUserInfo();
   width: 100%;
   min-height: 100%;
   background: var(--g_home_bg);
-
-  .home-header {
-    position: absolute;
-    top: 0;
-    z-index: 99;
-  }
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 
   .content {
-    width: 100%;
-    padding: 1.5rem 1rem 0;
+    width: 1000px;
+    background: rgba(183, 173, 173, 0.2);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    padding: 0  1rem 1.5rem;
 
     .title {
       font-size: 48px;
       justify-content: center;
       text-align: center;
-      margin: 20px 0;
     }
 
     .map {

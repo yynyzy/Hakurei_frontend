@@ -30,7 +30,6 @@ const onClickMenu = (val: any) => {
 
 <template>
   <section class="page">
-    <y-header/>
     <div class="container">
       <y-sidebar
         class="sidebar"

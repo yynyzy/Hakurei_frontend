@@ -68,3 +68,34 @@ export const GlobalHeaderRightRoute: Array<Tab> = [
     route: '/blog',
   },
 ];
+
+export const StatusBarRoute: Array<Tab> = [
+  {
+    name: '首页',
+    route: '/home',
+  },
+  {
+    name: 'yixiv',
+    route: '/yixiv',
+  },
+  {
+    name: '自定义组件',
+    route: '/component',
+  },
+  {
+    name: 'CSS 特效',
+    route: '/css',
+  },
+  {
+    name: 'WebRTC视频',
+    route: '/webRtc',
+  },
+  {
+    name: '博客',
+    route: '/blog',
+  },
+  {
+    name: '设置',
+    route: '/theme',
+  },
+];

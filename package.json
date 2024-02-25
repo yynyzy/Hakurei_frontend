@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
     "@fortawesome/fontawesome-free": "^6.4.2",
     "@kangc/v-md-editor": "^2.3.18",
     "@types/qs": "^6.9.7",

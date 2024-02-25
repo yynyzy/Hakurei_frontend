@@ -7,6 +7,9 @@ html[data-theme=dark] {
   /* 全局banner */
     --g_banner_bg: #000;
     --g_banner_color: #fff;
+  /* status-bar */
+    --g-status-bar-hover: #58f5d3;
+    --g-status-bar-color: #3c3c3c;
   /* home 页面 */
   --g_home_bg: #3c3c3c;
 
@@ -23,6 +26,10 @@ html[data-theme=dark] {
   /* 全局banner */
   --g_banner_bg: #fff;
   --g_banner_color: #000;
+
+  /* status-bar */
+  --g-status-bar-hover: #62e175;
+  --g-status-bar-color: #fff;
 
   /* home 页面 */
   --g_home_bg: #f1f3f9;

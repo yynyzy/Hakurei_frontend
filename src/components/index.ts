@@ -1,4 +1,5 @@
 import { App, Component } from 'vue';
+import YStatusBar from './YStatusBar/index.vue';
 import YThemeController from './YThemeController/index.vue';
 import YHeader from './YHeader/index.vue';
 import YSidebar from './YSidebar/index.vue';
@@ -20,6 +21,9 @@ import {
   ElCarousel,
   ElCarouselItem,
   ElDialog,
+  ElRadioGroup,
+  ElRadioButton,
+  ElIcon,
 } from 'element-plus';
 
 // 按需注册 element-plus 全局组件
@@ -37,10 +41,14 @@ const ElComponents: Component[] = [
   ElDropdownItem,
   ElCarousel,
   ElCarouselItem,
+  ElRadioGroup,
+  ElRadioButton,
+  ElIcon,
 ];
 
 // 注册自定义全局组件
 const CustomComponents: [string, Component][] = [
+  ['YStatusBar', YStatusBar],
   ['YThemeController', YThemeController],
   ['YHeader', YHeader],
   ['YSidebar', YSidebar],
