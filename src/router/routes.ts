@@ -1,6 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 import Login from '@/views/pages/login/index.vue';
-import Home from '@/views/pages/home/index.vue';
+// import Home from '@/views/pages/home/index.vue';
+import Blog from '@/views/pages/blog/index.vue';
 import Theme from '@/views/pages/theme/index.vue';
 import asyncRoutes from './asyncRoutes';
 
@@ -16,7 +17,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     meta: { isAuth: true },
-    component: Home,
+    component: Blog, // 暂时先将首页设置为 blog 模块
   },
   {
     path: '/theme',

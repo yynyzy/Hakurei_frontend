@@ -26,6 +26,6 @@ const onChangeRouter = (path: string) => {
 
 .page {
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background: var(--g_home_bg);
 }
 </style>
