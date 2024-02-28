@@ -18,6 +18,7 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const showNavBannerRouters = [
+  "/home",
   "/blog/",
 ];
 const showNavBanner= ref(showNavBannerRouters.includes(router.currentRoute.value.fullPath));
@@ -70,6 +71,7 @@ onMounted(() => {
     width: 100%;
     display: flex;
     justify-content: center;
+    min-height: 600px;
   }
 }
 

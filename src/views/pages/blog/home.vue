@@ -28,7 +28,6 @@ getArticles();
 .home {
   margin-top: -50px;
   width: 1200px;
-  min-height: 1000px;
   background-color: #fff;
 }
 </style>

@@ -35,10 +35,10 @@
       <el-icon><VideoCamera /></el-icon>
       <template #title>webRtc</template>
     </el-menu-item>
-    <el-menu-item class="router" index="6" @click="onToPage(5)">
+    <!-- <el-menu-item class="router" index="6" @click="onToPage(5)">
       <el-icon><DataBoard /></el-icon>
       <template #title>blog</template>
-    </el-menu-item>
+    </el-menu-item> -->
     <el-menu-item class="router" index="7" @click="onToPage(6)">
       <el-icon><Setting /></el-icon>
       <template #title>setting</template>
@@ -60,7 +60,7 @@ import {
   PictureFilled,
   Operation,
   VideoCamera,
-  DataBoard,
+  // DataBoard,
   Star,
   Setting,
 } from '@element-plus/icons-vue'

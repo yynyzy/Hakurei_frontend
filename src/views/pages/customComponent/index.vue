@@ -20,6 +20,10 @@ const menus: Array<menuType> = [
     name: '代码风暴',
     data: '',
   },
+  {
+    name: '刮刮乐',
+    data: '',
+  },
 ];
 const onClickMenu = (val: any) => {
   if (currentCompIndex.value !== val) {

@@ -1,7 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
 import Login from '@/views/pages/login/index.vue';
 // import Home from '@/views/pages/home/index.vue';
-import Blog from '@/views/pages/blog/index.vue';
 import Theme from '@/views/pages/theme/index.vue';
 import asyncRoutes from './asyncRoutes';
 
@@ -17,7 +16,34 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     meta: { isAuth: true },
-    component: Blog, // 暂时先将首页设置为 blog 模块
+    // 暂时先将首页设置为 blog 模块
+    component: () => import('@/views/pages/blog/index.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/pages/blog/home.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'myArticle',
+        component: () => import('@/views/pages/blog/myArticle.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'article/:id',
+        component: () => import('@/views/pages/blog/articleDetail.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+      {
+        path: 'create',
+        component: () => import('@/views/pages/blog/articleCreate.vue'),
+        meta: { isAuth: true },
+        children: [],
+      },
+    ],
   },
   {
     path: '/theme',

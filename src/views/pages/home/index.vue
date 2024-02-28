@@ -1,12 +1,8 @@
 <template>
   <div class="home">
     <main class="content">
-
-
-
     </main>
   </div>
-
       <!-- <img src="../../images/home/map.png" /> -->
       <!-- <role-list /> -->
     <!-- <parallax-scroll/> -->
